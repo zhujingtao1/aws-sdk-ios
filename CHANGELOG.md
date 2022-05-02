@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-## Pinpoint
+## AWSS3
+
+ - fix: adds details to userInfo for NSError for TransferUtility (See [PR #4115](https://github.com/aws-amplify/aws-sdk-ios/pull/4115))
+
+## AWSPinpoint
 
 - fix: Updates Pinpoint to allow for push events for received and opened (See [PR #4105](https://github.com/aws-amplify/aws-sdk-ios/pull/4105))
 
