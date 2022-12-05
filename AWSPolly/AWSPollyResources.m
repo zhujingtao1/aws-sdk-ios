@@ -476,7 +476,10 @@
         \"en-NZ\",\
         \"en-ZA\",\
         \"ca-ES\",\
-        \"de-AT\"\
+        \"de-AT\",\
+        \"yue-CN\",\
+        \"ar-AE\",\
+        \"fi-FI\"\
       ]\
     },\
     \"LanguageCodeList\":{\
@@ -1135,7 +1138,19 @@
         \"Aria\",\
         \"Ayanda\",\
         \"Arlet\",\
-        \"Hannah\"\
+        \"Hannah\",\
+        \"Arthur\",\
+        \"Daniel\",\
+        \"Liam\",\
+        \"Pedro\",\
+        \"Kajal\",\
+        \"Hiujin\",\
+        \"Laura\",\
+        \"Elin\",\
+        \"Ida\",\
+        \"Suvi\",\
+        \"Ola\",\
+        \"Hala\"\
       ]\
     },\
     \"VoiceList\":{\

@@ -386,6 +386,13 @@ typedef NS_ENUM(NSInteger, AWSIoTIndexStatus) {
     AWSIoTIndexStatusRebuilding,
 };
 
+typedef NS_ENUM(NSInteger, AWSIoTJobEndBehavior) {
+    AWSIoTJobEndBehaviorUnknown,
+    AWSIoTJobEndBehaviorStopRollout,
+    AWSIoTJobEndBehaviorCancel,
+    AWSIoTJobEndBehaviorForceCancel,
+};
+
 typedef NS_ENUM(NSInteger, AWSIoTJobExecutionFailureType) {
     AWSIoTJobExecutionFailureTypeUnknown,
     AWSIoTJobExecutionFailureTypeFailed,
@@ -412,6 +419,7 @@ typedef NS_ENUM(NSInteger, AWSIoTJobStatus) {
     AWSIoTJobStatusCanceled,
     AWSIoTJobStatusCompleted,
     AWSIoTJobStatusDeletionInProgress,
+    AWSIoTJobStatusScheduled,
 };
 
 typedef NS_ENUM(NSInteger, AWSIoTLogLevel) {
@@ -496,6 +504,7 @@ typedef NS_ENUM(NSInteger, AWSIoTResourceType) {
     AWSIoTResourceTypeAccountSettings,
     AWSIoTResourceTypeRoleAlias,
     AWSIoTResourceTypeIamRole,
+    AWSIoTResourceTypeIssuerCertificate,
 };
 
 typedef NS_ENUM(NSInteger, AWSIoTRetryableFailureType) {
@@ -531,6 +540,12 @@ typedef NS_ENUM(NSInteger, AWSIoTTargetSelection) {
     AWSIoTTargetSelectionUnknown,
     AWSIoTTargetSelectionContinuous,
     AWSIoTTargetSelectionSnapshot,
+};
+
+typedef NS_ENUM(NSInteger, AWSIoTTemplateType) {
+    AWSIoTTemplateTypeUnknown,
+    AWSIoTTemplateTypeFleetProvisioning,
+    AWSIoTTemplateTypeJitp,
 };
 
 typedef NS_ENUM(NSInteger, AWSIoTThingConnectivityIndexingMode) {
@@ -900,9 +915,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTHttpUrlDestinationProperties;
 @class AWSIoTHttpUrlDestinationSummary;
 @class AWSIoTImplicitDeny;
+@class AWSIoTIndexingFilter;
 @class AWSIoTIotAnalyticsAction;
 @class AWSIoTIotEventsAction;
 @class AWSIoTIotSiteWiseAction;
+@class AWSIoTIssuerCertificateIdentifier;
 @class AWSIoTJob;
 @class AWSIoTJobExecution;
 @class AWSIoTJobExecutionStatusDetails;
@@ -988,6 +1005,8 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTListProvisioningTemplateVersionsResponse;
 @class AWSIoTListProvisioningTemplatesRequest;
 @class AWSIoTListProvisioningTemplatesResponse;
+@class AWSIoTListRelatedResourcesForAuditFindingRequest;
+@class AWSIoTListRelatedResourcesForAuditFindingResponse;
 @class AWSIoTListRoleAliasesRequest;
 @class AWSIoTListRoleAliasesResponse;
 @class AWSIoTListScheduledAuditsRequest;
@@ -1030,6 +1049,8 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTListV2LoggingLevelsResponse;
 @class AWSIoTListViolationEventsRequest;
 @class AWSIoTListViolationEventsResponse;
+@class AWSIoTLocationAction;
+@class AWSIoTLocationTimestamp;
 @class AWSIoTLogTarget;
 @class AWSIoTLogTargetConfiguration;
 @class AWSIoTLoggingOptionsPayload;
@@ -1043,6 +1064,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTMitigationActionIdentifier;
 @class AWSIoTMitigationActionParams;
 @class AWSIoTMqttContext;
+@class AWSIoTMqttHeaders;
 @class AWSIoTNonCompliantResource;
 @class AWSIoTOTAUpdateFile;
 @class AWSIoTOTAUpdateInfo;
@@ -1089,6 +1111,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTS3Location;
 @class AWSIoTSalesforceAction;
 @class AWSIoTScheduledAuditMetadata;
+@class AWSIoTSchedulingConfig;
 @class AWSIoTSearchIndexRequest;
 @class AWSIoTSearchIndexResponse;
 @class AWSIoTSecurityProfileIdentifier;
@@ -1206,6 +1229,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @class AWSIoTUpdateThingResponse;
 @class AWSIoTUpdateTopicRuleDestinationRequest;
 @class AWSIoTUpdateTopicRuleDestinationResponse;
+@class AWSIoTUserProperty;
 @class AWSIoTValidateSecurityProfileBehaviorsRequest;
 @class AWSIoTValidateSecurityProfileBehaviorsResponse;
 @class AWSIoTValidationError;
@@ -1353,6 +1377,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>Invoke a Lambda function.</p>
  */
 @property (nonatomic, strong) AWSIoTLambdaAction * _Nullable lambda;
+
+/**
+ <p>The Amazon Location Service rule action sends device location updates from an MQTT message to an Amazon Location tracker resource.</p>
+ */
+@property (nonatomic, strong) AWSIoTLocationAction * _Nullable location;
 
 /**
  <p>Write data to an Amazon OpenSearch Service domain.</p>
@@ -2626,6 +2655,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable certificateId;
 
 /**
+ <p>The mode of the CA. </p><p>All the device certificates that are registered using this CA will be registered in the same mode as the CA. For more information about certificate mode for device certificates, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode">certificate mode</a>.</p>
+ */
+@property (nonatomic, assign) AWSIoTCertificateMode certificateMode;
+
+/**
  <p>The CA certificate data, in PEM format.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable certificatePem;
@@ -2845,7 +2879,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable certificateId;
 
 /**
- <p>The mode of the certificate.</p>
+ <p>The mode of the certificate.</p><p><code>DEFAULT</code>: A certificate in <code>DEFAULT</code> mode is either generated by Amazon Web Services IoT Core or registered with an issuer certificate authority (CA) in <code>DEFAULT</code> mode. Devices with certificates in <code>DEFAULT</code> mode aren't required to send the Server Name Indication (SNI) extension when connecting to Amazon Web Services IoT Core. However, to use features such as custom domains and VPC endpoints, we recommend that you use the SNI extension when connecting to Amazon Web Services IoT Core.</p><p><code>SNI_ONLY</code>: A certificate in <code>SNI_ONLY</code> mode is registered without an issuer CA. Devices with certificates in <code>SNI_ONLY</code> mode must send the SNI extension when connecting to Amazon Web Services IoT Core. </p>
  */
 @property (nonatomic, assign) AWSIoTCertificateMode certificateMode;
 
@@ -2883,7 +2917,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable certificateId;
 
 /**
- <p>The mode of the certificate.</p>
+ <p>The mode of the certificate.</p><p><code>DEFAULT</code>: A certificate in <code>DEFAULT</code> mode is either generated by Amazon Web Services IoT Core or registered with an issuer certificate authority (CA) in <code>DEFAULT</code> mode. Devices with certificates in <code>DEFAULT</code> mode aren't required to send the Server Name Indication (SNI) extension when connecting to Amazon Web Services IoT Core. However, to use features such as custom domains and VPC endpoints, we recommend that you use the SNI extension when connecting to Amazon Web Services IoT Core.</p><p><code>SNI_ONLY</code>: A certificate in <code>SNI_ONLY</code> mode is registered without an issuer CA. Devices with certificates in <code>SNI_ONLY</code> mode must send the SNI extension when connecting to Amazon Web Services IoT Core. </p><p>For more information about the value for SNI extension, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/transport-security.html">Transport security in IoT</a>.</p>
  */
 @property (nonatomic, assign) AWSIoTCertificateMode certificateMode;
 
@@ -3685,7 +3719,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable document;
 
 /**
- <p>Parameters of a managed template that you can specify to create the job document.</p>
+ <p>Parameters of an Amazon Web Services managed template that you can specify to create the job document.</p><note><p><code>documentParameters</code> can only be used when creating jobs from Amazon Web Services managed templates. This parameter can't be used with custom job templates or to create jobs from them.</p></note>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable documentParameters;
 
@@ -3725,12 +3759,17 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) AWSIoTPresignedUrlConfig * _Nullable presignedUrlConfig;
 
 /**
+ <p>The configuration that allows you to schedule a job for a future date and time in addition to specifying the end behavior for each job execution.</p>
+ */
+@property (nonatomic, strong) AWSIoTSchedulingConfig * _Nullable schedulingConfig;
+
+/**
  <p>Metadata which can be used to manage the job.</p>
  */
 @property (nonatomic, strong) NSArray<AWSIoTTag *> * _Nullable tags;
 
 /**
- <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p>
+ <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p><note><p>We recommend that you use continuous jobs instead of snapshot jobs for dynamic thing group targets. By using continuous jobs, devices that join the group receive the job execution even after the job has been created.</p></note>
  */
 @property (nonatomic, assign) AWSIoTTargetSelection targetSelection;
 
@@ -4195,39 +4234,44 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The description of the fleet provisioning template.</p>
+ <p>The description of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>True to enable the fleet provisioning template, otherwise false.</p>
+ <p>True to enable the provisioning template, otherwise false.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable enabled;
 
 /**
- <p>Creates a pre-provisioning hook template.</p>
+ <p>Creates a pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>. For more information about provisioning template types, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type">type</a>.</p>
  */
 @property (nonatomic, strong) AWSIoTProvisioningHook * _Nullable preProvisioningHook;
 
 /**
- <p>The role ARN for the role associated with the fleet provisioning template. This IoT role grants permission to provision a device.</p>
+ <p>The role ARN for the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable provisioningRoleArn;
 
 /**
- <p>Metadata which can be used to manage the fleet provisioning template.</p><note><p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p><p>For the CLI command-line parameter use format: &amp;&amp;tags "key1=value1&amp;key2=value2..."</p><p>For the cli-input-json file use format: "tags": "key1=value1&amp;key2=value2..."</p></note>
+ <p>Metadata which can be used to manage the provisioning template.</p><note><p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p><p>For the CLI command-line parameter use format: &amp;&amp;tags "key1=value1&amp;key2=value2..."</p><p>For the cli-input-json file use format: "tags": "key1=value1&amp;key2=value2..."</p></note>
  */
 @property (nonatomic, strong) NSArray<AWSIoTTag *> * _Nullable tags;
 
 /**
- <p>The JSON formatted contents of the fleet provisioning template.</p>
+ <p>The JSON formatted contents of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateBody;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
+
+/**
+ <p>The type you define in a provisioning template. You can create a template with only one type. You can't change the template type after its creation. The default value is <code>FLEET_PROVISIONING</code>. For more information about provisioning template, see: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html">Provisioning template</a>. </p>
+ */
+@property (nonatomic, assign) AWSIoTTemplateType types;
 
 @end
 
@@ -4238,7 +4282,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The default version of the fleet provisioning template.</p>
+ <p>The default version of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable defaultVersionId;
 
@@ -4248,7 +4292,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable templateArn;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
@@ -4266,12 +4310,12 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable setAsDefault;
 
 /**
- <p>The JSON formatted contents of the fleet provisioning template.</p>
+ <p>The JSON formatted contents of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateBody;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
@@ -4284,7 +4328,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>True if the fleet provisioning template version is the default version, otherwise false.</p>
+ <p>True if the provisioning template version is the default version, otherwise false.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable isDefaultVersion;
 
@@ -4294,12 +4338,12 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable templateArn;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
 /**
- <p>The version of the fleet provisioning template.</p>
+ <p>The version of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable versionId;
 
@@ -4736,7 +4780,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) AWSIoTCodeSigningCertificateChain * _Nullable certificateChain;
 
 /**
- <p>The hash algorithm used to code sign the file.</p>
+ <p>The hash algorithm used to code sign the file. You can use a string as the algorithm name if the target over-the-air (OTA) update devices are able to verify the signature that was generated using the same signature algorithm. For example, FreeRTOS uses <code>SHA256</code> or <code>SHA1</code>, so you can pass either of them based on which was used for generating the signature.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable hashAlgorithm;
 
@@ -4746,7 +4790,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) AWSIoTCodeSigningSignature * _Nullable signature;
 
 /**
- <p>The signature algorithm used to code sign the file.</p>
+ <p>The signature algorithm used to code sign the file. You can use a string as the algorithm name if the target over-the-air (OTA) update devices are able to verify the signature that was generated using the same signature algorithm. For example, FreeRTOS uses <code>ECDSA</code> or <code>RSA</code>, so you can pass either of them based on which was used for generating the signature.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable signatureAlgorithm;
 
@@ -5176,12 +5220,12 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The name of the fleet provisioning template version to delete.</p>
+ <p>The name of the provisioning template version to delete.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
 /**
- <p>The fleet provisioning template version ID to delete.</p>
+ <p>The provisioning template version ID to delete.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable versionId;
 
@@ -6396,7 +6440,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable document;
 
 /**
- <p>A map of key-value pairs that you can use as guidance to specify the inputs for creating a job from a managed template.</p>
+ <p>A map of key-value pairs that you can use as guidance to specify the inputs for creating a job from a managed template.</p><note><p><code>documentParameters</code> can only be used when creating jobs from Amazon Web Services managed templates. This parameter can't be used with custom job templates or to create jobs from them.</p></note>
  */
 @property (nonatomic, strong) NSArray<AWSIoTDocumentParameter *> * _Nullable documentParameters;
 
@@ -6490,7 +6534,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
@@ -6503,7 +6547,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The date when the fleet provisioning template was created.</p>
+ <p>The date when the provisioning template was created.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationDate;
 
@@ -6513,17 +6557,17 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable defaultVersionId;
 
 /**
- <p>The description of the fleet provisioning template.</p>
+ <p>The description of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>True if the fleet provisioning template is enabled, otherwise false.</p>
+ <p>True if the provisioning template is enabled, otherwise false.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable enabled;
 
 /**
- <p>The date when the fleet provisioning template was last modified.</p>
+ <p>The date when the provisioning template was last modified.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable lastModifiedDate;
 
@@ -6538,19 +6582,24 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable provisioningRoleArn;
 
 /**
- <p>The ARN of the fleet provisioning template.</p>
+ <p>The ARN of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateArn;
 
 /**
- <p>The JSON formatted contents of the fleet provisioning template.</p>
+ <p>The JSON formatted contents of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateBody;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
+
+/**
+ <p>The type you define in a provisioning template. You can create a template with only one type. You can't change the template type after its creation. The default value is <code>FLEET_PROVISIONING</code>. For more information about provisioning template, see: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html">Provisioning template</a>. </p>
+ */
+@property (nonatomic, assign) AWSIoTTemplateType types;
 
 @end
 
@@ -6566,7 +6615,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
 /**
- <p>The fleet provisioning template version ID.</p>
+ <p>The provisioning template version ID.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable versionId;
 
@@ -6579,22 +6628,22 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The date when the fleet provisioning template version was created.</p>
+ <p>The date when the provisioning template version was created.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationDate;
 
 /**
- <p>True if the fleet provisioning template version is the default version.</p>
+ <p>True if the provisioning template version is the default version.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable isDefaultVersion;
 
 /**
- <p>The JSON formatted contents of the fleet provisioning template version.</p>
+ <p>The JSON formatted contents of the provisioning template version.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateBody;
 
 /**
- <p>The fleet provisioning template version ID.</p>
+ <p>The provisioning template version ID.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable versionId;
 
@@ -7310,7 +7359,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
- <p>A map of key-value pairs containing the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p>
+ <p>A map of key-value pairs containing the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p><note><p><code>documentParameters</code> can only be used when creating jobs from Amazon Web Services managed templates. This parameter can't be used with custom job templates or to create jobs from them.</p></note>
  */
 @interface AWSIoTDocumentParameter : AWSModel
 
@@ -7678,7 +7727,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p> The maximum number of results to return at one time. The default is 25. </p>
+ <p> The maximum number of results to return at one time. The default is 10. </p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable maxResults;
 
@@ -8416,6 +8465,19 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
+ <p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>
+ */
+@interface AWSIoTIndexingFilter : AWSModel
+
+
+/**
+ <p>The shadow names that you select to index. The default maximum number of shadow names for indexing is 10. To increase the limit, see <a href="https://docs.aws.amazon.com/general/latest/gr/iot_device_management.html#fleet-indexing-limits">Amazon Web Services IoT Device Management Quotas</a> in the <i>Amazon Web Services General Reference</i>. </p>
+ */
+@property (nonatomic, strong) NSArray<NSString *> * _Nullable namedShadowNames;
+
+@end
+
+/**
  <p>Sends message data to an IoT Analytics channel.</p>
  */
 @interface AWSIoTIotAnalyticsAction : AWSModel
@@ -8492,6 +8554,29 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
+ <p>The certificate issuer indentifier.</p>
+ */
+@interface AWSIoTIssuerCertificateIdentifier : AWSModel
+
+
+/**
+ <p>The issuer certificate serial number.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable issuerCertificateSerialNumber;
+
+/**
+ <p>The subject of the issuer certificate.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable issuerCertificateSubject;
+
+/**
+ <p>The issuer ID.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable issuerId;
+
+@end
+
+/**
  <p>The <code>Job</code> object contains details about a job.</p>
  */
 @interface AWSIoTJob : AWSModel
@@ -8523,7 +8608,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>A key-value map that pairs the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p>
+ <p>A key-value map that pairs the patterns that need to be replaced in a managed template job document schema. You can use the description of each key as a guidance to specify the inputs during runtime when creating a job.</p><note><p><code>documentParameters</code> can only be used when creating jobs from Amazon Web Services managed templates. This parameter can't be used with custom job templates or to create jobs from them.</p></note>
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString *> * _Nullable documentParameters;
 
@@ -8531,6 +8616,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>Will be <code>true</code> if the job was canceled with the optional <code>force</code> parameter set to <code>true</code>.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable forceCanceled;
+
+/**
+ <p>Indicates whether a job is concurrent. Will be true when a job is rolling out new job executions or canceling previously created executions, otherwise false.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable isConcurrent;
 
 /**
  <p>An ARN identifying the job with format "arn:aws:iot:region:account:job/jobId".</p>
@@ -8583,12 +8673,17 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable reasonCode;
 
 /**
+ <p>The configuration that allows you to schedule a job for a future date and time in addition to specifying the end behavior for each job execution.</p>
+ */
+@property (nonatomic, strong) AWSIoTSchedulingConfig * _Nullable schedulingConfig;
+
+/**
  <p>The status of the job, one of <code>IN_PROGRESS</code>, <code>CANCELED</code>, <code>DELETION_IN_PROGRESS</code> or <code>COMPLETED</code>. </p>
  */
 @property (nonatomic, assign) AWSIoTJobStatus status;
 
 /**
- <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a device when the thing representing the device is added to a target group, even after the job was completed by all things originally in the group. </p>
+ <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a device when the thing representing the device is added to a target group, even after the job was completed by all things originally in the group. </p><note><p>We recommend that you use continuous jobs instead of snapshot jobs for dynamic thing group targets. By using continuous jobs, devices that join the group receive the job execution even after the job has been created.</p></note>
  */
 @property (nonatomic, assign) AWSIoTTargetSelection targetSelection;
 
@@ -8856,6 +8951,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSDate * _Nullable createdAt;
 
 /**
+ <p>Indicates whether a job is concurrent. Will be true when a job is rolling out new job executions or canceling previously created executions, otherwise false.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable isConcurrent;
+
+/**
  <p>The job ARN.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable jobArn;
@@ -8876,7 +8976,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, assign) AWSIoTJobStatus status;
 
 /**
- <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p>
+ <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.</p><note><p>We recommend that you use continuous jobs instead of snapshot jobs for dynamic thing group targets. By using continuous jobs, devices that join the group receive the job execution even after the job has been created.</p></note>
  */
 @property (nonatomic, assign) AWSIoTTargetSelection targetSelection;
 
@@ -9505,6 +9605,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  */
 @property (nonatomic, strong) NSNumber * _Nullable pageSize;
 
+/**
+ <p>The name of the provisioning template.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable templateName;
+
 @end
 
 /**
@@ -10070,7 +10175,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, assign) AWSIoTJobStatus status;
 
 /**
- <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group. </p>
+ <p>Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group. </p><note><p>We recommend that you use continuous jobs instead of snapshot jobs for dynamic thing group targets. By using continuous jobs, devices that join the group receive the job execution even after the job has been created.</p></note>
  */
 @property (nonatomic, assign) AWSIoTTargetSelection targetSelection;
 
@@ -10555,7 +10660,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
@@ -10573,7 +10678,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>The list of fleet provisioning template versions.</p>
+ <p>The list of provisioning template versions.</p>
  */
 @property (nonatomic, strong) NSArray<AWSIoTProvisioningTemplateVersionSummary *> * _Nullable versions;
 
@@ -10609,9 +10714,50 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>A list of fleet provisioning templates</p>
+ <p>A list of provisioning templates</p>
  */
 @property (nonatomic, strong) NSArray<AWSIoTProvisioningTemplateSummary *> * _Nullable templates;
+
+@end
+
+/**
+ 
+ */
+@interface AWSIoTListRelatedResourcesForAuditFindingRequest : AWSRequest
+
+
+/**
+ <p>The finding Id.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable findingId;
+
+/**
+ <p>The maximum number of results to return at one time.</p>
+ */
+@property (nonatomic, strong) NSNumber * _Nullable maxResults;
+
+/**
+ <p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+@end
+
+/**
+ 
+ */
+@interface AWSIoTListRelatedResourcesForAuditFindingResponse : AWSModel
+
+
+/**
+ <p>A token that can be used to retrieve the next set of results, or <code>null</code> for the first API call.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable nextToken;
+
+/**
+ <p>The related resources.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSIoTRelatedResource *> * _Nullable relatedResources;
 
 @end
 
@@ -11548,6 +11694,64 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
+ <p>The Amazon Location rule action sends device location updates from an MQTT message to an Amazon Location tracker resource.</p>
+ Required parameters: [roleArn, trackerName, deviceId, latitude, longitude]
+ */
+@interface AWSIoTLocationAction : AWSModel
+
+
+/**
+ <p>The unique ID of the device providing the location data.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable deviceId;
+
+/**
+ <p>A string that evaluates to a double value that represents the latitude of the device's location.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable latitude;
+
+/**
+ <p>A string that evaluates to a double value that represents the longitude of the device's location.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable longitude;
+
+/**
+ <p>The IAM role that grants permission to write to the Amazon Location resource.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable roleArn;
+
+/**
+ <p>The time that the location data was sampled. The default value is the time the MQTT message was processed.</p>
+ */
+@property (nonatomic, strong) AWSIoTLocationTimestamp * _Nullable timestamp;
+
+/**
+ <p>The name of the tracker resource in Amazon Location in which the location is updated.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable trackerName;
+
+@end
+
+/**
+ <p>Describes how to interpret an application-defined timestamp value from an MQTT message payload and the precision of that value.</p>
+ Required parameters: [value]
+ */
+@interface AWSIoTLocationTimestamp : AWSModel
+
+
+/**
+ <p>The precision of the timestamp value that results from the expression described in <code>value</code>.</p><p>Valid values: <code>SECONDS</code> | <code>MILLISECONDS</code> | <code>MICROSECONDS</code> | <code>NANOSECONDS</code>. The default is <code>MILLISECONDS</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable unit;
+
+/**
+ <p>An expression that returns a long epoch time value.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
+
+@end
+
+/**
  <p>A log target.</p>
  Required parameters: [targetType]
  */
@@ -11853,6 +12057,44 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>The value of the <code>username</code> key in an MQTT authorization request.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable username;
+
+@end
+
+/**
+ <p>Specifies MQTT Version 5.0 headers information. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"> MQTT</a> from Amazon Web Services IoT Core Developer Guide.</p>
+ */
+@interface AWSIoTMqttHeaders : AWSModel
+
+
+/**
+ <p>A UTF-8 encoded string that describes the content of the publishing message.</p><p>For more information, see <a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901118"> Content Type</a> from the MQTT Version 5.0 specification.</p><p>Supports <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable contentType;
+
+/**
+ <p>The base64-encoded binary data used by the sender of the request message to identify which request the response message is for when it's received.</p><p>For more information, see <a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901115"> Correlation Data</a> from the MQTT Version 5.0 specification.</p><note><p> This binary data must be based64-encoded. </p></note><p>Supports <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable correlationData;
+
+/**
+ <p>A user-defined integer value that will persist a message at the message broker for a specified amount of time to ensure that the message will expire if it's no longer relevant to the subscriber. The value of <code>messageExpiry</code> represents the number of seconds before it expires. For more information about the limits of <code>messageExpiry</code>, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html">Amazon Web Services IoT Core message broker and protocol limits and quotas </a> from the Amazon Web Services Reference Guide.</p><p>Supports <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable messageExpiry;
+
+/**
+ <p>An <code>Enum</code> string value that indicates whether the payload is formatted as UTF-8.</p><p>Valid values are <code>UNSPECIFIED_BYTES</code> and <code>UTF8_DATA</code>.</p><p>For more information, see <a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901111"> Payload Format Indicator</a> from the MQTT Version 5.0 specification.</p><p>Supports <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable payloadFormatIndicator;
+
+/**
+ <p>A UTF-8 encoded string that's used as the topic name for a response message. The response topic is used to describe the topic which the receiver should publish to as part of the request-response flow. The topic must not contain wildcard characters.</p><p>For more information, see <a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901114"> Response Topic</a> from the MQTT Version 5.0 specification.</p><p>Supports <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable responseTopic;
+
+/**
+ <p>An array of key-value pairs that you define in the MQTT5 header.</p>
+ */
+@property (nonatomic, strong) NSArray<AWSIoTUserProperty *> * _Nullable userProperties;
 
 @end
 
@@ -12189,7 +12431,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable expiresInSec;
 
 /**
- <p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p>
+ <p>The ARN of an IAM role that grants grants permission to download files from the S3 bucket where the job data/updates are stored. The role must also grant permission for IoT to download the files.</p><important><p>For information about addressing the confused deputy problem, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/cross-service-confused-deputy-prevention.html">cross-service confused deputy prevention</a> in the <i>Amazon Web Services IoT Core developer guide</i>.</p></important>
  */
 @property (nonatomic, strong) NSString * _Nullable roleArn;
 
@@ -12215,18 +12457,18 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
- <p>A summary of information about a fleet provisioning template.</p>
+ <p>A summary of information about a provisioning template.</p>
  */
 @interface AWSIoTProvisioningTemplateSummary : AWSModel
 
 
 /**
- <p>The date when the fleet provisioning template summary was created.</p>
+ <p>The date when the provisioning template summary was created.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationDate;
 
 /**
- <p>The description of the fleet provisioning template.</p>
+ <p>The description of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
@@ -12236,19 +12478,24 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable enabled;
 
 /**
- <p>The date when the fleet provisioning template summary was last modified.</p>
+ <p>The date when the provisioning template summary was last modified.</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable lastModifiedDate;
 
 /**
- <p>The ARN of the fleet provisioning template.</p>
+ <p>The ARN of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateArn;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
+
+/**
+ <p>The type you define in a provisioning template. You can create a template with only one type. You can't change the template type after its creation. The default value is <code>FLEET_PROVISIONING</code>. For more information about provisioning template, see: <a href="https://docs.aws.amazon.com/iot/latest/developerguide/provision-template.html">Provisioning template</a>. </p>
+ */
+@property (nonatomic, assign) AWSIoTTemplateType types;
 
 @end
 
@@ -12259,17 +12506,17 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
- <p>The date when the fleet provisioning template version was created</p>
+ <p>The date when the provisioning template version was created</p>
  */
 @property (nonatomic, strong) NSDate * _Nullable creationDate;
 
 /**
- <p>True if the fleet provisioning template version is the default version, otherwise false.</p>
+ <p>True if the provisioning template version is the default version, otherwise false.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable isDefaultVersion;
 
 /**
- <p>The ID of the fleet privisioning template version.</p>
+ <p>The ID of the fleet provisioning template version.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable versionId;
 
@@ -12388,7 +12635,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 /**
  <p>The input to the RegisterCACertificate operation.</p>
- Required parameters: [caCertificate, verificationCertificate]
+ Required parameters: [caCertificate]
  */
 @interface AWSIoTRegisterCACertificateRequest : AWSRequest
 
@@ -12402,6 +12649,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>The CA certificate.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable caCertificate;
+
+/**
+ <p>Describes the certificate mode in which the Certificate Authority (CA) will be registered. If the <code>verificationCertificate</code> field is not provided, set <code>certificateMode</code> to be <code>SNI_ONLY</code>. If the <code>verificationCertificate</code> field is provided, set <code>certificateMode</code> to be <code>DEFAULT</code>. When <code>certificateMode</code> is not provided, it defaults to <code>DEFAULT</code>. All the device certificates that are registered using this CA will be registered in the same certificate mode as the CA. For more information about certificate mode for device certificates, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CertificateDescription.html#iot-Type-CertificateDescription-certificateMode"> certificate mode</a>. </p>
+ */
+@property (nonatomic, assign) AWSIoTCertificateMode certificateMode;
 
 /**
  <p>Information about the registration configuration.</p>
@@ -12419,7 +12671,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSArray<AWSIoTTag *> * _Nullable tags;
 
 /**
- <p>The private key verification certificate.</p>
+ <p>The private key verification certificate. If <code>certificateMode</code> is <code>SNI_ONLY</code>, the <code>verificationCertificate</code> field must be empty. If <code>certificateMode</code> is <code>DEFAULT</code> or not provided, the <code>verificationCertificate</code> field must not be empty. </p>
  */
 @property (nonatomic, strong) NSString * _Nullable verificationCertificate;
 
@@ -12578,6 +12830,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  */
 @property (nonatomic, strong) NSString * _Nullable templateBody;
 
+/**
+ <p>The name of the provisioning template.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable templateName;
+
 @end
 
 /**
@@ -12735,6 +12992,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 
 
 /**
+ <p>MQTT Version 5.0 headers information. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html"> MQTT</a> from the Amazon Web Services IoT Core Developer Guide.</p>
+ */
+@property (nonatomic, strong) AWSIoTMqttHeaders * _Nullable headers;
+
+/**
  <p>The Quality of Service (QoS) level to use when republishing messages. The default value is 0.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable qos;
@@ -12778,6 +13040,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable cognitoIdentityPoolId;
 
 /**
+ <p>The ARN of the identified device certificate.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable deviceCertificateArn;
+
+/**
  <p>The ID of the certificate attached to the resource.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable deviceCertificateId;
@@ -12786,6 +13053,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>The ARN of the IAM role that has overly permissive actions.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable iamRoleArn;
+
+/**
+ <p>The issuer certificate identifier.</p>
+ */
+@property (nonatomic, strong) AWSIoTIssuerCertificateIdentifier * _Nullable issuerCertificateIdentifier;
 
 /**
  <p>The version of the policy associated with the resource.</p>
@@ -12984,6 +13256,29 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @end
 
 /**
+ <p>Specifies the date and time that a job will begin the rollout of the job document to all devices in the target group. Additionally, you can specify the end behavior for each job execution when it reaches the scheduled end time.</p>
+ */
+@interface AWSIoTSchedulingConfig : AWSModel
+
+
+/**
+ <p>Specifies the end behavior for all job executions after a job reaches the selected <code>endTime</code>. If <code>endTime</code> is not selected when creating the job, then <code>endBehavior</code> does not apply.</p>
+ */
+@property (nonatomic, assign) AWSIoTJobEndBehavior endBehavior;
+
+/**
+ <p>The time a job will stop rollout of the job document to all devices in the target group for a job. The <code>endTime</code> must take place no later than two years from the current time and be scheduled a minimum of thirty minutes from the current time. The minimum duration between <code>startTime</code> and <code>endTime</code> is thirty minutes. The maximum duration between <code>startTime</code> and <code>endTime</code> is two years. </p>
+ */
+@property (nonatomic, strong) NSString * _Nullable endTime;
+
+/**
+ <p>The time a job will begin rollout of the job document to all devices in the target group for a job. The <code>startTime</code> can be scheduled up to a year in advance and must be scheduled a minimum of thirty minutes from the current time.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable startTime;
+
+@end
+
+/**
  
  */
 @interface AWSIoTSearchIndexRequest : AWSRequest
@@ -13005,7 +13300,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSString * _Nullable nextToken;
 
 /**
- <p>The search query string.</p>
+ <p>The search query string. For more information about the search query syntax, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html">Query syntax</a>.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable queryString;
 
@@ -14124,7 +14419,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSArray<AWSIoTField *> * _Nullable customFields;
 
 /**
- <p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>
+ <p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service. This is an optional field. For more information, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/managing-fleet-index.html#managed-field">Managed fields</a> in the <i>Amazon Web Services IoT Core Developer Guide</i>.</p>
  */
 @property (nonatomic, strong) NSArray<AWSIoTField *> * _Nullable managedFields;
 
@@ -14192,6 +14487,11 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  <p>Device Defender indexing mode. Valid values are:</p><ul><li><p>VIOLATIONS – Your thing index contains Device Defender violations. To enable Device Defender indexing, <i>deviceDefenderIndexingMode</i> must not be set to OFF.</p></li><li><p>OFF - Device Defender indexing is disabled.</p></li></ul><p>For more information about Device Defender violations, see <a href="https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-detect.html">Device Defender Detect.</a></p>
  */
 @property (nonatomic, assign) AWSIoTDeviceDefenderIndexingMode deviceDefenderIndexingMode;
+
+/**
+ <p>Provides additional filters for specific data sources. Named shadow is the only data source that currently supports and requires a filter. To add named shadows to your fleet indexing configuration, set <code>namedShadowIndexingMode</code> to be <code>ON</code> and specify your shadow names in <code>filter</code>.</p>
+ */
+@property (nonatomic, strong) AWSIoTIndexingFilter * _Nullable filter;
 
 /**
  <p>Contains fields that are indexed and whose types are already known by the Fleet Indexing service.</p>
@@ -15362,17 +15662,17 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable defaultVersionId;
 
 /**
- <p>The description of the fleet provisioning template.</p>
+ <p>The description of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable detail;
 
 /**
- <p>True to enable the fleet provisioning template, otherwise false.</p>
+ <p>True to enable the provisioning template, otherwise false.</p>
  */
 @property (nonatomic, strong) NSNumber * _Nullable enabled;
 
 /**
- <p>Updates the pre-provisioning hook template.</p>
+ <p>Updates the pre-provisioning hook template. Only supports template of type <code>FLEET_PROVISIONING</code>. For more information about provisioning template types, see <a href="https://docs.aws.amazon.com/iot/latest/apireference/API_CreateProvisioningTemplate.html#iot-CreateProvisioningTemplate-request-type">type</a>.</p>
  */
 @property (nonatomic, strong) AWSIoTProvisioningHook * _Nullable preProvisioningHook;
 
@@ -15387,7 +15687,7 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
 @property (nonatomic, strong) NSNumber * _Nullable removePreProvisioningHook;
 
 /**
- <p>The name of the fleet provisioning template.</p>
+ <p>The name of the provisioning template.</p>
  */
 @property (nonatomic, strong) NSString * _Nullable templateName;
 
@@ -15797,6 +16097,25 @@ typedef NS_ENUM(NSInteger, AWSIoTViolationEventType) {
  */
 @interface AWSIoTUpdateTopicRuleDestinationResponse : AWSModel
 
+
+@end
+
+/**
+ <p>A key-value pair that you define in the header. Both the key and the value are either literal strings or valid <a href="https://docs.aws.amazon.com/iot/latest/developerguide/iot-substitution-templates.html">substitution templates</a>.</p>
+ Required parameters: [key, value]
+ */
+@interface AWSIoTUserProperty : AWSModel
+
+
+/**
+ <p>A key to be specified in <code>UserProperty</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable key;
+
+/**
+ <p>A value to be specified in <code>UserProperty</code>.</p>
+ */
+@property (nonatomic, strong) NSString * _Nullable value;
 
 @end
 
