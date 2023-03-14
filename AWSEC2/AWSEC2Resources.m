@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -128,7 +128,7 @@
       },\
       \"input\":{\"shape\":\"AcceptVpcEndpointConnectionsRequest\"},\
       \"output\":{\"shape\":\"AcceptVpcEndpointConnectionsResult\"},\
-      \"documentation\":\"<p>Accepts one or more interface VPC endpoint connection requests to your VPC endpoint service.</p>\"\
+      \"documentation\":\"<p>Accepts connection requests to your VPC endpoint service.</p>\"\
     },\
     \"AcceptVpcPeeringConnection\":{\
       \"name\":\"AcceptVpcPeeringConnection\",\
@@ -178,7 +178,7 @@
       },\
       \"input\":{\"shape\":\"AllocateIpamPoolCidrRequest\"},\
       \"output\":{\"shape\":\"AllocateIpamPoolCidrResult\"},\
-      \"documentation\":\"<p>Allocate a CIDR from an IPAM pool. In IPAM, an allocation is a CIDR assignment from an IPAM pool to another resource or IPAM pool. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/allocate-cidrs-ipam.html\\\">Allocate CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\"\
+      \"documentation\":\"<p>Allocate a CIDR from an IPAM pool. In IPAM, an allocation is a CIDR assignment from an IPAM pool to another IPAM pool or to a resource. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/allocate-cidrs-ipam.html\\\">Allocate CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\"\
     },\
     \"ApplySecurityGroupsToClientVpnTargetNetwork\":{\
       \"name\":\"ApplySecurityGroupsToClientVpnTargetNetwork\",\
@@ -209,6 +209,16 @@
       \"input\":{\"shape\":\"AssignPrivateIpAddressesRequest\"},\
       \"output\":{\"shape\":\"AssignPrivateIpAddressesResult\"},\
       \"documentation\":\"<p>Assigns one or more secondary private IP addresses to the specified network interface.</p> <p>You can specify one or more specific secondary IP addresses, or you can specify the number of secondary IP addresses to be automatically assigned within the subnet's CIDR block range. The number of secondary IP addresses that you can assign to an instance varies by instance type. For information about instance types, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\\\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>. For more information about Elastic IP addresses, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html\\\">Elastic IP Addresses</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you move a secondary private IP address to another network interface, any Elastic IP address that is associated with the IP address is also moved.</p> <p>Remapping an IP address is an asynchronous operation. When you move an IP address from one network interface to another, check <code>network/interfaces/macs/mac/local-ipv4s</code> in the instance metadata to confirm that the remapping is complete.</p> <p>You must specify either the IP addresses or the IP address count in the request.</p> <p>You can optionally use Prefix Delegation on the network interface. You must specify either the IPv4 Prefix Delegation prefixes, or the IPv4 Prefix Delegation count. For information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-prefix-eni.html\\\"> Assigning prefixes to Amazon EC2 network interfaces</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+    },\
+    \"AssignPrivateNatGatewayAddress\":{\
+      \"name\":\"AssignPrivateNatGatewayAddress\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"AssignPrivateNatGatewayAddressRequest\"},\
+      \"output\":{\"shape\":\"AssignPrivateNatGatewayAddressResult\"},\
+      \"documentation\":\"<p>Assigns one or more private IPv4 addresses to a private NAT gateway. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with\\\">Work with NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\"\
     },\
     \"AssociateAddress\":{\
       \"name\":\"AssociateAddress\",\
@@ -268,6 +278,26 @@
       \"input\":{\"shape\":\"AssociateInstanceEventWindowRequest\"},\
       \"output\":{\"shape\":\"AssociateInstanceEventWindowResult\"},\
       \"documentation\":\"<p>Associates one or more targets with an event window. Only one type of target (instance IDs, Dedicated Host IDs, or tags) can be specified with an event window.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\\\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
+    },\
+    \"AssociateIpamResourceDiscovery\":{\
+      \"name\":\"AssociateIpamResourceDiscovery\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"AssociateIpamResourceDiscoveryRequest\"},\
+      \"output\":{\"shape\":\"AssociateIpamResourceDiscoveryResult\"},\
+      \"documentation\":\"<p>Associates an IPAM resource discovery with an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
+    },\
+    \"AssociateNatGatewayAddress\":{\
+      \"name\":\"AssociateNatGatewayAddress\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"AssociateNatGatewayAddressRequest\"},\
+      \"output\":{\"shape\":\"AssociateNatGatewayAddressResult\"},\
+      \"documentation\":\"<p>Associates Elastic IP addresses (EIPs) and private IPv4 addresses with a public NAT gateway. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-working-with\\\">Work with NAT gateways</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>By default, you can associate up to 2 Elastic IP addresses per public NAT gateway. You can increase the limit by requesting a quota adjustment. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/amazon-vpc-limits.html#vpc-limits-eips\\\">Elastic IP address quotas</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\"\
     },\
     \"AssociateRouteTable\":{\
       \"name\":\"AssociateRouteTable\",\
@@ -494,7 +524,7 @@
       },\
       \"input\":{\"shape\":\"CancelImageLaunchPermissionRequest\"},\
       \"output\":{\"shape\":\"CancelImageLaunchPermissionResult\"},\
-      \"documentation\":\"<p>Removes your Amazon Web Services account from the launch permissions for the specified AMI. For more information, see <a href=\\\"https://docs.aws.amazon.com/\\\">Cancel having an AMI shared with your Amazon Web Services account</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Removes your Amazon Web Services account from the launch permissions for the specified AMI. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cancel-sharing-an-AMI.html\\\"> Cancel having an AMI shared with your Amazon Web Services account</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"CancelImportTask\":{\
       \"name\":\"CancelImportTask\",\
@@ -524,7 +554,7 @@
       },\
       \"input\":{\"shape\":\"CancelSpotFleetRequestsRequest\"},\
       \"output\":{\"shape\":\"CancelSpotFleetRequestsResponse\"},\
-      \"documentation\":\"<p>Cancels the specified Spot Fleet requests.</p> <p>After you cancel a Spot Fleet request, the Spot Fleet launches no new Spot Instances. You must specify whether the Spot Fleet should also terminate its Spot Instances. If you terminate the instances, the Spot Fleet request enters the <code>cancelled_terminating</code> state. Otherwise, the Spot Fleet request enters the <code>cancelled_running</code> state and the instances continue to run until they are interrupted or you terminate them manually.</p>\"\
+      \"documentation\":\"<p>Cancels the specified Spot Fleet requests.</p> <p>After you cancel a Spot Fleet request, the Spot Fleet launches no new instances.</p> <p>You must also specify whether a canceled Spot Fleet request should terminate its instances. If you choose to terminate the instances, the Spot Fleet request enters the <code>cancelled_terminating</code> state. Otherwise, the Spot Fleet request enters the <code>cancelled_running</code> state and the instances continue to run until they are interrupted or you terminate them manually.</p>\"\
     },\
     \"CancelSpotInstanceRequests\":{\
       \"name\":\"CancelSpotInstanceRequests\",\
@@ -564,7 +594,7 @@
       },\
       \"input\":{\"shape\":\"CopyImageRequest\"},\
       \"output\":{\"shape\":\"CopyImageResult\"},\
-      \"documentation\":\"<p>Initiates the copy of an AMI. You can copy an AMI from one Region to another, or from a Region to an Outpost. You can't copy an AMI from an Outpost to a Region, from one Outpost to another, or within the same Outpost. To copy an AMI to another partition, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\\\">CreateStoreImageTask</a>.</p> <p>To copy an AMI from one Region to another, specify the source Region using the <b>SourceRegion</b> parameter, and specify the destination Region using its endpoint. Copies of encrypted backing snapshots for the AMI are encrypted. Copies of unencrypted backing snapshots remain unencrypted, unless you set <code>Encrypted</code> during the copy operation. You cannot create an unencrypted copy of an encrypted backing snapshot.</p> <p>To copy an AMI from a Region to an Outpost, specify the source Region using the <b>SourceRegion</b> parameter, and specify the ARN of the destination Outpost using <b>DestinationOutpostArn</b>. Backing snapshots copied to an Outpost are encrypted by default using the default encryption key for the Region, or a different key that you specify in the request using <b>KmsKeyId</b>. Outposts do not support unencrypted snapshots. For more information, <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\\\"> Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about the prerequisites and limits when copying an AMI, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html\\\">Copy an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Initiates the copy of an AMI. You can copy an AMI from one Region to another, or from a Region to an Outpost. You can't copy an AMI from an Outpost to a Region, from one Outpost to another, or within the same Outpost. To copy an AMI to another partition, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\\\">CreateStoreImageTask</a>.</p> <p>To copy an AMI from one Region to another, specify the source Region using the <b>SourceRegion</b> parameter, and specify the destination Region using its endpoint. Copies of encrypted backing snapshots for the AMI are encrypted. Copies of unencrypted backing snapshots remain unencrypted, unless you set <code>Encrypted</code> during the copy operation. You cannot create an unencrypted copy of an encrypted backing snapshot.</p> <p>To copy an AMI from a Region to an Outpost, specify the source Region using the <b>SourceRegion</b> parameter, and specify the ARN of the destination Outpost using <b>DestinationOutpostArn</b>. Backing snapshots copied to an Outpost are encrypted by default using the default encryption key for the Region, or a different key that you specify in the request using <b>KmsKeyId</b>. Outposts do not support unencrypted snapshots. For more information, <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\\\"> Amazon EBS local snapshots on Outposts</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information about the prerequisites and limits when copying an AMI, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html\\\">Copy an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"CopySnapshot\":{\
       \"name\":\"CopySnapshot\",\
@@ -786,6 +816,16 @@
       \"output\":{\"shape\":\"CreateIpamPoolResult\"},\
       \"documentation\":\"<p>Create an IP address pool for Amazon VPC IP Address Manager (IPAM). In IPAM, a pool is a collection of contiguous IP addresses CIDRs. Pools enable you to organize your IP addresses according to your routing and security needs. For example, if you have separate routing and security needs for development and production applications, you can create a pool for each.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/create-top-ipam.html\\\">Create a top-level pool</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\"\
     },\
+    \"CreateIpamResourceDiscovery\":{\
+      \"name\":\"CreateIpamResourceDiscovery\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"CreateIpamResourceDiscoveryRequest\"},\
+      \"output\":{\"shape\":\"CreateIpamResourceDiscoveryResult\"},\
+      \"documentation\":\"<p>Creates an IPAM resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
+    },\
     \"CreateIpamScope\":{\
       \"name\":\"CreateIpamScope\",\
       \"http\":{\
@@ -993,7 +1033,7 @@
       },\
       \"input\":{\"shape\":\"CreateRestoreImageTaskRequest\"},\
       \"output\":{\"shape\":\"CreateRestoreImageTaskResult\"},\
-      \"documentation\":\"<p>Starts a task that restores an AMI from an Amazon S3 object that was previously created by using <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\\\">CreateStoreImageTask</a>.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Starts a task that restores an AMI from an Amazon S3 object that was previously created by using <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\\\">CreateStoreImageTask</a>.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"CreateRoute\":{\
       \"name\":\"CreateRoute\",\
@@ -1063,7 +1103,7 @@
       },\
       \"input\":{\"shape\":\"CreateStoreImageTaskRequest\"},\
       \"output\":{\"shape\":\"CreateStoreImageTaskResult\"},\
-      \"documentation\":\"<p>Stores an AMI as a single object in an Amazon S3 bucket.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Stores an AMI as a single object in an Amazon S3 bucket.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"CreateSubnet\":{\
       \"name\":\"CreateSubnet\",\
@@ -1073,7 +1113,7 @@
       },\
       \"input\":{\"shape\":\"CreateSubnetRequest\"},\
       \"output\":{\"shape\":\"CreateSubnetResult\"},\
-      \"documentation\":\"<p>Creates a subnet in a specified VPC.</p> <p>You must specify an IPv4 CIDR block for the subnet. After you create a subnet, you can't change its CIDR block. The allowed block size is between a /16 netmask (65,536 IP addresses) and /28 netmask (16 IP addresses). The CIDR block must not overlap with the CIDR block of an existing subnet in the VPC.</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can create a subnet with an IPv6 CIDR block that uses a /64 prefix length. </p> <important> <p>Amazon Web Services reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for use.</p> </important> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>When you stop an instance in a subnet, it retains its private IPv4 address. It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information about subnets, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\\\">Your VPC and subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Creates a subnet in the specified VPC. For an IPv4 only subnet, specify an IPv4 CIDR block. If the VPC has an IPv6 CIDR block, you can create an IPv6 only subnet or a dual stack subnet instead. For an IPv6 only subnet, specify an IPv6 CIDR block. For a dual stack subnet, specify both an IPv4 CIDR block and an IPv6 CIDR block.</p> <p>A subnet CIDR block must not overlap the CIDR block of an existing subnet in the VPC. After you create a subnet, you can't change its CIDR block.</p> <p>The allowed size for an IPv4 subnet is between a /28 netmask (16 IP addresses) and a /16 netmask (65,536 IP addresses). Amazon Web Services reserves both the first four and the last IPv4 address in each subnet's CIDR block. They're not available for your use.</p> <p>If you've associated an IPv6 CIDR block with your VPC, you can associate an IPv6 CIDR block with a subnet when you create it. The allowed block size for an IPv6 subnet is a /64 netmask.</p> <p>If you add more than one subnet to a VPC, they're set up in a star topology with a logical router in the middle.</p> <p>When you stop an instance in a subnet, it retains its private IPv4 address. It's therefore possible to have a subnet with no running instances (they're all stopped), but no remaining IP addresses available.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-subnets.html\\\">Subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\"\
     },\
     \"CreateSubnetCidrReservation\":{\
       \"name\":\"CreateSubnetCidrReservation\",\
@@ -1302,7 +1342,7 @@
       },\
       \"input\":{\"shape\":\"CreateVpcRequest\"},\
       \"output\":{\"shape\":\"CreateVpcResult\"},\
-      \"documentation\":\"<p>Creates a VPC with the specified IPv4 CIDR block. The smallest VPC you can create uses a /28 netmask (16 IPv4 addresses), and the largest uses a /16 netmask (65,536 IPv4 addresses). For more information about how large to make your VPC, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Subnets.html\\\">Your VPC and subnets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided IPv6 CIDR block from Amazon's pool of IPv6 addresses, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\\\">BYOIP</a>).</p> <p>By default, each instance you launch in the VPC has the default DHCP options, which include only a default DNS server that we provide (AmazonProvidedDNS). For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\\\">DHCP options sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can specify the instance tenancy value for the VPC when you create it. You can't change this value for the VPC after you create it. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\\\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Creates a VPC with the specified CIDR blocks. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/configure-your-vpc.html#vpc-cidr-blocks\\\">VPC CIDR blocks</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can optionally request an IPv6 CIDR block for the VPC. You can request an Amazon-provided IPv6 CIDR block from Amazon's pool of IPv6 addresses, or an IPv6 CIDR block from an IPv6 address pool that you provisioned through bring your own IP addresses (<a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html\\\">BYOIP</a>).</p> <p>By default, each instance that you launch in the VPC has the default DHCP options, which include only a default DNS server that we provide (AmazonProvidedDNS). For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html\\\">DHCP option sets</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>You can specify the instance tenancy value for the VPC when you create it. You can't change this value for the VPC after you create it. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-instance.html\\\">Dedicated Instances</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
     },\
     \"CreateVpcEndpoint\":{\
       \"name\":\"CreateVpcEndpoint\",\
@@ -1332,7 +1372,7 @@
       },\
       \"input\":{\"shape\":\"CreateVpcEndpointServiceConfigurationRequest\"},\
       \"output\":{\"shape\":\"CreateVpcEndpointServiceConfigurationResult\"},\
-      \"documentation\":\"<p>Creates a VPC endpoint service to which service consumers (Amazon Web Services accounts, IAM users, and IAM roles) can connect.</p> <p>Before you create an endpoint service, you must create one of the following for your service:</p> <ul> <li> <p>A <a href=\\\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/\\\">Network Load Balancer</a>. Service consumers connect to your service using an interface endpoint.</p> </li> <li> <p>A <a href=\\\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/\\\">Gateway Load Balancer</a>. Service consumers connect to your service using a Gateway Load Balancer endpoint.</p> </li> </ul> <p>If you set the private DNS name, you must prove that you own the private DNS domain name.</p> <p>For more information, see the <a href=\\\"https://docs.aws.amazon.com/vpc/latest/privatelink/\\\">Amazon Web Services PrivateLink Guide</a>.</p>\"\
+      \"documentation\":\"<p>Creates a VPC endpoint service to which service consumers (Amazon Web Services accounts, users, and IAM roles) can connect.</p> <p>Before you create an endpoint service, you must create one of the following for your service:</p> <ul> <li> <p>A <a href=\\\"https://docs.aws.amazon.com/elasticloadbalancing/latest/network/\\\">Network Load Balancer</a>. Service consumers connect to your service using an interface endpoint.</p> </li> <li> <p>A <a href=\\\"https://docs.aws.amazon.com/elasticloadbalancing/latest/gateway/\\\">Gateway Load Balancer</a>. Service consumers connect to your service using a Gateway Load Balancer endpoint.</p> </li> </ul> <p>If you set the private DNS name, you must prove that you own the private DNS domain name.</p> <p>For more information, see the <a href=\\\"https://docs.aws.amazon.com/vpc/latest/privatelink/\\\">Amazon Web Services PrivateLink Guide</a>.</p>\"\
     },\
     \"CreateVpcPeeringConnection\":{\
       \"name\":\"CreateVpcPeeringConnection\",\
@@ -1459,7 +1499,7 @@
       },\
       \"input\":{\"shape\":\"DeleteFleetsRequest\"},\
       \"output\":{\"shape\":\"DeleteFleetsResult\"},\
-      \"documentation\":\"<p>Deletes the specified EC2 Fleet.</p> <p>After you delete an EC2 Fleet, it launches no new instances.</p> <p>You must specify whether a deleted EC2 Fleet should also terminate its instances. If you choose to terminate the instances, the EC2 Fleet enters the <code>deleted_terminating</code> state. Otherwise, the EC2 Fleet enters the <code>deleted_running</code> state, and the instances continue to run until they are interrupted or you terminate them manually.</p> <p>For <code>instant</code> fleets, EC2 Fleet must terminate the instances when the fleet is deleted. A deleted <code>instant</code> fleet with running instances is not supported.</p> <p class=\\\"title\\\"> <b>Restrictions</b> </p> <ul> <li> <p>You can delete up to 25 <code>instant</code> fleets in a single request. If you exceed this number, no <code>instant</code> fleets are deleted and an error is returned. There is no restriction on the number of fleets of type <code>maintain</code> or <code>request</code> that can be deleted in a single request.</p> </li> <li> <p>Up to 1000 instances can be terminated in a single request to delete <code>instant</code> fleets.</p> </li> </ul> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#delete-fleet\\\">Delete an EC2 Fleet</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Deletes the specified EC2 Fleets.</p> <p>After you delete an EC2 Fleet, it launches no new instances.</p> <p>You must also specify whether a deleted EC2 Fleet should terminate its instances. If you choose to terminate the instances, the EC2 Fleet enters the <code>deleted_terminating</code> state. Otherwise, the EC2 Fleet enters the <code>deleted_running</code> state, and the instances continue to run until they are interrupted or you terminate them manually.</p> <p>For <code>instant</code> fleets, EC2 Fleet must terminate the instances when the fleet is deleted. A deleted <code>instant</code> fleet with running instances is not supported.</p> <p class=\\\"title\\\"> <b>Restrictions</b> </p> <ul> <li> <p>You can delete up to 25 <code>instant</code> fleets in a single request. If you exceed this number, no <code>instant</code> fleets are deleted and an error is returned. There is no restriction on the number of fleets of type <code>maintain</code> or <code>request</code> that can be deleted in a single request.</p> </li> <li> <p>Up to 1000 instances can be terminated in a single request to delete <code>instant</code> fleets.</p> </li> </ul> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#delete-fleet\\\">Delete an EC2 Fleet</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"DeleteFlowLogs\":{\
       \"name\":\"DeleteFlowLogs\",\
@@ -1519,6 +1559,16 @@
       \"input\":{\"shape\":\"DeleteIpamPoolRequest\"},\
       \"output\":{\"shape\":\"DeleteIpamPoolResult\"},\
       \"documentation\":\"<p>Delete an IPAM pool.</p> <note> <p>You cannot delete an IPAM pool if there are allocations in it or CIDRs provisioned to it. To release allocations, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ReleaseIpamPoolAllocation.html\\\">ReleaseIpamPoolAllocation</a>. To deprovision pool CIDRs, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DeprovisionIpamPoolCidr.html\\\">DeprovisionIpamPoolCidr</a>.</p> </note> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/delete-pool-ipam.html\\\">Delete a pool</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\"\
+    },\
+    \"DeleteIpamResourceDiscovery\":{\
+      \"name\":\"DeleteIpamResourceDiscovery\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"DeleteIpamResourceDiscoveryRequest\"},\
+      \"output\":{\"shape\":\"DeleteIpamResourceDiscoveryResult\"},\
+      \"documentation\":\"<p>Deletes an IPAM resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
     },\
     \"DeleteIpamScope\":{\
       \"name\":\"DeleteIpamScope\",\
@@ -2014,7 +2064,7 @@
       },\
       \"input\":{\"shape\":\"DeleteVpcEndpointConnectionNotificationsRequest\"},\
       \"output\":{\"shape\":\"DeleteVpcEndpointConnectionNotificationsResult\"},\
-      \"documentation\":\"<p>Deletes one or more VPC endpoint connection notifications.</p>\"\
+      \"documentation\":\"<p>Deletes the specified VPC endpoint connection notifications.</p>\"\
     },\
     \"DeleteVpcEndpointServiceConfigurations\":{\
       \"name\":\"DeleteVpcEndpointServiceConfigurations\",\
@@ -2024,7 +2074,7 @@
       },\
       \"input\":{\"shape\":\"DeleteVpcEndpointServiceConfigurationsRequest\"},\
       \"output\":{\"shape\":\"DeleteVpcEndpointServiceConfigurationsResult\"},\
-      \"documentation\":\"<p>Deletes one or more VPC endpoint service configurations in your account. Before you delete the endpoint service configuration, you must reject any <code>Available</code> or <code>PendingAcceptance</code> interface endpoint connections that are attached to the service.</p>\"\
+      \"documentation\":\"<p>Deletes the specified VPC endpoint service configurations. Before you can delete an endpoint service configuration, you must reject any <code>Available</code> or <code>PendingAcceptance</code> interface endpoint connections that are attached to the service.</p>\"\
     },\
     \"DeleteVpcEndpoints\":{\
       \"name\":\"DeleteVpcEndpoints\",\
@@ -2034,7 +2084,7 @@
       },\
       \"input\":{\"shape\":\"DeleteVpcEndpointsRequest\"},\
       \"output\":{\"shape\":\"DeleteVpcEndpointsResult\"},\
-      \"documentation\":\"<p>Deletes one or more specified VPC endpoints. You can delete any of the following types of VPC endpoints. </p> <ul> <li> <p>Gateway endpoint,</p> </li> <li> <p>Gateway Load Balancer endpoint,</p> </li> <li> <p>Interface endpoint</p> </li> </ul> <p>The following rules apply when you delete a VPC endpoint:</p> <ul> <li> <p>When you delete a gateway endpoint, we delete the endpoint routes in the route tables that are associated with the endpoint.</p> </li> <li> <p>When you delete a Gateway Load Balancer endpoint, we delete the endpoint network interfaces. </p> <p>You can only delete Gateway Load Balancer endpoints when the routes that are associated with the endpoint are deleted.</p> </li> <li> <p>When you delete an interface endpoint, we delete the endpoint network interfaces.</p> </li> </ul>\"\
+      \"documentation\":\"<p>Deletes the specified VPC endpoints.</p> <p>When you delete a gateway endpoint, we delete the endpoint routes in the route tables for the endpoint.</p> <p>When you delete a Gateway Load Balancer endpoint, we delete its endpoint network interfaces. You can only delete Gateway Load Balancer endpoints when the routes that are associated with the endpoint are deleted.</p> <p>When you delete an interface endpoint, we delete its endpoint network interfaces.</p>\"\
     },\
     \"DeleteVpcPeeringConnection\":{\
       \"name\":\"DeleteVpcPeeringConnection\",\
@@ -2110,7 +2160,7 @@
         \"requestUri\":\"/\"\
       },\
       \"input\":{\"shape\":\"DeregisterImageRequest\"},\
-      \"documentation\":\"<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances.</p> <p>If you deregister an AMI that matches a Recycle Bin retention rule, the AMI is retained in the Recycle Bin for the specified retention period. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>\"\
+      \"documentation\":\"<p>Deregisters the specified AMI. After you deregister an AMI, it can't be used to launch new instances.</p> <p>If you deregister an AMI that matches a Recycle Bin retention rule, the AMI is retained in the Recycle Bin for the specified retention period. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>When you deregister an AMI, it doesn't affect any instances that you've already launched from the AMI. You'll continue to incur usage costs for those instances until you terminate them.</p> <p>When you deregister an Amazon EBS-backed AMI, it doesn't affect the snapshot that was created for the root volume of the instance during the AMI creation process. When you deregister an instance store-backed AMI, it doesn't affect the files that you uploaded to Amazon S3 when you created the AMI.</p>\"\
     },\
     \"DeregisterInstanceEventNotificationAttributes\":{\
       \"name\":\"DeregisterInstanceEventNotificationAttributes\",\
@@ -2210,7 +2260,7 @@
       },\
       \"input\":{\"shape\":\"DescribeAwsNetworkPerformanceMetricSubscriptionsRequest\"},\
       \"output\":{\"shape\":\"DescribeAwsNetworkPerformanceMetricSubscriptionsResult\"},\
-      \"documentation\":\"<p>Describes the curent Infrastructure Performance metric subscriptions.</p>\"\
+      \"documentation\":\"<p>Describes the current Infrastructure Performance metric subscriptions.</p>\"\
     },\
     \"DescribeBundleTasks\":{\
       \"name\":\"DescribeBundleTasks\",\
@@ -2682,6 +2732,26 @@
       \"output\":{\"shape\":\"DescribeIpamPoolsResult\"},\
       \"documentation\":\"<p>Get information about your IPAM pools.</p>\"\
     },\
+    \"DescribeIpamResourceDiscoveries\":{\
+      \"name\":\"DescribeIpamResourceDiscoveries\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"DescribeIpamResourceDiscoveriesRequest\"},\
+      \"output\":{\"shape\":\"DescribeIpamResourceDiscoveriesResult\"},\
+      \"documentation\":\"<p>Describes IPAM resource discoveries. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
+    },\
+    \"DescribeIpamResourceDiscoveryAssociations\":{\
+      \"name\":\"DescribeIpamResourceDiscoveryAssociations\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"DescribeIpamResourceDiscoveryAssociationsRequest\"},\
+      \"output\":{\"shape\":\"DescribeIpamResourceDiscoveryAssociationsResult\"},\
+      \"documentation\":\"<p>Describes resource discovery association with an Amazon VPC IPAM. An associated resource discovery is a resource discovery that has been associated with an IPAM..</p>\"\
+    },\
     \"DescribeIpamScopes\":{\
       \"name\":\"DescribeIpamScopes\",\
       \"http\":{\
@@ -3100,7 +3170,7 @@
       },\
       \"input\":{\"shape\":\"DescribeSnapshotsRequest\"},\
       \"output\":{\"shape\":\"DescribeSnapshotsResult\"},\
-      \"documentation\":\"<p>Describes the specified EBS snapshots available to you or all of the EBS snapshots available to you.</p> <p>The snapshots available to you include public snapshots, private snapshots that you own, and private snapshots owned by other Amazon Web Services accounts for which you have explicit create volume permissions.</p> <p>The create volume permissions fall into the following categories:</p> <ul> <li> <p> <i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All Amazon Web Services accounts have create volume permissions for these snapshots.</p> </li> <li> <p> <i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific Amazon Web Services account.</p> </li> <li> <p> <i>implicit</i>: An Amazon Web Services account has implicit create volume permissions for all snapshots it owns.</p> </li> </ul> <p>The list of snapshots returned can be filtered by specifying snapshot IDs, snapshot owners, or Amazon Web Services accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p> <p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p> <p>If you specify one or more snapshot owners using the <code>OwnerIds</code> option, only snapshots from the specified owners and for which you have access are returned. The results can include the Amazon Web Services account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p> <p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify Amazon Web Services account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p> <p>If you are describing a long list of snapshots, we recommend that you paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSnapshots</code> request to retrieve the remaining results.</p> <p>To get the state of fast snapshot restores for a snapshot, use <a>DescribeFastSnapshotRestores</a>.</p> <p>For more information about EBS snapshots, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\\\">Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Describes the specified EBS snapshots available to you or all of the EBS snapshots available to you.</p> <p>The snapshots available to you include public snapshots, private snapshots that you own, and private snapshots owned by other Amazon Web Services accounts for which you have explicit create volume permissions.</p> <p>The create volume permissions fall into the following categories:</p> <ul> <li> <p> <i>public</i>: The owner of the snapshot granted create volume permissions for the snapshot to the <code>all</code> group. All Amazon Web Services accounts have create volume permissions for these snapshots.</p> </li> <li> <p> <i>explicit</i>: The owner of the snapshot granted create volume permissions to a specific Amazon Web Services account.</p> </li> <li> <p> <i>implicit</i>: An Amazon Web Services account has implicit create volume permissions for all snapshots it owns.</p> </li> </ul> <p>The list of snapshots returned can be filtered by specifying snapshot IDs, snapshot owners, or Amazon Web Services accounts with create volume permissions. If no options are specified, Amazon EC2 returns all snapshots for which you have create volume permissions.</p> <p>If you specify one or more snapshot IDs, only snapshots that have the specified IDs are returned. If you specify an invalid snapshot ID, an error is returned. If you specify a snapshot ID for which you do not have access, it is not included in the returned results.</p> <p>If you specify one or more snapshot owners using the <code>OwnerIds</code> option, only snapshots from the specified owners and for which you have access are returned. The results can include the Amazon Web Services account IDs of the specified owners, <code>amazon</code> for snapshots owned by Amazon, or <code>self</code> for snapshots that you own.</p> <p>If you specify a list of restorable users, only snapshots with create snapshot permissions for those users are returned. You can specify Amazon Web Services account IDs (if you own the snapshots), <code>self</code> for snapshots for which you own or have explicit permissions, or <code>all</code> for public snapshots.</p> <p>If you are describing a long list of snapshots, we recommend that you paginate the output to make the list more manageable. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>To get the state of fast snapshot restores for a snapshot, use <a>DescribeFastSnapshotRestores</a>.</p> <p>For more information about EBS snapshots, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSSnapshots.html\\\">Amazon EBS snapshots</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
     },\
     \"DescribeSpotDatafeedSubscription\":{\
       \"name\":\"DescribeSpotDatafeedSubscription\",\
@@ -3150,7 +3220,7 @@
       },\
       \"input\":{\"shape\":\"DescribeSpotInstanceRequestsRequest\"},\
       \"output\":{\"shape\":\"DescribeSpotInstanceRequestsResult\"},\
-      \"documentation\":\"<p>Describes the specified Spot Instance requests.</p> <p>You can use <code>DescribeSpotInstanceRequests</code> to find a running Spot Instance by examining the response. If the status of the Spot Instance is <code>fulfilled</code>, the instance ID appears in the response and contains the identifier of the instance. Alternatively, you can use <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances\\\">DescribeInstances</a> with a filter to look for instances where the instance lifecycle is <code>spot</code>.</p> <p>We recommend that you set <code>MaxResults</code> to a value between 5 and 1000 to limit the number of results returned. This paginates the output, which makes the list more manageable and returns the results faster. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSpotInstanceRequests</code> request to retrieve the remaining results.</p> <p>Spot Instance requests are deleted four hours after they are canceled and their instances are terminated.</p>\"\
+      \"documentation\":\"<p>Describes the specified Spot Instance requests.</p> <p>You can use <code>DescribeSpotInstanceRequests</code> to find a running Spot Instance by examining the response. If the status of the Spot Instance is <code>fulfilled</code>, the instance ID appears in the response and contains the identifier of the instance. Alternatively, you can use <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeInstances\\\">DescribeInstances</a> with a filter to look for instances where the instance lifecycle is <code>spot</code>.</p> <p>We recommend that you set <code>MaxResults</code> to a value between 5 and 1000 to limit the number of items returned. This paginates the output, which makes the list more manageable and returns the items faster. If the list of items exceeds your <code>MaxResults</code> value, then that number of items is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeSpotInstanceRequests</code> request to retrieve the remaining items.</p> <p>Spot Instance requests are deleted four hours after they are canceled and their instances are terminated.</p>\"\
     },\
     \"DescribeSpotPriceHistory\":{\
       \"name\":\"DescribeSpotPriceHistory\",\
@@ -3180,7 +3250,7 @@
       },\
       \"input\":{\"shape\":\"DescribeStoreImageTasksRequest\"},\
       \"output\":{\"shape\":\"DescribeStoreImageTasksResult\"},\
-      \"documentation\":\"<p>Describes the progress of the AMI store tasks. You can describe the store tasks for specified AMIs. If you don't specify the AMIs, you get a paginated list of store tasks from the last 31 days.</p> <p>For each AMI task, the response indicates if the task is <code>InProgress</code>, <code>Completed</code>, or <code>Failed</code>. For tasks <code>InProgress</code>, the response shows the estimated progress as a percentage.</p> <p>Tasks are listed in reverse chronological order. Currently, only tasks from the past 31 days can be viewed.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Describes the progress of the AMI store tasks. You can describe the store tasks for specified AMIs. If you don't specify the AMIs, you get a paginated list of store tasks from the last 31 days.</p> <p>For each AMI task, the response indicates if the task is <code>InProgress</code>, <code>Completed</code>, or <code>Failed</code>. For tasks <code>InProgress</code>, the response shows the estimated progress as a percentage.</p> <p>Tasks are listed in reverse chronological order. Currently, only tasks from the past 31 days can be viewed.</p> <p>To use this API, you must have the required permissions. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html#ami-s3-permissions\\\">Permissions for storing and restoring AMIs using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-store-restore.html\\\">Store and restore an AMI using Amazon S3</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"DescribeSubnets\":{\
       \"name\":\"DescribeSubnets\",\
@@ -3420,7 +3490,7 @@
       },\
       \"input\":{\"shape\":\"DescribeVolumesRequest\"},\
       \"output\":{\"shape\":\"DescribeVolumesResult\"},\
-      \"documentation\":\"<p>Describes the specified EBS volumes or all of your EBS volumes.</p> <p>If you are describing a long list of volumes, we recommend that you paginate the output to make the list more manageable. The <code>MaxResults</code> parameter sets the maximum number of results returned in a single page. If the list of results exceeds your <code>MaxResults</code> value, then that number of results is returned along with a <code>NextToken</code> value that can be passed to a subsequent <code>DescribeVolumes</code> request to retrieve the remaining results.</p> <p>For more information about EBS volumes, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html\\\">Amazon EBS volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Describes the specified EBS volumes or all of your EBS volumes.</p> <p>If you are describing a long list of volumes, we recommend that you paginate the output to make the list more manageable. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>For more information about EBS volumes, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumes.html\\\">Amazon EBS volumes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
     },\
     \"DescribeVolumesModifications\":{\
       \"name\":\"DescribeVolumesModifications\",\
@@ -3520,7 +3590,7 @@
       },\
       \"input\":{\"shape\":\"DescribeVpcEndpointsRequest\"},\
       \"output\":{\"shape\":\"DescribeVpcEndpointsResult\"},\
-      \"documentation\":\"<p>Describes one or more of your VPC endpoints.</p>\"\
+      \"documentation\":\"<p>Describes your VPC endpoints.</p>\"\
     },\
     \"DescribeVpcPeeringConnections\":{\
       \"name\":\"DescribeVpcPeeringConnections\",\
@@ -3677,7 +3747,7 @@
       },\
       \"input\":{\"shape\":\"DisableImageDeprecationRequest\"},\
       \"output\":{\"shape\":\"DisableImageDeprecationResult\"},\
-      \"documentation\":\"<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\\\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Cancels the deprecation of the specified AMI.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\\\">Deprecate an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"DisableIpamOrganizationAdminAccount\":{\
       \"name\":\"DisableIpamOrganizationAdminAccount\",\
@@ -3786,6 +3856,26 @@
       \"input\":{\"shape\":\"DisassociateInstanceEventWindowRequest\"},\
       \"output\":{\"shape\":\"DisassociateInstanceEventWindowResult\"},\
       \"documentation\":\"<p>Disassociates one or more targets from an event window.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\\\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
+    },\
+    \"DisassociateIpamResourceDiscovery\":{\
+      \"name\":\"DisassociateIpamResourceDiscovery\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"DisassociateIpamResourceDiscoveryRequest\"},\
+      \"output\":{\"shape\":\"DisassociateIpamResourceDiscoveryResult\"},\
+      \"documentation\":\"<p>Disassociates a resource discovery from an Amazon VPC IPAM. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
+    },\
+    \"DisassociateNatGatewayAddress\":{\
+      \"name\":\"DisassociateNatGatewayAddress\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"DisassociateNatGatewayAddressRequest\"},\
+      \"output\":{\"shape\":\"DisassociateNatGatewayAddressResult\"},\
+      \"documentation\":\"<p>Disassociates secondary Elastic IP addresses (EIPs) from a public NAT gateway. You cannot disassociate your primary EIP. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\\\">Edit secondary IP address associations</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>While disassociating is in progress, you cannot associate/disassociate additional EIPs while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>An EIP will only be released at the end of MaxDrainDurationSeconds. The EIPs stay associated and support the existing connections but do not support any new connections (new connections are distributed across the remaining associated EIPs). As the existing connections drain out, the EIPs (and the corresponding private IPs mapped to them) get released.</p>\"\
     },\
     \"DisassociateRouteTable\":{\
       \"name\":\"DisassociateRouteTable\",\
@@ -3914,7 +4004,7 @@
       },\
       \"input\":{\"shape\":\"EnableImageDeprecationRequest\"},\
       \"output\":{\"shape\":\"EnableImageDeprecationResult\"},\
-      \"documentation\":\"<p>Enables deprecation of the specified AMI at the specified date and time.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\\\">Deprecate an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Enables deprecation of the specified AMI at the specified date and time.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-deprecate.html\\\">Deprecate an AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"EnableIpamOrganizationAdminAccount\":{\
       \"name\":\"EnableIpamOrganizationAdminAccount\",\
@@ -3933,7 +4023,8 @@
         \"requestUri\":\"/\"\
       },\
       \"input\":{\"shape\":\"EnableReachabilityAnalyzerOrganizationSharingRequest\"},\
-      \"output\":{\"shape\":\"EnableReachabilityAnalyzerOrganizationSharingResult\"}\
+      \"output\":{\"shape\":\"EnableReachabilityAnalyzerOrganizationSharingResult\"},\
+      \"documentation\":\"<p>Establishes a trust relationship between Reachability Analyzer and Organizations. This operation must be performed by the management account for the organization.</p> <p>After you establish a trust relationship, a user in the management account or a delegated administrator account can run a cross-account analysis using resources from the member accounts.</p>\"\
     },\
     \"EnableSerialConsoleAccess\":{\
       \"name\":\"EnableSerialConsoleAccess\",\
@@ -4193,6 +4284,26 @@
       \"output\":{\"shape\":\"GetIpamAddressHistoryResult\"},\
       \"documentation\":\"<p>Retrieve historical information about a CIDR within an IPAM scope. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/view-history-cidr-ipam.html\\\">View the history of IP addresses</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>\"\
     },\
+    \"GetIpamDiscoveredAccounts\":{\
+      \"name\":\"GetIpamDiscoveredAccounts\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"GetIpamDiscoveredAccountsRequest\"},\
+      \"output\":{\"shape\":\"GetIpamDiscoveredAccountsResult\"},\
+      \"documentation\":\"<p>Gets IPAM discovered accounts. A discovered account is an Amazon Web Services account that is monitored under a resource discovery. If you have integrated IPAM with Amazon Web Services Organizations, all accounts in the organization are discovered accounts. Only the IPAM account can get all discovered accounts in the organization.</p>\"\
+    },\
+    \"GetIpamDiscoveredResourceCidrs\":{\
+      \"name\":\"GetIpamDiscoveredResourceCidrs\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"GetIpamDiscoveredResourceCidrsRequest\"},\
+      \"output\":{\"shape\":\"GetIpamDiscoveredResourceCidrsResult\"},\
+      \"documentation\":\"<p>Returns the resource CIDRs that are monitored as part of a resource discovery. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses. </p>\"\
+    },\
     \"GetIpamPoolAllocations\":{\
       \"name\":\"GetIpamPoolAllocations\",\
       \"http\":{\
@@ -4221,7 +4332,7 @@
       },\
       \"input\":{\"shape\":\"GetIpamResourceCidrsRequest\"},\
       \"output\":{\"shape\":\"GetIpamResourceCidrsResult\"},\
-      \"documentation\":\"<p>Get information about the resources in a scope.</p>\"\
+      \"documentation\":\"<p>Returns resource CIDRs managed by IPAM in a given scope. If an IPAM is associated with more than one resource discovery, the resource CIDRs across all of the resource discoveries is returned. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
     },\
     \"GetLaunchTemplateData\":{\
       \"name\":\"GetLaunchTemplateData\",\
@@ -4451,7 +4562,7 @@
       },\
       \"input\":{\"shape\":\"ImportImageRequest\"},\
       \"output\":{\"shape\":\"ImportImageResult\"},\
-      \"documentation\":\"<p>Import single or multi-volume disk images or EBS snapshots into an Amazon Machine Image (AMI).</p> <important> <p>Amazon Web Services VM Import/Export strongly recommends specifying a value for either the <code>--license-type</code> or <code>--usage-operation</code> parameter when you create a new VM Import task. This ensures your operating system is licensed appropriately and your billing is optimized.</p> </important> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html\\\">Importing a VM as an image using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>\"\
+      \"documentation\":\"<note> <p>To import your virtual machines (VMs) with a console-based experience, you can use the <i>Import virtual machine images to Amazon Web Services</i> template in the <a href=\\\"https://console.aws.amazon.com/migrationhub/orchestrator\\\">Migration Hub Orchestrator console</a>. For more information, see the <a href=\\\"https://docs.aws.amazon.com/migrationhub-orchestrator/latest/userguide/import-vm-images.html\\\"> <i>Migration Hub Orchestrator User Guide</i> </a>.</p> </note> <p>Import single or multi-volume disk images or EBS snapshots into an Amazon Machine Image (AMI).</p> <important> <p>Amazon Web Services VM Import/Export strongly recommends specifying a value for either the <code>--license-type</code> or <code>--usage-operation</code> parameter when you create a new VM Import task. This ensures your operating system is licensed appropriately and your billing is optimized.</p> </important> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmimport-image-import.html\\\">Importing a VM as an image using VM Import/Export</a> in the <i>VM Import/Export User Guide</i>.</p>\"\
     },\
     \"ImportInstance\":{\
       \"name\":\"ImportInstance\",\
@@ -4501,7 +4612,7 @@
       },\
       \"input\":{\"shape\":\"ListImagesInRecycleBinRequest\"},\
       \"output\":{\"shape\":\"ListImagesInRecycleBinResult\"},\
-      \"documentation\":\"<p>Lists one or more AMIs that are currently in the Recycle Bin. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the Amazon Elastic Compute Cloud User Guide.</p>\"\
+      \"documentation\":\"<p>Lists one or more AMIs that are currently in the Recycle Bin. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"ListSnapshotsInRecycleBin\":{\
       \"name\":\"ListSnapshotsInRecycleBin\",\
@@ -4638,7 +4749,7 @@
         \"requestUri\":\"/\"\
       },\
       \"input\":{\"shape\":\"ModifyImageAttributeRequest\"},\
-      \"documentation\":\"<p>Modifies the specified attribute of the specified AMI. You can specify only one attribute at a time. You can use the <code>Attribute</code> parameter to specify the attribute or one of the following parameters: <code>Description</code> or <code>LaunchPermission</code>.</p> <p>Images with an Amazon Web Services Marketplace product code cannot be made public.</p> <p>To enable the SriovNetSupport enhanced networking attribute of an image, enable SriovNetSupport on an instance and create an AMI from the instance.</p>\"\
+      \"documentation\":\"<p>Modifies the specified attribute of the specified AMI. You can specify only one attribute at a time.</p> <p>To specify the attribute, you can use the <code>Attribute</code> parameter, or one of the following parameters: <code>Description</code>, <code>ImdsSupport</code>, or <code>LaunchPermission</code>.</p> <p>Images with an Amazon Web Services Marketplace product code cannot be made public.</p> <p>To enable the SriovNetSupport enhanced networking attribute of an image, enable SriovNetSupport on an instance and create an AMI from the instance.</p>\"\
     },\
     \"ModifyInstanceAttribute\":{\
       \"name\":\"ModifyInstanceAttribute\",\
@@ -4748,6 +4859,16 @@
       \"input\":{\"shape\":\"ModifyIpamResourceCidrRequest\"},\
       \"output\":{\"shape\":\"ModifyIpamResourceCidrResult\"},\
       \"documentation\":\"<p>Modify a resource CIDR. You can use this action to transfer resource CIDRs between scopes and ignore resource CIDRs that you do not want to manage. If set to false, the resource will not be tracked for overlap, it cannot be auto-imported into a pool, and it will be removed from any pool it has an allocation in.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/move-resource-ipam.html\\\">Move resource CIDRs between scopes</a> and <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/change-monitoring-state-ipam.html\\\">Change the monitoring state of resource CIDRs</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>\"\
+    },\
+    \"ModifyIpamResourceDiscovery\":{\
+      \"name\":\"ModifyIpamResourceDiscovery\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"ModifyIpamResourceDiscoveryRequest\"},\
+      \"output\":{\"shape\":\"ModifyIpamResourceDiscoveryResult\"},\
+      \"documentation\":\"<p>Modifies a resource discovery. A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
     },\
     \"ModifyIpamScope\":{\
       \"name\":\"ModifyIpamScope\",\
@@ -5072,7 +5193,7 @@
       },\
       \"input\":{\"shape\":\"ModifyVpcEndpointServicePermissionsRequest\"},\
       \"output\":{\"shape\":\"ModifyVpcEndpointServicePermissionsResult\"},\
-      \"documentation\":\"<p>Modifies the permissions for your VPC endpoint service. You can add or remove permissions for service consumers (IAM users, IAM roles, and Amazon Web Services accounts) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>\"\
+      \"documentation\":\"<p>Modifies the permissions for your VPC endpoint service. You can add or remove permissions for service consumers (Amazon Web Services accounts, users, and IAM roles) to connect to your endpoint service.</p> <p>If you grant permissions to all principals, the service is public. Any users who know the name of a public service can send a request to attach an endpoint. If the service does not require manual approval, attachments are automatically approved.</p>\"\
     },\
     \"ModifyVpcPeeringConnectionOptions\":{\
       \"name\":\"ModifyVpcPeeringConnectionOptions\",\
@@ -5082,7 +5203,7 @@
       },\
       \"input\":{\"shape\":\"ModifyVpcPeeringConnectionOptionsRequest\"},\
       \"output\":{\"shape\":\"ModifyVpcPeeringConnectionOptionsResult\"},\
-      \"documentation\":\"<note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\\\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note> <p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same Amazon Web Services account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different different Amazon Web Services accounts or different Regions. For peered VPCs in different Amazon Web Services accounts, each Amazon Web Services account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the Region for the requester VPC to modify the requester VPC peering options and the Region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>\"\
+      \"documentation\":\"<note> <p>We are retiring EC2-Classic. We recommend that you migrate from EC2-Classic to a VPC. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/vpc-migrate.html\\\">Migrate from EC2-Classic to a VPC</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> </note> <p>Modifies the VPC peering connection options on one side of a VPC peering connection. You can do the following:</p> <ul> <li> <p>Enable/disable communication over the peering connection between an EC2-Classic instance that's linked to your VPC (using ClassicLink) and instances in the peer VPC.</p> </li> <li> <p>Enable/disable communication over the peering connection between instances in your VPC and an EC2-Classic instance that's linked to the peer VPC.</p> </li> <li> <p>Enable/disable the ability to resolve public DNS hostnames to private IP addresses when queried from instances in the peer VPC.</p> </li> </ul> <p>If the peered VPCs are in the same Amazon Web Services account, you can enable DNS resolution for queries from the local VPC. This ensures that queries from the local VPC resolve to private IP addresses in the peer VPC. This option is not available if the peered VPCs are in different Amazon Web Services accounts or different Regions. For peered VPCs in different Amazon Web Services accounts, each Amazon Web Services account owner must initiate a separate request to modify the peering connection options. For inter-region peering connections, you must use the Region for the requester VPC to modify the requester VPC peering options and the Region for the accepter VPC to modify the accepter VPC peering options. To verify which VPCs are the accepter and the requester for a VPC peering connection, use the <a>DescribeVpcPeeringConnections</a> command.</p>\"\
     },\
     \"ModifyVpcTenancy\":{\
       \"name\":\"ModifyVpcTenancy\",\
@@ -5162,7 +5283,7 @@
       },\
       \"input\":{\"shape\":\"MoveByoipCidrToIpamRequest\"},\
       \"output\":{\"shape\":\"MoveByoipCidrToIpamResult\"},\
-      \"documentation\":\"<p>Move an BYOIP IPv4 CIDR to IPAM from a public IPv4 pool.</p> <p>If you already have an IPv4 BYOIP CIDR with Amazon Web Services, you can move the CIDR to IPAM from a public IPv4 pool. You cannot move an IPv6 CIDR to IPAM. If you are bringing a new IP address to Amazon Web Services for the first time, complete the steps in <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoip-ipam.html\\\">Tutorial: BYOIP address CIDRs to IPAM</a>.</p>\"\
+      \"documentation\":\"<p>Move a BYOIPv4 CIDR to IPAM from a public IPv4 pool.</p> <p>If you already have a BYOIPv4 CIDR with Amazon Web Services, you can move the CIDR to IPAM from a public IPv4 pool. You cannot move an IPv6 CIDR to IPAM. If you are bringing a new IP address to Amazon Web Services for the first time, complete the steps in <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/tutorials-byoip-ipam.html\\\">Tutorial: BYOIP address CIDRs to IPAM</a>.</p>\"\
     },\
     \"ProvisionByoipCidr\":{\
       \"name\":\"ProvisionByoipCidr\",\
@@ -5241,7 +5362,7 @@
       },\
       \"input\":{\"shape\":\"RegisterImageRequest\"},\
       \"output\":{\"shape\":\"RegisterImageResult\"},\
-      \"documentation\":\"<p>Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI. For more information about creating AMIs, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html\\\">Create your own AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <note> <p>For Amazon EBS-backed instances, <a>CreateImage</a> creates and registers the AMI in a single request, so you don't have to register the AMI yourself. We recommend that you always use <a>CreateImage</a> unless you have a specific reason to use RegisterImage.</p> </note> <p>If needed, you can deregister an AMI at any time. Any modifications you make to an AMI backed by an instance store volume invalidates its registration. If you make changes to an image, deregister the previous image and register the new image.</p> <p> <b>Register a snapshot of a root device volume</b> </p> <p>You can use <code>RegisterImage</code> to create an Amazon EBS-backed Linux AMI from a snapshot of a root device volume. You specify the snapshot using a block device mapping. You can't set the encryption state of the volume using the block device mapping. If the snapshot is encrypted, or encryption by default is enabled, the root volume of an instance launched from the AMI is encrypted.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot\\\">Create a Linux AMI from a snapshot</a> and <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html\\\">Use encryption with Amazon EBS-backed AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p> <b>Amazon Web Services Marketplace product codes</b> </p> <p>If any snapshots have Amazon Web Services Marketplace product codes, they are copied to the new AMI.</p> <p>Windows and some Linux distributions, such as Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES), use the Amazon EC2 billing product code associated with an AMI to verify the subscription status for package updates. To create a new AMI for operating systems that require a billing product code, instead of registering the AMI, do the following to preserve the billing product code association:</p> <ol> <li> <p>Launch an instance from an existing AMI with that billing product code.</p> </li> <li> <p>Customize the instance.</p> </li> <li> <p>Create an AMI from the instance using <a>CreateImage</a>.</p> </li> </ol> <p>If you purchase a Reserved Instance to apply to an On-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On-Demand Instance. For information about how to obtain the platform details and billing information of an AMI, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html\\\">Understand AMI billing information</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+      \"documentation\":\"<p>Registers an AMI. When you're creating an AMI, this is the final step you must complete before you can launch an instance from the AMI. For more information about creating AMIs, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html\\\">Create your own AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <note> <p>For Amazon EBS-backed instances, <a>CreateImage</a> creates and registers the AMI in a single request, so you don't have to register the AMI yourself. We recommend that you always use <a>CreateImage</a> unless you have a specific reason to use RegisterImage.</p> </note> <p>If needed, you can deregister an AMI at any time. Any modifications you make to an AMI backed by an instance store volume invalidates its registration. If you make changes to an image, deregister the previous image and register the new image.</p> <p> <b>Register a snapshot of a root device volume</b> </p> <p>You can use <code>RegisterImage</code> to create an Amazon EBS-backed Linux AMI from a snapshot of a root device volume. You specify the snapshot using a block device mapping. You can't set the encryption state of the volume using the block device mapping. If the snapshot is encrypted, or encryption by default is enabled, the root volume of an instance launched from the AMI is encrypted.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-ebs.html#creating-launching-ami-from-snapshot\\\">Create a Linux AMI from a snapshot</a> and <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AMIEncryption.html\\\">Use encryption with Amazon EBS-backed AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p> <b>Amazon Web Services Marketplace product codes</b> </p> <p>If any snapshots have Amazon Web Services Marketplace product codes, they are copied to the new AMI.</p> <p>Windows and some Linux distributions, such as Red Hat Enterprise Linux (RHEL) and SUSE Linux Enterprise Server (SLES), use the Amazon EC2 billing product code associated with an AMI to verify the subscription status for package updates. To create a new AMI for operating systems that require a billing product code, instead of registering the AMI, do the following to preserve the billing product code association:</p> <ol> <li> <p>Launch an instance from an existing AMI with that billing product code.</p> </li> <li> <p>Customize the instance.</p> </li> <li> <p>Create an AMI from the instance using <a>CreateImage</a>.</p> </li> </ol> <p>If you purchase a Reserved Instance to apply to an On-Demand Instance that was launched from an AMI with a billing product code, make sure that the Reserved Instance has the matching billing product code. If you purchase a Reserved Instance without the matching billing product code, the Reserved Instance will not be applied to the On-Demand Instance. For information about how to obtain the platform details and billing information of an AMI, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html\\\">Understand AMI billing information</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"RegisterInstanceEventNotificationAttributes\":{\
       \"name\":\"RegisterInstanceEventNotificationAttributes\",\
@@ -5311,7 +5432,7 @@
       },\
       \"input\":{\"shape\":\"RejectVpcEndpointConnectionsRequest\"},\
       \"output\":{\"shape\":\"RejectVpcEndpointConnectionsResult\"},\
-      \"documentation\":\"<p>Rejects one or more VPC endpoint connection requests to your VPC endpoint service.</p>\"\
+      \"documentation\":\"<p>Rejects VPC endpoint connection requests to your VPC endpoint service.</p>\"\
     },\
     \"RejectVpcPeeringConnection\":{\
       \"name\":\"RejectVpcPeeringConnection\",\
@@ -5523,7 +5644,7 @@
       },\
       \"input\":{\"shape\":\"RestoreImageFromRecycleBinRequest\"},\
       \"output\":{\"shape\":\"RestoreImageFromRecycleBinResult\"},\
-      \"documentation\":\"<p>Restores an AMI from the Recycle Bin. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the Amazon Elastic Compute Cloud User Guide.</p>\"\
+      \"documentation\":\"<p>Restores an AMI from the Recycle Bin. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/recycle-bin.html\\\">Recycle Bin</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
     },\
     \"RestoreManagedPrefixListVersion\":{\
       \"name\":\"RestoreManagedPrefixListVersion\",\
@@ -5732,6 +5853,16 @@
       },\
       \"input\":{\"shape\":\"UnassignPrivateIpAddressesRequest\"},\
       \"documentation\":\"<p>Unassigns one or more secondary private IP addresses, or IPv4 Prefix Delegation prefixes from a network interface.</p>\"\
+    },\
+    \"UnassignPrivateNatGatewayAddress\":{\
+      \"name\":\"UnassignPrivateNatGatewayAddress\",\
+      \"http\":{\
+        \"method\":\"POST\",\
+        \"requestUri\":\"/\"\
+      },\
+      \"input\":{\"shape\":\"UnassignPrivateNatGatewayAddressRequest\"},\
+      \"output\":{\"shape\":\"UnassignPrivateNatGatewayAddressResult\"},\
+      \"documentation\":\"<p>Unassigns secondary private IPv4 addresses from a private NAT gateway. You cannot unassign your primary private IP. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-edit-secondary\\\">Edit secondary IP address associations</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p> <p>While unassigning is in progress, you cannot assign/unassign additional IP addresses while the connections are being drained. You are, however, allowed to delete the NAT gateway.</p> <p>A private IP address will only be released at the end of MaxDrainDurationSeconds. The private IP addresses stay associated and support the existing connections but do not support any new connections (new connections are distributed across the remaining assigned private IP address). After the existing connections drain out, the private IP addresses get released. </p> <p/> <p/>\"\
     },\
     \"UnmonitorInstances\":{\
       \"name\":\"UnmonitorInstances\",\
@@ -6044,7 +6175,7 @@
         },\
         \"VpcEndpointIds\":{\
           \"shape\":\"VpcEndpointIdList\",\
-          \"documentation\":\"<p>The IDs of one or more interface VPC endpoints.</p>\",\
+          \"documentation\":\"<p>The IDs of the interface VPC endpoints.</p>\",\
           \"locationName\":\"VpcEndpointId\"\
         }\
       }\
@@ -6061,6 +6192,7 @@
     },\
     \"AcceptVpcPeeringConnectionRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"VpcPeeringConnectionId\"],\
       \"members\":{\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -6703,6 +6835,10 @@
         \"OutpostArn\":{\
           \"shape\":\"String\",\
           \"documentation\":\"<p>The Amazon Resource Name (ARN) of the Amazon Web Services Outpost on which to allocate the Dedicated Host.</p>\"\
+        },\
+        \"HostMaintenance\":{\
+          \"shape\":\"HostMaintenance\",\
+          \"documentation\":\"<p>Indicates whether to enable or disable host maintenance for the Dedicated Host. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-maintenance.html\\\">Host maintenance</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         }\
       }\
     },\
@@ -7325,6 +7461,44 @@
         }\
       }\
     },\
+    \"AssignPrivateNatGatewayAddressRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\"NatGatewayId\"],\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\"\
+        },\
+        \"PrivateIpAddresses\":{\
+          \"shape\":\"IpList\",\
+          \"documentation\":\"<p>The private IPv4 addresses you want to assign to the private NAT gateway.</p>\",\
+          \"locationName\":\"PrivateIpAddress\"\
+        },\
+        \"PrivateIpAddressCount\":{\
+          \"shape\":\"PrivateIpAddressCount\",\
+          \"documentation\":\"<p>The number of private IP addresses to assign to the NAT gateway. You can't specify this parameter when also specifying private IP addresses.</p>\"\
+        },\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        }\
+      }\
+    },\
+    \"AssignPrivateNatGatewayAddressResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\",\
+          \"locationName\":\"natGatewayId\"\
+        },\
+        \"NatGatewayAddresses\":{\
+          \"shape\":\"NatGatewayAddressList\",\
+          \"documentation\":\"<p>NAT gateway IP addresses.</p>\",\
+          \"locationName\":\"natGatewayAddressSet\"\
+        }\
+      }\
+    },\
     \"AssignedPrivateIpAddress\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -7355,7 +7529,7 @@
           \"documentation\":\"<p>The ID of the instance. The instance must have exactly one attached network interface. For EC2-VPC, you can specify either the instance ID or the network interface ID, but not both. For EC2-Classic, you must specify an instance ID and the instance must be in the running state.</p>\"\
         },\
         \"PublicIp\":{\
-          \"shape\":\"String\",\
+          \"shape\":\"EipAllocationPublicIp\",\
           \"documentation\":\"<p>[EC2-Classic] The Elastic IP address to associate with the instance. This is required for EC2-Classic.</p>\"\
         },\
         \"AllowReassociation\":{\
@@ -7455,13 +7629,17 @@
     },\
     \"AssociateEnclaveCertificateIamRoleRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"CertificateArn\",\
+        \"RoleArn\"\
+      ],\
       \"members\":{\
         \"CertificateArn\":{\
-          \"shape\":\"ResourceArn\",\
+          \"shape\":\"CertificateId\",\
           \"documentation\":\"<p>The ARN of the ACM certificate with which to associate the IAM role.</p>\"\
         },\
         \"RoleArn\":{\
-          \"shape\":\"ResourceArn\",\
+          \"shape\":\"RoleId\",\
           \"documentation\":\"<p>The ARN of the IAM role to associate with the ACM certificate. You can associate up to 16 IAM roles with an ACM certificate.</p>\"\
         },\
         \"DryRun\":{\
@@ -7548,6 +7726,89 @@
         }\
       }\
     },\
+    \"AssociateIpamResourceDiscoveryRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"IpamId\",\
+        \"IpamResourceDiscoveryId\"\
+      ],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamId\":{\
+          \"shape\":\"IpamId\",\
+          \"documentation\":\"<p>An IPAM ID.</p>\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>A resource discovery ID.</p>\"\
+        },\
+        \"TagSpecifications\":{\
+          \"shape\":\"TagSpecificationList\",\
+          \"documentation\":\"<p>Tag specifications.</p>\",\
+          \"locationName\":\"TagSpecification\"\
+        },\
+        \"ClientToken\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A client token.</p>\",\
+          \"idempotencyToken\":true\
+        }\
+      }\
+    },\
+    \"AssociateIpamResourceDiscoveryResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscoveryAssociation\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociation\",\
+          \"documentation\":\"<p>A resource discovery association. An associated resource discovery is a resource discovery that has been associated with an IPAM.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryAssociation\"\
+        }\
+      }\
+    },\
+    \"AssociateNatGatewayAddressRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"NatGatewayId\",\
+        \"AllocationIds\"\
+      ],\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\"\
+        },\
+        \"AllocationIds\":{\
+          \"shape\":\"AllocationIdList\",\
+          \"documentation\":\"<p>The allocation IDs of EIPs that you want to associate with your NAT gateway.</p>\",\
+          \"locationName\":\"AllocationId\"\
+        },\
+        \"PrivateIpAddresses\":{\
+          \"shape\":\"IpList\",\
+          \"documentation\":\"<p>The private IPv4 addresses that you want to assign to the NAT gateway.</p>\",\
+          \"locationName\":\"PrivateIpAddress\"\
+        },\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        }\
+      }\
+    },\
+    \"AssociateNatGatewayAddressResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\",\
+          \"locationName\":\"natGatewayId\"\
+        },\
+        \"NatGatewayAddresses\":{\
+          \"shape\":\"NatGatewayAddressList\",\
+          \"documentation\":\"<p>The IP addresses.</p>\",\
+          \"locationName\":\"natGatewayAddressSet\"\
+        }\
+      }\
+    },\
     \"AssociateRouteTableRequest\":{\
       \"type\":\"structure\",\
       \"required\":[\"RouteTableId\"],\
@@ -7624,6 +7885,11 @@
     },\
     \"AssociateTransitGatewayMulticastDomainRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"TransitGatewayMulticastDomainId\",\
+        \"TransitGatewayAttachmentId\",\
+        \"SubnetIds\"\
+      ],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -8410,7 +8676,7 @@
         },\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all types. If you specify all ICMP types, you must specify all codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP, this is the type number. A value of -1 indicates all ICMP types. If you specify all ICMP types, you must specify all ICMP codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>\"\
         },\
         \"GroupId\":{\
           \"shape\":\"SecurityGroupId\",\
@@ -8438,7 +8704,7 @@
         },\
         \"ToPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The end of port range for the TCP and UDP protocols, or an ICMP code number. For the ICMP code number, use <code>-1</code> to specify all codes. If you specify all ICMP types, you must specify all codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP, this is the code. A value of -1 indicates all ICMP codes. If you specify all ICMP types, you must specify all ICMP codes.</p> <p>Alternatively, use a set of IP permissions to specify multiple rules and a description for the rule.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -8759,7 +9025,8 @@
       \"type\":\"string\",\
       \"enum\":[\
         \"legacy-bios\",\
-        \"uefi\"\
+        \"uefi\",\
+        \"uefi-preferred\"\
       ]\
     },\
     \"BoxedDouble\":{\"type\":\"double\"},\
@@ -9223,7 +9490,7 @@
         },\
         \"TerminateInstances\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Indicates whether to terminate instances for a Spot Fleet request if it is canceled successfully.</p>\",\
+          \"documentation\":\"<p>Indicates whether to terminate the associated instances when the Spot Fleet request is canceled. The default is to terminate the instances.</p> <p>To let the instances continue to run after the Spot Fleet request is canceled, specify <code>no-terminate-instances</code>.</p>\",\
           \"locationName\":\"terminateInstances\"\
         }\
       },\
@@ -9845,6 +10112,7 @@
       },\
       \"documentation\":\"<p>Information about the client certificate to be used for authentication.</p>\"\
     },\
+    \"CertificateId\":{\"type\":\"string\"},\
     \"CidrAuthorizationContext\":{\
       \"type\":\"structure\",\
       \"required\":[\
@@ -10961,7 +11229,7 @@
         },\
         \"Encrypted\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Specifies whether the destination snapshots of the copied image should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot create an unencrypted copy of an encrypted snapshot. The default KMS key for Amazon EBS is used unless you specify a non-default Key Management Service (KMS) KMS key using <code>KmsKeyId</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\\\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>Specifies whether the destination snapshots of the copied image should be encrypted. You can encrypt a copy of an unencrypted snapshot, but you cannot create an unencrypted copy of an encrypted snapshot. The default KMS key for Amazon EBS is used unless you specify a non-default Key Management Service (KMS) KMS key using <code>KmsKeyId</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\\\">Amazon EBS encryption</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"encrypted\"\
         },\
         \"KmsKeyId\":{\
@@ -10983,7 +11251,7 @@
         },\
         \"DestinationOutpostArn\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the Outpost to which to copy the AMI. Only specify this parameter when copying an AMI from an Amazon Web Services Region to an Outpost. The AMI must be in the Region of the destination Outpost. You cannot copy an AMI from an Outpost to a Region, from one Outpost to another, or within the same Outpost.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#copy-amis\\\"> Copy AMIs from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the Outpost to which to copy the AMI. Only specify this parameter when copying an AMI from an Amazon Web Services Region to an Outpost. The AMI must be in the Region of the destination Outpost. You cannot copy an AMI from an Outpost to a Region, from one Outpost to another, or within the same Outpost.</p> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#copy-amis\\\"> Copy AMIs from an Amazon Web Services Region to an Outpost</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -11039,7 +11307,7 @@
           \"locationName\":\"kmsKeyId\"\
         },\
         \"PresignedUrl\":{\
-          \"shape\":\"String\",\
+          \"shape\":\"CopySnapshotRequestPSU\",\
           \"documentation\":\"<p>When you copy an encrypted source snapshot using the Amazon EC2 Query API, you must supply a pre-signed URL. This parameter is optional for unencrypted snapshots. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html\\\">Query requests</a>.</p> <p>The <code>PresignedUrl</code> should use the snapshot source endpoint, the <code>CopySnapshot</code> action, and include the <code>SourceRegion</code>, <code>SourceSnapshotId</code>, and <code>DestinationRegion</code> parameters. The <code>PresignedUrl</code> must be signed using Amazon Web Services Signature Version 4. Because EBS snapshots are stored in Amazon S3, the signing algorithm for this parameter uses the same logic that is described in <a href=\\\"https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-query-string-auth.html\\\">Authenticating Requests: Using Query Parameters (Amazon Web Services Signature Version 4)</a> in the <i>Amazon Simple Storage Service API Reference</i>. An invalid or improperly signed <code>PresignedUrl</code> will cause the copy operation to fail asynchronously, and the snapshot will move to an <code>error</code> state.</p>\",\
           \"locationName\":\"presignedUrl\"\
         },\
@@ -11062,6 +11330,10 @@
           \"locationName\":\"dryRun\"\
         }\
       }\
+    },\
+    \"CopySnapshotRequestPSU\":{\
+      \"type\":\"string\",\
+      \"sensitive\":true\
     },\
     \"CopySnapshotResult\":{\
       \"type\":\"structure\",\
@@ -11373,7 +11645,7 @@
       \"members\":{\
         \"ClientCidrBlock\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. The CIDR block should be /22 or greater.</p>\"\
+          \"documentation\":\"<p>The IPv4 address range, in CIDR notation, from which to assign client IP addresses. The address range cannot overlap with the local CIDR of the VPC in which the associated subnet is located, or the routes that you add manually. The address range cannot be changed after the Client VPN endpoint has been created. Client CIDR range must have a size of at least /22 and must not be greater than /12.</p>\"\
         },\
         \"ServerCertificateArn\":{\
           \"shape\":\"String\",\
@@ -11576,10 +11848,7 @@
     },\
     \"CreateCustomerGatewayRequest\":{\
       \"type\":\"structure\",\
-      \"required\":[\
-        \"BgpAsn\",\
-        \"Type\"\
-      ],\
+      \"required\":[\"Type\"],\
       \"members\":{\
         \"BgpAsn\":{\
           \"shape\":\"Integer\",\
@@ -11841,7 +12110,7 @@
         },\
         \"ExcessCapacityTerminationPolicy\":{\
           \"shape\":\"FleetExcessCapacityTerminationPolicy\",\
-          \"documentation\":\"<p>Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p>\"\
+          \"documentation\":\"<p>Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p> <p>Supported only for fleets of type <code>maintain</code>.</p>\"\
         },\
         \"LaunchTemplateConfigs\":{\
           \"shape\":\"FleetLaunchTemplateConfigListRequest\",\
@@ -12269,6 +12538,10 @@
         \"AwsService\":{\
           \"shape\":\"IpamPoolAwsService\",\
           \"documentation\":\"<p>Limits which service in Amazon Web Services that the pool can be used in. \\\"ec2\\\", for example, allows users to use space for Elastic IP addresses and VPCs.</p>\"\
+        },\
+        \"PublicIpSource\":{\
+          \"shape\":\"IpamPoolPublicIpSource\",\
+          \"documentation\":\"<p>The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is <code>byoip</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html\\\">Create IPv6 pools</a> in the <i>Amazon VPC IPAM User Guide</i>. By default, you can add only one Amazon-provided IPv6 CIDR block to a top-level IPv6 pool if PublicIpSource is <code>amazon</code>. For information on increasing the default limit, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html\\\"> Quotas for your IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>\"\
         }\
       }\
     },\
@@ -12295,7 +12568,7 @@
         },\
         \"OperatingRegions\":{\
           \"shape\":\"AddIpamOperatingRegionSet\",\
-          \"documentation\":\"<p>The operating Regions for the IPAM. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.</p> <p>For more information about operating Regions, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/create-ipam.html\\\">Create an IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\",\
+          \"documentation\":\"<p>The operating Regions for the IPAM. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions. </p> <p>For more information about operating Regions, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/create-ipam.html\\\">Create an IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>. </p>\",\
           \"locationName\":\"OperatingRegion\"\
         },\
         \"TagSpecifications\":{\
@@ -12307,6 +12580,44 @@
           \"shape\":\"String\",\
           \"documentation\":\"<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\\\">Ensuring Idempotency</a>.</p>\",\
           \"idempotencyToken\":true\
+        }\
+      }\
+    },\
+    \"CreateIpamResourceDiscoveryRequest\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"Description\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A description for the IPAM resource discovery.</p>\"\
+        },\
+        \"OperatingRegions\":{\
+          \"shape\":\"AddIpamOperatingRegionSet\",\
+          \"documentation\":\"<p>Operating Regions for the IPAM resource discovery. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.</p>\",\
+          \"locationName\":\"OperatingRegion\"\
+        },\
+        \"TagSpecifications\":{\
+          \"shape\":\"TagSpecificationList\",\
+          \"documentation\":\"<p>Tag specifications for the IPAM resource discovery.</p>\",\
+          \"locationName\":\"TagSpecification\"\
+        },\
+        \"ClientToken\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A client token for the IPAM resource discovery.</p>\",\
+          \"idempotencyToken\":true\
+        }\
+      }\
+    },\
+    \"CreateIpamResourceDiscoveryResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscovery\":{\
+          \"shape\":\"IpamResourceDiscovery\",\
+          \"documentation\":\"<p>An IPAM resource discovery.</p>\",\
+          \"locationName\":\"ipamResourceDiscovery\"\
         }\
       }\
     },\
@@ -12466,6 +12777,10 @@
         \"LaunchTemplateData\":{\
           \"shape\":\"RequestLaunchTemplateData\",\
           \"documentation\":\"<p>The information for the launch template.</p>\"\
+        },\
+        \"ResolveAlias\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>If <code>true</code>, and if a Systems Manager parameter is specified for <code>ImageId</code>, the AMI ID is displayed in the response for <code>imageID</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#use-an-ssm-parameter-instead-of-an-ami-id\\\">Use a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Default: <code>false</code> </p>\"\
         }\
       }\
     },\
@@ -12486,10 +12801,7 @@
     },\
     \"CreateLocalGatewayRouteRequest\":{\
       \"type\":\"structure\",\
-      \"required\":[\
-        \"DestinationCidrBlock\",\
-        \"LocalGatewayRouteTableId\"\
-      ],\
+      \"required\":[\"LocalGatewayRouteTableId\"],\
       \"members\":{\
         \"DestinationCidrBlock\":{\
           \"shape\":\"String\",\
@@ -12510,6 +12822,10 @@
         \"NetworkInterfaceId\":{\
           \"shape\":\"NetworkInterfaceId\",\
           \"documentation\":\"<p>The ID of the network interface.</p>\"\
+        },\
+        \"DestinationPrefixListId\":{\
+          \"shape\":\"PrefixListResourceId\",\
+          \"documentation\":\"<p> The ID of the prefix list. Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>\"\
         }\
       }\
     },\
@@ -12698,7 +13014,7 @@
         },\
         \"SubnetId\":{\
           \"shape\":\"SubnetId\",\
-          \"documentation\":\"<p>The subnet in which to create the NAT gateway.</p>\"\
+          \"documentation\":\"<p>The ID of the subnet in which to create the NAT gateway.</p>\"\
         },\
         \"TagSpecifications\":{\
           \"shape\":\"TagSpecificationList\",\
@@ -12712,6 +13028,20 @@
         \"PrivateIpAddress\":{\
           \"shape\":\"String\",\
           \"documentation\":\"<p>The private IPv4 address to assign to the NAT gateway. If you don't provide an address, a private IPv4 address will be automatically assigned.</p>\"\
+        },\
+        \"SecondaryAllocationIds\":{\
+          \"shape\":\"AllocationIdList\",\
+          \"documentation\":\"<p>Secondary EIP allocation IDs. For more information about secondary addresses, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\\\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\",\
+          \"locationName\":\"SecondaryAllocationId\"\
+        },\
+        \"SecondaryPrivateIpAddresses\":{\
+          \"shape\":\"IpList\",\
+          \"documentation\":\"<p>Secondary private IPv4 addresses. For more information about secondary addresses, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\\\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\",\
+          \"locationName\":\"SecondaryPrivateIpAddress\"\
+        },\
+        \"SecondaryPrivateIpAddressCount\":{\
+          \"shape\":\"PrivateIpAddressCount\",\
+          \"documentation\":\"<p>[Private NAT gateway only] The number of secondary private IPv4 addresses you want to assign to the NAT gateway. For more information about secondary addresses, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html#nat-gateway-creating\\\">Create a NAT gateway</a> in the <i>Amazon Virtual Private Cloud User Guide</i>.</p>\"\
         }\
       }\
     },\
@@ -14777,7 +15107,7 @@
         },\
         \"VolumeType\":{\
           \"shape\":\"VolumeType\",\
-          \"documentation\":\"<p>The volume type. This parameter can be one of the following values:</p> <ul> <li> <p>General Purpose SSD: <code>gp2</code> | <code>gp3</code> </p> </li> <li> <p>Provisioned IOPS SSD: <code>io1</code> | <code>io2</code> </p> </li> <li> <p>Throughput Optimized HDD: <code>st1</code> </p> </li> <li> <p>Cold HDD: <code>sc1</code> </p> </li> <li> <p>Magnetic: <code>standard</code> </p> </li> </ul> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\\\">Amazon EBS volume types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Default: <code>gp2</code> </p>\"\
+          \"documentation\":\"<p>The volume type. This parameter can be one of the following values:</p> <ul> <li> <p>General Purpose SSD: <code>gp2</code> | <code>gp3</code> </p> </li> <li> <p>Provisioned IOPS SSD: <code>io1</code> | <code>io2</code> </p> </li> <li> <p>Throughput Optimized HDD: <code>st1</code> </p> </li> <li> <p>Cold HDD: <code>sc1</code> </p> </li> <li> <p>Magnetic: <code>standard</code> </p> </li> </ul> <important> <p>Throughput Optimized HDD (<code>st1</code>) and Cold HDD (<code>sc1</code>) volumes can't be used as boot volumes.</p> </important> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSVolumeTypes.html\\\">Amazon EBS volume types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Default: <code>gp2</code> </p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -14829,7 +15159,7 @@
         },\
         \"ConnectionEvents\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>One or more endpoint events for which to receive notifications. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>\"\
+          \"documentation\":\"<p>The endpoint events for which to receive notifications. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>\"\
         },\
         \"ClientToken\":{\
           \"shape\":\"String\",\
@@ -14869,11 +15199,11 @@
         },\
         \"VpcId\":{\
           \"shape\":\"VpcId\",\
-          \"documentation\":\"<p>The ID of the VPC in which the endpoint will be used.</p>\"\
+          \"documentation\":\"<p>The ID of the VPC for the endpoint.</p>\"\
         },\
         \"ServiceName\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The service name. To get a list of available services, use the <a>DescribeVpcEndpointServices</a> request, or get the name from the service provider.</p>\"\
+          \"documentation\":\"<p>The service name.</p>\"\
         },\
         \"PolicyDocument\":{\
           \"shape\":\"String\",\
@@ -14881,17 +15211,17 @@
         },\
         \"RouteTableIds\":{\
           \"shape\":\"VpcEndpointRouteTableIdList\",\
-          \"documentation\":\"<p>(Gateway endpoint) One or more route table IDs.</p>\",\
+          \"documentation\":\"<p>(Gateway endpoint) The route table IDs.</p>\",\
           \"locationName\":\"RouteTableId\"\
         },\
         \"SubnetIds\":{\
           \"shape\":\"VpcEndpointSubnetIdList\",\
-          \"documentation\":\"<p>(Interface and Gateway Load Balancer endpoints) The ID of one or more subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify one subnet only.</p>\",\
+          \"documentation\":\"<p>(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to create an endpoint network interface. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>\",\
           \"locationName\":\"SubnetId\"\
         },\
         \"SecurityGroupIds\":{\
           \"shape\":\"VpcEndpointSecurityGroupIdList\",\
-          \"documentation\":\"<p>(Interface endpoint) The ID of one or more security groups to associate with the endpoint network interface.</p>\",\
+          \"documentation\":\"<p>(Interface endpoint) The IDs of the security groups to associate with the endpoint network interface. If this parameter is not specified, we use the default security group for the VPC.</p>\",\
           \"locationName\":\"SecurityGroupId\"\
         },\
         \"IpAddressType\":{\
@@ -14915,8 +15245,7 @@
           \"documentation\":\"<p>The tags to associate with the endpoint.</p>\",\
           \"locationName\":\"TagSpecification\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the parameters for CreateVpcEndpoint.</p>\"\
+      }\
     },\
     \"CreateVpcEndpointResult\":{\
       \"type\":\"structure\",\
@@ -14931,8 +15260,7 @@
           \"documentation\":\"<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>\",\
           \"locationName\":\"clientToken\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the output of CreateVpcEndpoint.</p>\"\
+      }\
     },\
     \"CreateVpcEndpointServiceConfigurationRequest\":{\
       \"type\":\"structure\",\
@@ -14951,12 +15279,12 @@
         },\
         \"NetworkLoadBalancerArns\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>The Amazon Resource Names (ARNs) of one or more Network Load Balancers for your service.</p>\",\
+          \"documentation\":\"<p>The Amazon Resource Names (ARNs) of the Network Load Balancers.</p>\",\
           \"locationName\":\"NetworkLoadBalancerArn\"\
         },\
         \"GatewayLoadBalancerArns\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>The Amazon Resource Names (ARNs) of one or more Gateway Load Balancers.</p>\",\
+          \"documentation\":\"<p>The Amazon Resource Names (ARNs) of the Gateway Load Balancers.</p>\",\
           \"locationName\":\"GatewayLoadBalancerArn\"\
         },\
         \"SupportedIpAddressTypes\":{\
@@ -14992,6 +15320,7 @@
     },\
     \"CreateVpcPeeringConnectionRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"VpcId\"],\
       \"members\":{\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -15330,11 +15659,11 @@
         },\
         \"Metric\":{\
           \"shape\":\"MetricType\",\
-          \"documentation\":\"<p>The aggregation metric used for the data query. Currently only <code>aggregation-latency</code> is supported, indicating network latency.</p>\"\
+          \"documentation\":\"<p>The metric, <code>aggregation-latency</code>, indicating that network latency is aggregated for the query. This is the only supported metric.</p>\"\
         },\
         \"Statistic\":{\
           \"shape\":\"StatisticType\",\
-          \"documentation\":\"<p>Metric data aggregations over specified periods of time. The following are the supported Infrastructure Performance statistics:</p> <ul> <li> <p> <code>p50</code> - The median value of the metric aggregated over a specified start and end time. For example, a metric of <code>five_minutes</code> is the median of all the data points gathered within those five minutes.</p> </li> </ul>\"\
+          \"documentation\":\"<p>The metric data aggregation period, <code>p50</code>, between the specified <code>startDate</code> and <code>endDate</code>. For example, a metric of <code>five_minutes</code> is the median of all the data points gathered within those five minutes. <code>p50</code> is the only supported metric.</p>\"\
         },\
         \"Period\":{\
           \"shape\":\"PeriodType\",\
@@ -15363,7 +15692,7 @@
         },\
         \"Metric\":{\
           \"shape\":\"MetricType\",\
-          \"documentation\":\"<p>The metric used for the network performance request. Currently only <code>aggregate-latency</code> is supported, showing network latency during a specified period. </p>\",\
+          \"documentation\":\"<p>The metric used for the network performance request. Only <code>aggregate-latency</code> is supported, which shows network latency during a specified period. </p>\",\
           \"locationName\":\"metric\"\
         },\
         \"Statistic\":{\
@@ -15718,7 +16047,7 @@
         },\
         \"TerminateInstances\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Indicates whether to terminate the instances when the EC2 Fleet is deleted. The default is to terminate the instances.</p> <p>To let the instances continue to run after the EC2 Fleet is deleted, specify <code>NoTerminateInstances</code>. Supported only for fleets of type <code>maintain</code> and <code>request</code>.</p> <p>For <code>instant</code> fleets, you cannot specify <code>NoTerminateInstances</code>. A deleted <code>instant</code> fleet with running instances is not supported.</p>\"\
+          \"documentation\":\"<p>Indicates whether to terminate the associated instances when the EC2 Fleet is deleted. The default is to terminate the instances.</p> <p>To let the instances continue to run after the EC2 Fleet is deleted, specify <code>no-terminate-instances</code>. Supported only for fleets of type <code>maintain</code> and <code>request</code>.</p> <p>For <code>instant</code> fleets, you cannot specify <code>NoTerminateInstances</code>. A deleted <code>instant</code> fleet with running instances is not supported.</p>\"\
         }\
       }\
     },\
@@ -15869,6 +16198,30 @@
         \"Cascade\":{\
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>Enables you to quickly delete an IPAM, private scopes, pools in private scopes, and any allocations in the pools in private scopes. You cannot delete the IPAM with this option if there is a pool in your public scope. If you use this option, IPAM does the following:</p> <ul> <li> <p>Deallocates any CIDRs allocated to VPC resources (such as VPCs) in pools in private scopes.</p> <note> <p>No VPC resources are deleted as a result of enabling this option. The CIDR associated with the resource will no longer be allocated from an IPAM pool, but the CIDR itself will remain unchanged.</p> </note> </li> <li> <p>Deprovisions all IPv4 CIDRs provisioned to IPAM pools in private scopes.</p> </li> <li> <p>Deletes all IPAM pools in private scopes.</p> </li> <li> <p>Deletes all non-default private scopes in the IPAM.</p> </li> <li> <p>Deletes the default public and private scopes and the IPAM.</p> </li> </ul>\"\
+        }\
+      }\
+    },\
+    \"DeleteIpamResourceDiscoveryRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\"IpamResourceDiscoveryId\"],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>The IPAM resource discovery ID.</p>\"\
+        }\
+      }\
+    },\
+    \"DeleteIpamResourceDiscoveryResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscovery\":{\
+          \"shape\":\"IpamResourceDiscovery\",\
+          \"documentation\":\"<p>The IPAM resource discovery.</p>\",\
+          \"locationName\":\"ipamResourceDiscovery\"\
         }\
       }\
     },\
@@ -16052,10 +16405,7 @@
     },\
     \"DeleteLocalGatewayRouteRequest\":{\
       \"type\":\"structure\",\
-      \"required\":[\
-        \"DestinationCidrBlock\",\
-        \"LocalGatewayRouteTableId\"\
-      ],\
+      \"required\":[\"LocalGatewayRouteTableId\"],\
       \"members\":{\
         \"DestinationCidrBlock\":{\
           \"shape\":\"String\",\
@@ -16068,6 +16418,10 @@
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"DestinationPrefixListId\":{\
+          \"shape\":\"PrefixListResourceId\",\
+          \"documentation\":\"<p> Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>\"\
         }\
       }\
     },\
@@ -16672,7 +17026,7 @@
       \"required\":[\"TrafficMirrorFilterRuleId\"],\
       \"members\":{\
         \"TrafficMirrorFilterRuleId\":{\
-          \"shape\":\"TrafficMirrorFilterRuleId\",\
+          \"shape\":\"TrafficMirrorFilterRuleIdWithResolver\",\
           \"documentation\":\"<p>The ID of the Traffic Mirror rule.</p>\"\
         },\
         \"DryRun\":{\
@@ -17158,7 +17512,7 @@
         },\
         \"ConnectionNotificationIds\":{\
           \"shape\":\"ConnectionNotificationIdsList\",\
-          \"documentation\":\"<p>One or more notification IDs.</p>\",\
+          \"documentation\":\"<p>The IDs of the notifications.</p>\",\
           \"locationName\":\"ConnectionNotificationId\"\
         }\
       }\
@@ -17183,7 +17537,7 @@
         },\
         \"ServiceIds\":{\
           \"shape\":\"VpcEndpointServiceIdList\",\
-          \"documentation\":\"<p>The IDs of one or more services.</p>\",\
+          \"documentation\":\"<p>The IDs of the services.</p>\",\
           \"locationName\":\"ServiceId\"\
         }\
       }\
@@ -17208,11 +17562,10 @@
         },\
         \"VpcEndpointIds\":{\
           \"shape\":\"VpcEndpointIdList\",\
-          \"documentation\":\"<p>One or more VPC endpoint IDs.</p>\",\
+          \"documentation\":\"<p>The IDs of the VPC endpoints.</p>\",\
           \"locationName\":\"VpcEndpointId\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the parameters for DeleteVpcEndpoints.</p>\"\
+      }\
     },\
     \"DeleteVpcEndpointsResult\":{\
       \"type\":\"structure\",\
@@ -17222,8 +17575,7 @@
           \"documentation\":\"<p>Information about the VPC endpoints that were not successfully deleted.</p>\",\
           \"locationName\":\"unsuccessful\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the output of DeleteVpcEndpoints.</p>\"\
+      }\
     },\
     \"DeleteVpcPeeringConnectionRequest\":{\
       \"type\":\"structure\",\
@@ -17385,7 +17737,7 @@
         },\
         \"Cidr\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The CIDR you want to deprovision from the pool.</p>\"\
+          \"documentation\":\"<p>The CIDR you want to deprovision from the pool. Enter the CIDR you want to deprovision with a netmask of <code>/32</code>. You must rerun this command for each IP address in the CIDR range. If your CIDR is a <code>/24</code>, you will have to run this command to deprovision each of the 256 IP addresses in the <code>/24</code> CIDR.</p>\"\
         }\
       }\
     },\
@@ -17699,7 +18051,7 @@
       \"members\":{\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>) For Wavelength Zones, use the name of the group associated with the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>message</code> - The Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt-in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>parent-zoneID</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>parent-zoneName</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone, the Local Zone, or the Wavelength Zone (<code>available</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>), the Local Zone (for example, <code>usw2-lax1-az1</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>), the Local Zone (for example, <code>us-west-2-lax-1a</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>) For Wavelength Zones, use the name of the group associated with the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>message</code> - The Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt-in status (<code>opted-in</code> | <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>parent-zoneID</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>parent-zoneName</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone, the Local Zone, or the Wavelength Zone (<code>available</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>), the Local Zone (for example, <code>usw2-lax1-az1</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>), the Local Zone (for example, <code>us-west-2-lax-1a</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone (<code>availability-zone</code> | <code>local-zone</code> | <code>wavelength-zone</code>).</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"ZoneNames\":{\
@@ -17999,12 +18351,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeClassicLinkInstancesMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>Constraint: If the value is greater than 1000, we return only 1000 items.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18019,7 +18371,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18394,11 +18746,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeDhcpOptionsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -18412,7 +18764,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18436,11 +18788,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeEgressOnlyInternetGatewaysMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
@@ -18459,7 +18811,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18603,11 +18955,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeFastLaunchImagesRequestMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the returned NextToken value. If this parameter is not specified, then all results are returned.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -18630,7 +18982,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to use for the next set of results. This value is null when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18660,7 +19012,7 @@
         },\
         \"MaxParallelLaunches\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of parallel instances that are launched for creating resources.</p>\",\
+          \"documentation\":\"<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>\",\
           \"locationName\":\"maxParallelLaunches\"\
         },\
         \"OwnerId\":{\
@@ -18776,11 +19128,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeFastSnapshotRestoresMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -18798,7 +19150,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -18846,11 +19198,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"FleetId\":{\
           \"shape\":\"FleetId\",\
@@ -18872,12 +19224,12 @@
         },\
         \"LastEvaluatedTime\":{\
           \"shape\":\"DateTime\",\
-          \"documentation\":\"<p>The last date and time for the events, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). All records up to this time were retrieved.</p> <p>If <code>nextToken</code> indicates that there are more results, this value is not present.</p>\",\
+          \"documentation\":\"<p>The last date and time for the events, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). All records up to this time were retrieved.</p> <p>If <code>nextToken</code> indicates that there are more items, this value is not present.</p>\",\
           \"locationName\":\"lastEvaluatedTime\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"FleetId\":{\
@@ -18902,11 +19254,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"FleetId\":{\
           \"shape\":\"FleetId\",\
@@ -18929,7 +19281,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"FleetId\":{\
@@ -18993,11 +19345,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"FleetIds\":{\
           \"shape\":\"FleetIdSet\",\
@@ -19016,7 +19368,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"Fleets\":{\
@@ -19044,11 +19396,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token to request the next page of items. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19062,7 +19414,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to request the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19295,11 +19647,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeIamInstanceProfileAssociationsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to request the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19313,7 +19665,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19417,6 +19769,14 @@
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\",\
           \"locationName\":\"dryRun\"\
+        },\
+        \"MaxResults\":{\
+          \"shape\":\"Integer\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19427,6 +19787,11 @@
           \"shape\":\"ImageList\",\
           \"documentation\":\"<p>Information about the images.</p>\",\
           \"locationName\":\"imagesSet\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
+          \"locationName\":\"nextToken\"\
         }\
       }\
     },\
@@ -19560,11 +19925,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeInstanceCreditSpecificationsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>You cannot specify this parameter and the instance IDs parameter in the same call.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19578,7 +19943,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19660,11 +20025,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>You cannot specify this parameter and the instance IDs parameter in the same request.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -19688,7 +20053,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19711,11 +20076,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DITOMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19729,7 +20094,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19753,11 +20118,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DITMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the next token value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -19771,7 +20136,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19781,7 +20146,7 @@
       \"members\":{\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>capacity-reservation-id</code> - The ID of the Capacity Reservation into which the instance was launched.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-options.http-put-response-hop-limit</code> - The http metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-options.http-endpoint</code> - Enable or disable metadata access on http endpoint (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by Amazon Web Services.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \\\"User Initiated [date]\\\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>affinity</code> - The affinity setting for an instance running on a Dedicated Host (<code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>architecture</code> - The instance architecture (<code>i386</code> | <code>x86_64</code> | <code>arm64</code>).</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone of the instance.</p> </li> <li> <p> <code>block-device-mapping.attach-time</code> - The attach time for an EBS volume mapped to the instance, for example, <code>2010-09-15T17:15:20.000Z</code>.</p> </li> <li> <p> <code>block-device-mapping.delete-on-termination</code> - A Boolean that indicates whether the EBS volume is deleted on instance termination.</p> </li> <li> <p> <code>block-device-mapping.device-name</code> - The device name specified in the block device mapping (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p> </li> <li> <p> <code>block-device-mapping.status</code> - The status for the EBS volume (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>block-device-mapping.volume-id</code> - The volume ID of the EBS volume.</p> </li> <li> <p> <code>capacity-reservation-id</code> - The ID of the Capacity Reservation into which the instance was launched.</p> </li> <li> <p> <code>client-token</code> - The idempotency token you provided when you launched the instance.</p> </li> <li> <p> <code>dns-name</code> - The public DNS name of the instance.</p> </li> <li> <p> <code>group-id</code> - The ID of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>group-name</code> - The name of the security group for the instance. EC2-Classic only.</p> </li> <li> <p> <code>hibernation-options.configured</code> - A Boolean that indicates whether the instance is enabled for hibernation. A value of <code>true</code> means that the instance is enabled for hibernation. </p> </li> <li> <p> <code>host-id</code> - The ID of the Dedicated Host on which the instance is running, if applicable.</p> </li> <li> <p> <code>hypervisor</code> - The hypervisor type of the instance (<code>ovm</code> | <code>xen</code>). The value <code>xen</code> is used for both Xen and Nitro hypervisors.</p> </li> <li> <p> <code>iam-instance-profile.arn</code> - The instance profile associated with the instance. Specified as an ARN.</p> </li> <li> <p> <code>image-id</code> - The ID of the image used to launch the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>instance-lifecycle</code> - Indicates whether this is a Spot Instance or a Scheduled Instance (<code>spot</code> | <code>scheduled</code>).</p> </li> <li> <p> <code>instance-state-code</code> - The state of the instance, as a 16-bit unsigned integer. The high byte is used for internal purposes and should be ignored. The low byte is set based on the state represented. The valid values are: 0 (pending), 16 (running), 32 (shutting-down), 48 (terminated), 64 (stopping), and 80 (stopped).</p> </li> <li> <p> <code>instance-state-name</code> - The state of the instance (<code>pending</code> | <code>running</code> | <code>shutting-down</code> | <code>terminated</code> | <code>stopping</code> | <code>stopped</code>).</p> </li> <li> <p> <code>instance-type</code> - The type of instance (for example, <code>t2.micro</code>).</p> </li> <li> <p> <code>instance.group-id</code> - The ID of the security group for the instance. </p> </li> <li> <p> <code>instance.group-name</code> - The name of the security group for the instance. </p> </li> <li> <p> <code>ip-address</code> - The public IPv4 address of the instance.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>key-name</code> - The name of the key pair used when the instance was launched.</p> </li> <li> <p> <code>launch-index</code> - When launching multiple instances, this is the index for the instance in the launch group (for example, 0, 1, 2, and so on). </p> </li> <li> <p> <code>launch-time</code> - The time when the instance was launched, in the ISO 8601 format in the UTC time zone (YYYY-MM-DDThh:mm:ss.sssZ), for example, <code>2021-09-29T11:04:43.305Z</code>. You can use a wildcard (<code>*</code>), for example, <code>2021-09-29T*</code>, which matches an entire day.</p> </li> <li> <p> <code>metadata-options.http-tokens</code> - The metadata request authorization state (<code>optional</code> | <code>required</code>)</p> </li> <li> <p> <code>metadata-options.http-put-response-hop-limit</code> - The HTTP metadata request put response hop limit (integer, possible values <code>1</code> to <code>64</code>)</p> </li> <li> <p> <code>metadata-options.http-endpoint</code> - The status of access to the HTTP metadata endpoint on your instance (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>metadata-options.instance-metadata-tags</code> - The status of access to instance tags from the instance metadata (<code>enabled</code> | <code>disabled</code>)</p> </li> <li> <p> <code>monitoring-state</code> - Indicates whether detailed monitoring is enabled (<code>disabled</code> | <code>enabled</code>).</p> </li> <li> <p> <code>network-interface.addresses.private-ip-address</code> - The private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.addresses.primary</code> - Specifies whether the IPv4 address of the network interface is the primary private IPv4 address.</p> </li> <li> <p> <code>network-interface.addresses.association.public-ip</code> - The ID of the association of an Elastic IP address (IPv4) with a network interface.</p> </li> <li> <p> <code>network-interface.addresses.association.ip-owner-id</code> - The owner ID of the private IPv4 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.public-ip</code> - The address of the Elastic IP address (IPv4) bound to the network interface.</p> </li> <li> <p> <code>network-interface.association.ip-owner-id</code> - The owner of the Elastic IP address (IPv4) associated with the network interface.</p> </li> <li> <p> <code>network-interface.association.allocation-id</code> - The allocation ID returned when you allocated the Elastic IP address (IPv4) for your network interface.</p> </li> <li> <p> <code>network-interface.association.association-id</code> - The association ID returned when the network interface was associated with an IPv4 address.</p> </li> <li> <p> <code>network-interface.attachment.attachment-id</code> - The ID of the interface attachment.</p> </li> <li> <p> <code>network-interface.attachment.instance-id</code> - The ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.instance-owner-id</code> - The owner ID of the instance to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.device-index</code> - The device index to which the network interface is attached.</p> </li> <li> <p> <code>network-interface.attachment.status</code> - The status of the attachment (<code>attaching</code> | <code>attached</code> | <code>detaching</code> | <code>detached</code>).</p> </li> <li> <p> <code>network-interface.attachment.attach-time</code> - The time that the network interface was attached to an instance.</p> </li> <li> <p> <code>network-interface.attachment.delete-on-termination</code> - Specifies whether the attachment is deleted when an instance is terminated.</p> </li> <li> <p> <code>network-interface.availability-zone</code> - The Availability Zone for the network interface.</p> </li> <li> <p> <code>network-interface.description</code> - The description of the network interface.</p> </li> <li> <p> <code>network-interface.group-id</code> - The ID of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.group-name</code> - The name of a security group associated with the network interface.</p> </li> <li> <p> <code>network-interface.ipv6-addresses.ipv6-address</code> - The IPv6 address associated with the network interface.</p> </li> <li> <p> <code>network-interface.mac-address</code> - The MAC address of the network interface.</p> </li> <li> <p> <code>network-interface.network-interface-id</code> - The ID of the network interface.</p> </li> <li> <p> <code>network-interface.owner-id</code> - The ID of the owner of the network interface.</p> </li> <li> <p> <code>network-interface.private-dns-name</code> - The private DNS name of the network interface.</p> </li> <li> <p> <code>network-interface.requester-id</code> - The requester ID for the network interface.</p> </li> <li> <p> <code>network-interface.requester-managed</code> - Indicates whether the network interface is being managed by Amazon Web Services.</p> </li> <li> <p> <code>network-interface.status</code> - The status of the network interface (<code>available</code>) | <code>in-use</code>).</p> </li> <li> <p> <code>network-interface.source-dest-check</code> - Whether the network interface performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the network interface to perform network address translation (NAT) in your VPC.</p> </li> <li> <p> <code>network-interface.subnet-id</code> - The ID of the subnet for the network interface.</p> </li> <li> <p> <code>network-interface.vpc-id</code> - The ID of the VPC for the network interface.</p> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost.</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the instance owner.</p> </li> <li> <p> <code>placement-group-name</code> - The name of the placement group for the instance.</p> </li> <li> <p> <code>placement-partition-number</code> - The partition in which the instance is located.</p> </li> <li> <p> <code>platform</code> - The platform. To list only Windows instances, use <code>windows</code>.</p> </li> <li> <p> <code>private-dns-name</code> - The private IPv4 DNS name of the instance.</p> </li> <li> <p> <code>private-ip-address</code> - The private IPv4 address of the instance.</p> </li> <li> <p> <code>product-code</code> - The product code associated with the AMI used to launch the instance.</p> </li> <li> <p> <code>product-code.type</code> - The type of product code (<code>devpay</code> | <code>marketplace</code>).</p> </li> <li> <p> <code>ramdisk-id</code> - The RAM disk ID.</p> </li> <li> <p> <code>reason</code> - The reason for the current state of the instance (for example, shows \\\"User Initiated [date]\\\" when you stop or terminate the instance). Similar to the state-reason-code filter.</p> </li> <li> <p> <code>requester-id</code> - The ID of the entity that launched the instance on your behalf (for example, Amazon Web Services Management Console, Auto Scaling, and so on).</p> </li> <li> <p> <code>reservation-id</code> - The ID of the instance's reservation. A reservation ID is created any time you launch an instance. A reservation ID has a one-to-one relationship with an instance launch request, but can be associated with more than one instance if you launch multiple instances using the same launch request. For example, if you launch one instance, you get one reservation ID. If you launch ten instances using the same launch request, you also get one reservation ID.</p> </li> <li> <p> <code>root-device-name</code> - The device name of the root device volume (for example, <code>/dev/sda1</code>).</p> </li> <li> <p> <code>root-device-type</code> - The type of the root device volume (<code>ebs</code> | <code>instance-store</code>).</p> </li> <li> <p> <code>source-dest-check</code> - Indicates whether the instance performs source/destination checking. A value of <code>true</code> means that checking is enabled, and <code>false</code> means that checking is disabled. The value must be <code>false</code> for the instance to perform network address translation (NAT) in your VPC. </p> </li> <li> <p> <code>spot-instance-request-id</code> - The ID of the Spot Instance request.</p> </li> <li> <p> <code>state-reason-code</code> - The reason code for the state change.</p> </li> <li> <p> <code>state-reason-message</code> - A message that describes the state change.</p> </li> <li> <p> <code>subnet-id</code> - The ID of the subnet for the instance.</p> </li> <li> <p> <code>tag:&lt;key&gt;</code> - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of an instance (<code>dedicated</code> | <code>default</code> | <code>host</code>).</p> </li> <li> <p> <code>virtualization-type</code> - The virtualization type of the instance (<code>paravirtual</code> | <code>hvm</code>).</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC that the instance is running in.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"InstanceIds\":{\
@@ -19796,12 +20161,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 5 and 1000. You cannot specify this parameter and the instance IDs parameter in the same call.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>You cannot specify this parameter and the instance IDs parameter in the same request.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to request the next page of results.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19816,7 +20181,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19846,11 +20211,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeInternetGatewaysMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -19864,7 +20229,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -19908,6 +20273,90 @@
           \"shape\":\"IpamPoolSet\",\
           \"documentation\":\"<p>Information about the IPAM pools.</p>\",\
           \"locationName\":\"ipamPoolSet\"\
+        }\
+      }\
+    },\
+    \"DescribeIpamResourceDiscoveriesRequest\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryIds\":{\
+          \"shape\":\"ValueStringList\",\
+          \"documentation\":\"<p>The IPAM resource discovery IDs.</p>\",\
+          \"locationName\":\"IpamResourceDiscoveryId\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\"\
+        },\
+        \"MaxResults\":{\
+          \"shape\":\"IpamMaxResults\",\
+          \"documentation\":\"<p>The maximum number of resource discoveries to return in one page of results.</p>\"\
+        },\
+        \"Filters\":{\
+          \"shape\":\"FilterList\",\
+          \"documentation\":\"<p>The resource discovery filters.</p>\",\
+          \"locationName\":\"Filter\"\
+        }\
+      }\
+    },\
+    \"DescribeIpamResourceDiscoveriesResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscoveries\":{\
+          \"shape\":\"IpamResourceDiscoverySet\",\
+          \"documentation\":\"<p>The resource discoveries.</p>\",\
+          \"locationName\":\"ipamResourceDiscoverySet\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\",\
+          \"locationName\":\"nextToken\"\
+        }\
+      }\
+    },\
+    \"DescribeIpamResourceDiscoveryAssociationsRequest\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryAssociationIds\":{\
+          \"shape\":\"ValueStringList\",\
+          \"documentation\":\"<p>The resource discovery association IDs.</p>\",\
+          \"locationName\":\"IpamResourceDiscoveryAssociationId\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\"\
+        },\
+        \"MaxResults\":{\
+          \"shape\":\"IpamMaxResults\",\
+          \"documentation\":\"<p>The maximum number of resource discovery associations to return in one page of results.</p>\"\
+        },\
+        \"Filters\":{\
+          \"shape\":\"FilterList\",\
+          \"documentation\":\"<p>The resource discovery association filters.</p>\",\
+          \"locationName\":\"Filter\"\
+        }\
+      }\
+    },\
+    \"DescribeIpamResourceDiscoveryAssociationsResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscoveryAssociations\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociationSet\",\
+          \"documentation\":\"<p>The resource discovery associations.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryAssociationSet\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\",\
+          \"locationName\":\"nextToken\"\
         }\
       }\
     },\
@@ -20116,6 +20565,10 @@
           \"shape\":\"FilterList\",\
           \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>create-time</code> - The time the launch template version was created.</p> </li> <li> <p> <code>ebs-optimized</code> - A boolean that indicates whether the instance is optimized for Amazon EBS I/O.</p> </li> <li> <p> <code>http-endpoint</code> - Indicates whether the HTTP metadata endpoint on your instances is enabled (<code>enabled</code> | <code>disabled</code>).</p> </li> <li> <p> <code>http-protocol-ipv4</code> - Indicates whether the IPv4 endpoint for the instance metadata service is enabled (<code>enabled</code> | <code>disabled</code>).</p> </li> <li> <p> <code>host-resource-group-arn</code> - The ARN of the host resource group in which to launch the instances.</p> </li> <li> <p> <code>http-tokens</code> - The state of token usage for your instance metadata requests (<code>optional</code> | <code>required</code>).</p> </li> <li> <p> <code>iam-instance-profile</code> - The ARN of the IAM instance profile.</p> </li> <li> <p> <code>image-id</code> - The ID of the AMI.</p> </li> <li> <p> <code>instance-type</code> - The instance type.</p> </li> <li> <p> <code>is-default-version</code> - A boolean that indicates whether the launch template version is the default version.</p> </li> <li> <p> <code>kernel-id</code> - The kernel ID.</p> </li> <li> <p> <code>license-configuration-arn</code> - The ARN of the license configuration.</p> </li> <li> <p> <code>network-card-index</code> - The index of the network card.</p> </li> <li> <p> <code>ram-disk-id</code> - The RAM disk ID.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
+        },\
+        \"ResolveAlias\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>If <code>true</code>, and if a Systems Manager parameter is specified for <code>ImageId</code>, the AMI ID is displayed in the response for <code>imageId</code>.</p> <p>If <code>false</code>, and if a Systems Manager parameter is specified for <code>ImageId</code>, the parameter is displayed in the response for <code>imageId</code>.</p> <p> For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#use-an-ssm-parameter-instead-of-an-ami-id\\\">Use a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Default: <code>false</code> </p>\"\
         }\
       }\
     },\
@@ -20548,7 +21001,7 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeNatGatewaysMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NatGatewayIds\":{\
           \"shape\":\"NatGatewayIdStringList\",\
@@ -20557,7 +21010,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -20571,7 +21024,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -20601,11 +21054,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeNetworkAclsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -20619,7 +21072,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -20889,11 +21342,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to request the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeNetworkInterfacePermissionsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. If this parameter is not specified, up to 50 results are returned by default.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. If this parameter is not specified, up to 50 results are returned by default. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       },\
       \"documentation\":\"<p>Contains the parameters for DescribeNetworkInterfacePermissions.</p>\"\
@@ -20908,7 +21361,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       },\
@@ -20939,11 +21392,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeNetworkInterfacesMaxResults\",\
-          \"documentation\":\"<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results. You cannot specify this parameter and the network interface IDs parameter in the same request.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. You cannot specify this parameter and the network interface IDs parameter in the same request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       },\
       \"documentation\":\"<p>Contains the parameters for DescribeNetworkInterfaces.</p>\"\
@@ -20958,11 +21411,10 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the output of DescribeNetworkInterfaces.</p>\"\
+      }\
     },\
     \"DescribePlacementGroupsRequest\":{\
       \"type\":\"structure\",\
@@ -21175,11 +21627,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeReplaceRootVolumeTasksMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -21197,7 +21649,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -21426,11 +21878,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeRouteTablesMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -21444,7 +21896,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       },\
@@ -21610,11 +22062,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSecurityGroupRulesMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000. If this parameter is not specified, then all results are returned.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. This value can be between 5 and 1000. If this parameter is not specified, then all items are returned. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -21628,7 +22080,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return. </p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -21663,11 +22115,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to request the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSecurityGroupsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the returned <code>NextToken</code> value. This value can be between 5 and 1000. If this parameter is not specified, then all results are returned.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. This value can be between 5 and 1000. If this parameter is not specified, then all items are returned. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -21681,7 +22133,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -21743,11 +22195,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSnapshotTierStatusMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -21761,7 +22213,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -21776,11 +22228,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of snapshot results returned by <code>DescribeSnapshots</code> in paginated output. When this parameter is used, <code>DescribeSnapshots</code> only returns <code>MaxResults</code> results in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeSnapshots</code> request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned. If this parameter is not used, then <code>DescribeSnapshots</code> returns all results. You cannot specify this parameter and the snapshot IDs parameter in the same request.</p>\"\
+          \"documentation\":\"<p>The maximum number of snapshots to return for this request. This value can be between 5 and 1,000; if this value is larger than 1,000, only 1,000 results are returned. If this parameter is not used, then the request returns all snapshots. You cannot specify this parameter and the snapshot IDs parameter in the same request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>NextToken</code> value returned from a previous paginated <code>DescribeSnapshots</code> request where <code>MaxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>NextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"OwnerIds\":{\
           \"shape\":\"OwnerStringList\",\
@@ -21814,7 +22266,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>NextToken</code> value to include in a future <code>DescribeSnapshots</code> request. When the results of a <code>DescribeSnapshots</code> request exceed <code>MaxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to return the next page of snapshots. This value is <code>null</code> when there are no more snapshots to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -21857,12 +22309,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSpotFleetInstancesMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestId\":{\
@@ -21883,7 +22335,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token required to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestId\":{\
@@ -21918,12 +22370,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSpotFleetRequestHistoryMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestId\":{\
@@ -21949,12 +22401,12 @@
         },\
         \"LastEvaluatedTime\":{\
           \"shape\":\"DateTime\",\
-          \"documentation\":\"<p>The last date and time for the events, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). All records up to this time were retrieved.</p> <p>If <code>nextToken</code> indicates that there are more results, this value is not present.</p>\",\
+          \"documentation\":\"<p>The last date and time for the events, in UTC format (for example, <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z). All records up to this time were retrieved.</p> <p>If <code>nextToken</code> indicates that there are more items, this value is not present.</p>\",\
           \"locationName\":\"lastEvaluatedTime\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token required to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestId\":{\
@@ -21980,12 +22432,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestIds\":{\
@@ -22001,7 +22453,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token required to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotFleetRequestConfigs\":{\
@@ -22032,11 +22484,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to request the next set of results. This value is <code>null</code> when there are no more results to return.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 5 and 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       },\
       \"documentation\":\"<p>Contains the parameters for DescribeSpotInstanceRequests.</p>\"\
@@ -22051,7 +22503,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next set of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       },\
@@ -22087,12 +22539,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and 1000. The default value is 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"ProductDescriptions\":{\
@@ -22113,7 +22565,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token required to retrieve the next set of results. This value is null or an empty string when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"SpotPriceHistory\":{\
@@ -22144,11 +22596,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeStaleSecurityGroupsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of items to return for this request. The request returns a token that you can specify in a subsequent call to get the next set of results.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"DescribeStaleSecurityGroupsNextToken\",\
-          \"documentation\":\"<p>The token for the next set of items to return. (You received this token from a prior call.)</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"VpcId\":{\
           \"shape\":\"VpcId\",\
@@ -22161,7 +22613,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. If there are no additional items to return, the string is empty.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"StaleSecurityGroupSet\":{\
@@ -22190,11 +22642,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeStoreImageTasksRequestMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value. This value can be between 1 and 200. You cannot specify this parameter and the <code>ImageIDs</code> parameter in the same call.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p> <p>You cannot specify this parameter and the <code>ImageIDs</code> parameter in the same call.</p>\"\
         }\
       }\
     },\
@@ -22213,7 +22665,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -22243,11 +22695,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeSubnetsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -22261,7 +22713,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -22281,12 +22733,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. This value can be between 5 and 1000. To retrieve the remaining results, make another call with the returned <code>NextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. This value can be between 5 and 1000. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to retrieve the next page of results.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -22296,7 +22748,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"Tags\":{\
@@ -23188,11 +23640,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of volume results returned by <code>DescribeVolumeStatus</code> in paginated output. When this parameter is used, the request only returns <code>MaxResults</code> results in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another request with the returned <code>NextToken</code> value. This value can be between 5 and 1,000; if <code>MaxResults</code> is given a value larger than 1,000, only 1,000 results are returned. If this parameter is not used, then <code>DescribeVolumeStatus</code> returns all results. You cannot specify this parameter and the volume IDs parameter in the same request.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. This value can be between 5 and 1,000; if the value is larger than 1,000, only 1,000 results are returned. If this parameter is not used, then all items are returned. You cannot specify this parameter and the volume IDs parameter in the same request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>NextToken</code> value to include in a future <code>DescribeVolumeStatus</code> request. When the results of the request exceed <code>MaxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"VolumeIds\":{\
           \"shape\":\"VolumeIdStringList\",\
@@ -23211,7 +23663,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"VolumeStatuses\":{\
@@ -23240,11 +23692,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>nextToken</code> value returned by a previous paginated request.</p>\"\
+          \"documentation\":\"<p>The token returned by a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results (up to a limit of 500) to be returned in a paginated request.</p>\"\
+          \"documentation\":\"<p>The maximum number of results (up to a limit of 500) to be returned in a paginated request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -23258,7 +23710,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>Token for pagination, null if there are no more results </p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> if there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -23283,12 +23735,12 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of volume results returned by <code>DescribeVolumes</code> in paginated output. When this parameter is used, <code>DescribeVolumes</code> only returns <code>MaxResults</code> results in a single page along with a <code>NextToken</code> response element. The remaining results of the initial request can be seen by sending another <code>DescribeVolumes</code> request with the returned <code>NextToken</code> value. This value can be between 5 and 500; if <code>MaxResults</code> is given a value larger than 500, only 500 results are returned. If this parameter is not used, then <code>DescribeVolumes</code> returns all results. You cannot specify this parameter and the volume IDs parameter in the same request.</p>\",\
+          \"documentation\":\"<p>The maximum number of volumes to return for this request. This value can be between 5 and 500; if you specify a value larger than 500, only 500 items are returned. If this parameter is not used, then all items are returned. You cannot specify this parameter and the volume IDs parameter in the same request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>NextToken</code> value returned from a previous paginated <code>DescribeVolumes</code> request where <code>MaxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>NextToken</code> value. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned from the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -23303,7 +23755,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The <code>NextToken</code> value to include in a future <code>DescribeVolumes</code> request. When the results of a <code>DescribeVolumes</code> request exceed <code>MaxResults</code>, this value can be used to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -23370,12 +23822,12 @@
       \"members\":{\
         \"MaxResults\":{\
           \"shape\":\"DescribeVpcClassicLinkDnsSupportMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\",\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\",\
           \"locationName\":\"maxResults\"\
         },\
         \"NextToken\":{\
           \"shape\":\"DescribeVpcClassicLinkDnsSupportNextToken\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\",\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"VpcIds\":{\
@@ -23389,7 +23841,7 @@
       \"members\":{\
         \"NextToken\":{\
           \"shape\":\"DescribeVpcClassicLinkDnsSupportNextToken\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         },\
         \"Vpcs\":{\
@@ -23442,7 +23894,7 @@
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>connection-notification-arn</code> - The ARN of the SNS topic for the notification.</p> </li> <li> <p> <code>connection-notification-id</code> - The ID of the notification.</p> </li> <li> <p> <code>connection-notification-state</code> - The state of the notification (<code>Enabled</code> | <code>Disabled</code>).</p> </li> <li> <p> <code>connection-notification-type</code> - The type of notification (<code>Topic</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the endpoint service.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the VPC endpoint.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>connection-notification-arn</code> - The ARN of the SNS topic for the notification.</p> </li> <li> <p> <code>connection-notification-id</code> - The ID of the notification.</p> </li> <li> <p> <code>connection-notification-state</code> - The state of the notification (<code>Enabled</code> | <code>Disabled</code>).</p> </li> <li> <p> <code>connection-notification-type</code> - The type of notification (<code>Topic</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the endpoint service.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the VPC endpoint.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23460,7 +23912,7 @@
       \"members\":{\
         \"ConnectionNotificationSet\":{\
           \"shape\":\"ConnectionNotificationSet\",\
-          \"documentation\":\"<p>One or more notifications.</p>\",\
+          \"documentation\":\"<p>The notifications.</p>\",\
           \"locationName\":\"connectionNotificationSet\"\
         },\
         \"NextToken\":{\
@@ -23479,7 +23931,7 @@
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>vpc-endpoint-owner</code> - The ID of the Amazon Web Services account ID that owns the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>vpc-endpoint-owner</code> - The ID of the Amazon Web Services account ID that owns the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23497,7 +23949,7 @@
       \"members\":{\
         \"VpcEndpointConnections\":{\
           \"shape\":\"VpcEndpointConnectionSet\",\
-          \"documentation\":\"<p>Information about one or more VPC endpoint connections.</p>\",\
+          \"documentation\":\"<p>Information about the VPC endpoint connections.</p>\",\
           \"locationName\":\"vpcEndpointConnectionSet\"\
         },\
         \"NextToken\":{\
@@ -23516,12 +23968,12 @@
         },\
         \"ServiceIds\":{\
           \"shape\":\"VpcEndpointServiceIdList\",\
-          \"documentation\":\"<p>The IDs of one or more services.</p>\",\
+          \"documentation\":\"<p>The IDs of the endpoint services.</p>\",\
           \"locationName\":\"ServiceId\"\
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-id</code> - The ID of the service.</p> </li> <li> <p> <code>service-state</code> - The state of the service (<code>Pending</code> | <code>Available</code> | <code>Deleting</code> | <code>Deleted</code> | <code>Failed</code>). </p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23539,7 +23991,7 @@
       \"members\":{\
         \"ServiceConfigurations\":{\
           \"shape\":\"ServiceConfigurationSet\",\
-          \"documentation\":\"<p>Information about one or more services.</p>\",\
+          \"documentation\":\"<p>Information about the services.</p>\",\
           \"locationName\":\"serviceConfigurationSet\"\
         },\
         \"NextToken\":{\
@@ -23563,7 +24015,7 @@
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>principal</code> - The ARN of the principal.</p> </li> <li> <p> <code>principal-type</code> - The principal type (<code>All</code> | <code>Service</code> | <code>OrganizationUnit</code> | <code>Account</code> | <code>User</code> | <code>Role</code>).</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>principal</code> - The ARN of the principal.</p> </li> <li> <p> <code>principal-type</code> - The principal type (<code>All</code> | <code>Service</code> | <code>OrganizationUnit</code> | <code>Account</code> | <code>User</code> | <code>Role</code>).</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23581,7 +24033,7 @@
       \"members\":{\
         \"AllowedPrincipals\":{\
           \"shape\":\"AllowedPrincipalSet\",\
-          \"documentation\":\"<p>Information about one or more allowed principals.</p>\",\
+          \"documentation\":\"<p>Information about the allowed principals.</p>\",\
           \"locationName\":\"allowedPrincipals\"\
         },\
         \"NextToken\":{\
@@ -23600,12 +24052,12 @@
         },\
         \"ServiceNames\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>One or more service names.</p>\",\
+          \"documentation\":\"<p>The service names.</p>\",\
           \"locationName\":\"ServiceName\"\
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>owner</code> - The ID or alias of the Amazon Web Services account that owns the service.</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>owner</code> - The ID or alias of the Amazon Web Services account that owns the service.</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>service-type</code> - The type of service (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> <li> <p> <code>supported-ip-address-types</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23616,15 +24068,14 @@
           \"shape\":\"String\",\
           \"documentation\":\"<p>The token for the next set of items to return. (You received this token from a prior call.)</p>\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the parameters for DescribeVpcEndpointServices.</p>\"\
+      }\
     },\
     \"DescribeVpcEndpointServicesResult\":{\
       \"type\":\"structure\",\
       \"members\":{\
         \"ServiceNames\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>A list of supported services.</p>\",\
+          \"documentation\":\"<p>The supported services.</p>\",\
           \"locationName\":\"serviceNameSet\"\
         },\
         \"ServiceDetails\":{\
@@ -23637,8 +24088,7 @@
           \"documentation\":\"<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the output of DescribeVpcEndpointServices.</p>\"\
+      }\
     },\
     \"DescribeVpcEndpointsRequest\":{\
       \"type\":\"structure\",\
@@ -23649,12 +24099,12 @@
         },\
         \"VpcEndpointIds\":{\
           \"shape\":\"VpcEndpointIdList\",\
-          \"documentation\":\"<p>One or more endpoint IDs.</p>\",\
+          \"documentation\":\"<p>The IDs of the VPC endpoints.</p>\",\
           \"locationName\":\"VpcEndpointId\"\
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> </ul>\",\
+          \"documentation\":\"<p>The filters.</p> <ul> <li> <p> <code>ip-address-type</code> - The IP address type (<code>ipv4</code> | <code>ipv6</code>).</p> </li> <li> <p> <code>service-name</code> - The name of the service.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC in which the endpoint resides.</p> </li> <li> <p> <code>vpc-endpoint-id</code> - The ID of the endpoint.</p> </li> <li> <p> <code>vpc-endpoint-state</code> - The state of the endpoint (<code>pendingAcceptance</code> | <code>pending</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code> | <code>rejected</code> | <code>failed</code>).</p> </li> <li> <p> <code>vpc-endpoint-type</code> - The type of VPC endpoint (<code>Interface</code> | <code>Gateway</code> | <code>GatewayLoadBalancer</code>).</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -23665,8 +24115,7 @@
           \"shape\":\"String\",\
           \"documentation\":\"<p>The token for the next set of items to return. (You received this token from a prior call.)</p>\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the parameters for DescribeVpcEndpoints.</p>\"\
+      }\
     },\
     \"DescribeVpcEndpointsResult\":{\
       \"type\":\"structure\",\
@@ -23681,8 +24130,7 @@
           \"documentation\":\"<p>The token to use when requesting the next set of items. If there are no additional items to return, the string is empty.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the output of DescribeVpcEndpoints.</p>\"\
+      }\
     },\
     \"DescribeVpcPeeringConnectionsMaxResults\":{\
       \"type\":\"integer\",\
@@ -23709,11 +24157,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeVpcPeeringConnectionsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -23727,7 +24175,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -23757,11 +24205,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"DescribeVpcsMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         }\
       }\
     },\
@@ -23775,7 +24223,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -24024,11 +24472,11 @@
           \"documentation\":\"<p>Forces detachment if the previous detachment attempt did not occur cleanly (for example, logging into an instance, unmounting the volume, and detaching normally). This option can lead to data loss or a corrupted file system. Use this option only as a last resort to detach a volume from a failed instance. The instance won't have an opportunity to flush file system caches or file system metadata. If you use this option, you must perform file system check and repair procedures.</p>\"\
         },\
         \"InstanceId\":{\
-          \"shape\":\"InstanceId\",\
+          \"shape\":\"InstanceIdForResolver\",\
           \"documentation\":\"<p>The ID of the instance. If you are detaching a Multi-Attach enabled volume, you must specify an instance ID.</p>\"\
         },\
         \"VolumeId\":{\
-          \"shape\":\"VolumeId\",\
+          \"shape\":\"VolumeIdWithResolver\",\
           \"documentation\":\"<p>The ID of the volume.</p>\"\
         },\
         \"DryRun\":{\
@@ -24299,7 +24747,7 @@
         },\
         \"MaxParallelLaunches\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of parallel instances to launch for creating resources.</p>\",\
+          \"documentation\":\"<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>\",\
           \"locationName\":\"maxParallelLaunches\"\
         },\
         \"OwnerId\":{\
@@ -24666,7 +25114,7 @@
           \"documentation\":\"<p>[EC2-VPC] The association ID. Required for EC2-VPC.</p>\"\
         },\
         \"PublicIp\":{\
-          \"shape\":\"String\",\
+          \"shape\":\"EipAllocationPublicIp\",\
           \"documentation\":\"<p>[EC2-Classic] The Elastic IP address. Required for EC2-Classic.</p>\"\
         },\
         \"DryRun\":{\
@@ -24714,13 +25162,17 @@
     },\
     \"DisassociateEnclaveCertificateIamRoleRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"CertificateArn\",\
+        \"RoleArn\"\
+      ],\
       \"members\":{\
         \"CertificateArn\":{\
-          \"shape\":\"ResourceArn\",\
+          \"shape\":\"CertificateId\",\
           \"documentation\":\"<p>The ARN of the ACM certificate from which to disassociate the IAM role.</p>\"\
         },\
         \"RoleArn\":{\
-          \"shape\":\"ResourceArn\",\
+          \"shape\":\"RoleId\",\
           \"documentation\":\"<p>The ARN of the IAM role to disassociate.</p>\"\
         },\
         \"DryRun\":{\
@@ -24790,6 +25242,71 @@
         }\
       }\
     },\
+    \"DisassociateIpamResourceDiscoveryRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\"IpamResourceDiscoveryAssociationId\"],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryAssociationId\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociationId\",\
+          \"documentation\":\"<p>A resource discovery association ID.</p>\"\
+        }\
+      }\
+    },\
+    \"DisassociateIpamResourceDiscoveryResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscoveryAssociation\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociation\",\
+          \"documentation\":\"<p>A resource discovery association.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryAssociation\"\
+        }\
+      }\
+    },\
+    \"DisassociateNatGatewayAddressRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"NatGatewayId\",\
+        \"AssociationIds\"\
+      ],\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\"\
+        },\
+        \"AssociationIds\":{\
+          \"shape\":\"EipAssociationIdList\",\
+          \"documentation\":\"<p>The association IDs of EIPs that have been associated with the NAT gateway.</p>\",\
+          \"locationName\":\"AssociationId\"\
+        },\
+        \"MaxDrainDurationSeconds\":{\
+          \"shape\":\"DrainSeconds\",\
+          \"documentation\":\"<p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>\"\
+        },\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        }\
+      }\
+    },\
+    \"DisassociateNatGatewayAddressResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\",\
+          \"locationName\":\"natGatewayId\"\
+        },\
+        \"NatGatewayAddresses\":{\
+          \"shape\":\"NatGatewayAddressList\",\
+          \"documentation\":\"<p>Information about the NAT gateway IP addresses.</p>\",\
+          \"locationName\":\"natGatewayAddressSet\"\
+        }\
+      }\
+    },\
     \"DisassociateRouteTableRequest\":{\
       \"type\":\"structure\",\
       \"required\":[\"AssociationId\"],\
@@ -24834,6 +25351,11 @@
     },\
     \"DisassociateTransitGatewayMulticastDomainRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"TransitGatewayMulticastDomainId\",\
+        \"TransitGatewayAttachmentId\",\
+        \"SubnetIds\"\
+      ],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -25220,6 +25742,11 @@
       \"max\":99.999,\
       \"min\":0.001\
     },\
+    \"DrainSeconds\":{\
+      \"type\":\"integer\",\
+      \"max\":4000,\
+      \"min\":1\
+    },\
     \"DynamicRoutingValue\":{\
       \"type\":\"string\",\
       \"enum\":[\
@@ -25272,7 +25799,7 @@
         },\
         \"Encrypted\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters\\\">Amazon EBS encryption</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>In no case can you remove encryption from an encrypted volume.</p> <p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\\\">Supported instance types</a>.</p> <p>This parameter is not returned by <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeImageAttribute.html\\\">DescribeImageAttribute</a>.</p>\",\
+          \"documentation\":\"<p>Indicates whether the encryption state of an EBS volume is changed while being restored from a backing snapshot. The effect of setting the encryption state to <code>true</code> depends on the volume origin (new or from a snapshot), starting encryption state, ownership, and whether encryption by default is enabled. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#encryption-parameters\\\">Amazon EBS encryption</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>In no case can you remove encryption from an encrypted volume.</p> <p>Encrypted volumes can only be attached to instances that support Amazon EBS encryption. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html#EBSEncryption_supported_instances\\\">Supported instance types</a>.</p> <p>This parameter is not returned by <a>DescribeImageAttribute</a>.</p> <p>For <a>CreateImage</a> and <a>RegisterImage</a>, whether you can include this parameter, and the allowed values differ depending on the type of block device mapping you are creating.</p> <ul> <li> <p>If you are creating a block device mapping for a <b>new (empty) volume</b>, you can include this parameter, and specify either <code>true</code> for an encrypted volume, or <code>false</code> for an unencrypted volume. If you omit this parameter, it defaults to <code>false</code> (unencrypted).</p> </li> <li> <p>If you are creating a block device mapping from an <b>existing encrypted or unencrypted snapshot</b>, you must omit this parameter. If you include this parameter, the request will fail, regardless of the value that you specify.</p> </li> <li> <p>If you are creating a block device mapping from an <b>existing unencrypted volume</b>, you can include this parameter, but you must specify <code>false</code>. If you specify <code>true</code>, the request will fail. In this case, we recommend that you omit the parameter.</p> </li> <li> <p>If you are creating a block device mapping from an <b>existing encrypted volume</b>, you can include this parameter, and specify either <code>true</code> or <code>false</code>. However, if you specify <code>false</code>, the parameter is ignored and the block device mapping is always encrypted. In this case, we recommend that you omit the parameter.</p> </li> </ul>\",\
           \"locationName\":\"encrypted\"\
         }\
       },\
@@ -25450,6 +25977,14 @@
       \"type\":\"list\",\
       \"member\":{\
         \"shape\":\"EgressOnlyInternetGateway\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
+    \"EipAllocationPublicIp\":{\"type\":\"string\"},\
+    \"EipAssociationIdList\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"ElasticIpAssociationId\",\
         \"locationName\":\"item\"\
       }\
     },\
@@ -25807,7 +26342,7 @@
         },\
         \"MaxParallelLaunches\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of parallel instances to launch for creating resources. Value must be <code>6</code> or greater. </p>\"\
+          \"documentation\":\"<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching. Value must be <code>6</code> or greater.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -25830,7 +26365,7 @@
         },\
         \"SnapshotConfiguration\":{\
           \"shape\":\"FastLaunchSnapshotConfigurationResponse\",\
-          \"documentation\":\"<p>The configuration settings that were defined for creating and managing the pre-provisioned snapshots for faster launching of the Windows AMI. This property is returned when the associated <code>resourceType</code> is <code>snapshot</code>.</p>\",\
+          \"documentation\":\"<p>Settings to create and manage the pre-provisioned snapshots that Amazon EC2 uses for faster launches from the Windows AMI. This property is returned when the associated <code>resourceType</code> is <code>snapshot</code>.</p>\",\
           \"locationName\":\"snapshotConfiguration\"\
         },\
         \"LaunchTemplate\":{\
@@ -25840,7 +26375,7 @@
         },\
         \"MaxParallelLaunches\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of parallel instances to launch for creating resources.</p>\",\
+          \"documentation\":\"<p>The maximum number of instances that Amazon EC2 can launch at the same time to create pre-provisioned snapshots for Windows faster launching.</p>\",\
           \"locationName\":\"maxParallelLaunches\"\
         },\
         \"OwnerId\":{\
@@ -26091,7 +26626,10 @@
     \"EnableReachabilityAnalyzerOrganizationSharingRequest\":{\
       \"type\":\"structure\",\
       \"members\":{\
-        \"DryRun\":{\"shape\":\"Boolean\"}\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        }\
       }\
     },\
     \"EnableReachabilityAnalyzerOrganizationSharingResult\":{\
@@ -26099,6 +26637,7 @@
       \"members\":{\
         \"ReturnValue\":{\
           \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>\",\
           \"locationName\":\"returnValue\"\
         }\
       }\
@@ -27345,7 +27884,7 @@
         },\
         \"ExcessCapacityTerminationPolicy\":{\
           \"shape\":\"FleetExcessCapacityTerminationPolicy\",\
-          \"documentation\":\"<p>Indicates whether running instances should be terminated if the target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p>\",\
+          \"documentation\":\"<p>Indicates whether running instances should be terminated if the target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p> <p>Supported only for fleets of type <code>maintain</code>.</p>\",\
           \"locationName\":\"excessCapacityTerminationPolicy\"\
         },\
         \"FulfilledCapacity\":{\
@@ -27501,7 +28040,7 @@
       \"members\":{\
         \"InstanceType\":{\
           \"shape\":\"InstanceType\",\
-          \"documentation\":\"<p>The instance type.</p> <note> <p>If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>\",\
+          \"documentation\":\"<p>The instance type.</p> <p> <code>mac1.metal</code> is not supported as a launch template override.</p> <note> <p>If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>\",\
           \"locationName\":\"instanceType\"\
         },\
         \"MaxPrice\":{\
@@ -27566,7 +28105,7 @@
       \"members\":{\
         \"InstanceType\":{\
           \"shape\":\"InstanceType\",\
-          \"documentation\":\"<p>The instance type.</p> <note> <p>If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>\"\
+          \"documentation\":\"<p>The instance type.</p> <p> <code>mac1.metal</code> is not supported as a launch template override.</p> <note> <p>If you specify <code>InstanceType</code>, you can't specify <code>InstanceRequirements</code>.</p> </note>\"\
         },\
         \"MaxPrice\":{\
           \"shape\":\"String\",\
@@ -27978,6 +28517,11 @@
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>Indicates whether data retention support is enabled for the AFI.</p>\",\
           \"locationName\":\"dataRetentionSupport\"\
+        },\
+        \"InstanceTypes\":{\
+          \"shape\":\"InstanceTypesList\",\
+          \"documentation\":\"<p>The instance types supported by the AFI.</p>\",\
+          \"locationName\":\"instanceTypes\"\
         }\
       },\
       \"documentation\":\"<p>Describes an Amazon FPGA image (AFI).</p>\"\
@@ -28099,9 +28643,10 @@
     },\
     \"GetAssociatedEnclaveCertificateIamRolesRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"CertificateArn\"],\
       \"members\":{\
         \"CertificateArn\":{\
-          \"shape\":\"ResourceArn\",\
+          \"shape\":\"CertificateId\",\
           \"documentation\":\"<p>The ARN of the ACM certificate for which to view the associated IAM roles, encryption keys, and Amazon S3 object information.</p>\"\
         },\
         \"DryRun\":{\
@@ -28599,11 +29144,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and&#x2028; 1000. The default value is 1000. To retrieve the remaining results, make another call with&#x2028; the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -28617,7 +29162,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -28703,6 +29248,104 @@
         \"NextToken\":{\
           \"shape\":\"NextToken\",\
           \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"locationName\":\"nextToken\"\
+        }\
+      }\
+    },\
+    \"GetIpamDiscoveredAccountsRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"IpamResourceDiscoveryId\",\
+        \"DiscoveryRegion\"\
+      ],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>A resource discovery ID.</p>\"\
+        },\
+        \"DiscoveryRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The Amazon Web Services Region that the account information is returned from.</p>\"\
+        },\
+        \"Filters\":{\
+          \"shape\":\"FilterList\",\
+          \"documentation\":\"<p>Discovered account filters.</p>\",\
+          \"locationName\":\"Filter\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\"\
+        },\
+        \"MaxResults\":{\
+          \"shape\":\"IpamMaxResults\",\
+          \"documentation\":\"<p>The maximum number of discovered accounts to return in one page of results.</p>\"\
+        }\
+      }\
+    },\
+    \"GetIpamDiscoveredAccountsResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamDiscoveredAccounts\":{\
+          \"shape\":\"IpamDiscoveredAccountSet\",\
+          \"documentation\":\"<p>Discovered accounts.</p>\",\
+          \"locationName\":\"ipamDiscoveredAccountSet\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\",\
+          \"locationName\":\"nextToken\"\
+        }\
+      }\
+    },\
+    \"GetIpamDiscoveredResourceCidrsRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"IpamResourceDiscoveryId\",\
+        \"ResourceRegion\"\
+      ],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>A resource discovery ID.</p>\"\
+        },\
+        \"ResourceRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A resource Region.</p>\"\
+        },\
+        \"Filters\":{\
+          \"shape\":\"FilterList\",\
+          \"documentation\":\"<p>Filters.</p>\",\
+          \"locationName\":\"Filter\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\"\
+        },\
+        \"MaxResults\":{\
+          \"shape\":\"IpamMaxResults\",\
+          \"documentation\":\"<p>The maximum number of discovered resource CIDRs to return in one page of results.</p>\"\
+        }\
+      }\
+    },\
+    \"GetIpamDiscoveredResourceCidrsResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamDiscoveredResourceCidrs\":{\
+          \"shape\":\"IpamDiscoveredResourceCidrSet\",\
+          \"documentation\":\"<p>Discovered resource CIDRs.</p>\",\
+          \"locationName\":\"ipamDiscoveredResourceCidrSet\"\
+        },\
+        \"NextToken\":{\
+          \"shape\":\"NextToken\",\
+          \"documentation\":\"<p>Specify the pagination token from a previous request to retrieve the next page of results.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -29202,11 +29845,11 @@
         },\
         \"MaxResults\":{\
           \"shape\":\"SpotPlacementScoresMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return in a single call. Specify a value between 1 and&#x2028; 1000. The default value is 1000. To retrieve the remaining results, make another call with&#x2028; the returned <code>NextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         }\
       }\
     },\
@@ -29220,7 +29863,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next set of results.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -29321,6 +29964,7 @@
     },\
     \"GetTransitGatewayMulticastDomainAssociationsRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"TransitGatewayMulticastDomainId\"],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -29975,6 +30619,11 @@
           \"shape\":\"String\",\
           \"documentation\":\"<p>The Amazon Resource Name (ARN) of the Amazon Web Services Outpost on which the Dedicated Host is allocated.</p>\",\
           \"locationName\":\"outpostArn\"\
+        },\
+        \"HostMaintenance\":{\
+          \"shape\":\"HostMaintenance\",\
+          \"documentation\":\"<p>Indicates whether host maintenance is enabled or disabled for the Dedicated Host.</p>\",\
+          \"locationName\":\"hostMaintenance\"\
         }\
       },\
       \"documentation\":\"<p>Describes the properties of the Dedicated Host.</p>\"\
@@ -30013,6 +30662,13 @@
         \"shape\":\"Host\",\
         \"locationName\":\"item\"\
       }\
+    },\
+    \"HostMaintenance\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"on\",\
+        \"off\"\
+      ]\
     },\
     \"HostOffering\":{\
       \"type\":\"structure\",\
@@ -30440,7 +31096,7 @@
         },\
         \"PlatformDetails\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The platform details associated with the billing code of the AMI. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html\\\">Understand AMI billing information</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>The platform details associated with the billing code of the AMI. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-billing-info.html\\\">Understand AMI billing information</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"platformDetails\"\
         },\
         \"UsageOperation\":{\
@@ -30525,12 +31181,12 @@
         },\
         \"BootMode\":{\
           \"shape\":\"BootModeValues\",\
-          \"documentation\":\"<p>The boot mode of the image. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>The boot mode of the image. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"bootMode\"\
         },\
         \"TpmSupport\":{\
           \"shape\":\"TpmSupportValues\",\
-          \"documentation\":\"<p>If the image is configured for NitroTPM support, the value is <code>v2.0</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\\\">NitroTPM</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>If the image is configured for NitroTPM support, the value is <code>v2.0</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\\\">NitroTPM</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"tpmSupport\"\
         },\
         \"DeprecationTime\":{\
@@ -30540,7 +31196,7 @@
         },\
         \"ImdsSupport\":{\
           \"shape\":\"ImdsSupportValues\",\
-          \"documentation\":\"<p>If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"imdsSupport\"\
         }\
       },\
@@ -30601,7 +31257,7 @@
         },\
         \"UefiData\":{\
           \"shape\":\"AttributeValue\",\
-          \"documentation\":\"<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\\\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\\\"https://github.com/awslabs/python-uefivars\\\">python-uefivars tool</a> on GitHub. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\\\">UEFI Secure Boot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\\\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\\\"https://github.com/awslabs/python-uefivars\\\">python-uefivars tool</a> on GitHub. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\\\">UEFI Secure Boot</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"uefiData\"\
         },\
         \"LastLaunchedTime\":{\
@@ -30611,7 +31267,7 @@
         },\
         \"ImdsSupport\":{\
           \"shape\":\"AttributeValue\",\
-          \"documentation\":\"<p>If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>If <code>v2.0</code>, it indicates that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"imdsSupport\"\
         }\
       },\
@@ -31790,7 +32446,7 @@
         },\
         \"BootMode\":{\
           \"shape\":\"BootModeValues\",\
-          \"documentation\":\"<p>The boot mode of the instance. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
+          \"documentation\":\"<p>The boot mode that was specified by the AMI. If the value is <code>uefi-preferred</code>, the AMI supports both UEFI and Legacy BIOS. The <code>currentInstanceBootMode</code> parameter is the boot mode that is used to boot the instance at launch or start.</p> <note> <p>The operating system contained in the AMI must be configured to support the specified boot mode.</p> </note> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"bootMode\"\
         },\
         \"PlatformDetails\":{\
@@ -31827,6 +32483,11 @@
           \"shape\":\"InstanceMaintenanceOptions\",\
           \"documentation\":\"<p>Provides information on the recovery and maintenance options of your instance.</p>\",\
           \"locationName\":\"maintenanceOptions\"\
+        },\
+        \"CurrentInstanceBootMode\":{\
+          \"shape\":\"InstanceBootModeValues\",\
+          \"documentation\":\"<p>The boot mode that is used to boot the instance at launch or start. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
+          \"locationName\":\"currentInstanceBootMode\"\
         }\
       },\
       \"documentation\":\"<p>Describes an instance.</p>\"\
@@ -32006,6 +32667,13 @@
         \"locationName\":\"item\"\
       }\
     },\
+    \"InstanceBootModeValues\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"legacy-bios\",\
+        \"uefi\"\
+      ]\
+    },\
     \"InstanceCapacity\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -32082,6 +32750,7 @@
     },\
     \"InstanceCreditSpecificationRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"InstanceId\"],\
       \"members\":{\
         \"InstanceId\":{\
           \"shape\":\"InstanceId\",\
@@ -32353,6 +33022,7 @@
       ]\
     },\
     \"InstanceId\":{\"type\":\"string\"},\
+    \"InstanceIdForResolver\":{\"type\":\"string\"},\
     \"InstanceIdList\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -32374,6 +33044,7 @@
         \"locationName\":\"InstanceId\"\
       }\
     },\
+    \"InstanceIdWithVolumeResolver\":{\"type\":\"string\"},\
     \"InstanceIdsSet\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -32535,7 +33206,7 @@
       \"members\":{\
         \"HttpTokens\":{\
           \"shape\":\"HttpTokensState\",\
-          \"documentation\":\"<p>The state of token usage for your instance metadata requests.</p> <p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a session token on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the version 2.0 role credentials are returned.</p> <p>If the state is <code>required</code>, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p> <p>Default: <code>optional</code> </p>\"\
+          \"documentation\":\"<p>IMDSv2 uses token-backed sessions. Set the use of HTTP tokens to <code>optional</code> (in other words, set the use of IMDSv2 to <code>optional</code>) or <code>required</code> (in other words, set the use of IMDSv2 to <code>required</code>).</p> <ul> <li> <p> <code>optional</code> - When IMDSv2 is optional, you can choose to retrieve instance metadata with or without a session token in your request. If you retrieve the IAM role credentials without a token, the IMDSv1 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the IMDSv2 role credentials are returned.</p> </li> <li> <p> <code>required</code> - When IMDSv2 is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: <code>optional</code> </p>\"\
         },\
         \"HttpPutResponseHopLimit\":{\
           \"shape\":\"Integer\",\
@@ -32566,7 +33237,7 @@
         },\
         \"HttpTokens\":{\
           \"shape\":\"HttpTokensState\",\
-          \"documentation\":\"<p>The state of token usage for your instance metadata requests.</p> <p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a session token on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the version 2.0 role credentials are returned.</p> <p>If the state is <code>required</code>, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p> <p>Default: <code>optional</code> </p>\",\
+          \"documentation\":\"<p>IMDSv2 uses token-backed sessions. Indicates whether the use of HTTP tokens is <code>optional</code> (in other words, indicates whether the use of IMDSv2 is <code>optional</code>) or <code>required</code> (in other words, indicates whether the use of IMDSv2 is <code>required</code>).</p> <ul> <li> <p> <code>optional</code> - When IMDSv2 is optional, you can choose to retrieve instance metadata with or without a session token in your request. If you retrieve the IAM role credentials without a token, the IMDSv1 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the IMDSv2 role credentials are returned.</p> </li> <li> <p> <code>required</code> - When IMDSv2 is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: <code>optional</code> </p>\",\
           \"locationName\":\"httpTokens\"\
         },\
         \"HttpPutResponseHopLimit\":{\
@@ -33197,9 +33868,10 @@
     },\
     \"InstanceSpecification\":{\
       \"type\":\"structure\",\
+      \"required\":[\"InstanceId\"],\
       \"members\":{\
         \"InstanceId\":{\
-          \"shape\":\"InstanceId\",\
+          \"shape\":\"InstanceIdWithVolumeResolver\",\
           \"documentation\":\"<p>The instance to specify which volumes should be snapshotted.</p>\"\
         },\
         \"ExcludeBootVolume\":{\
@@ -34037,7 +34709,71 @@
         \"u-24tb1.112xlarge\",\
         \"trn1.2xlarge\",\
         \"trn1.32xlarge\",\
-        \"hpc6id.32xlarge\"\
+        \"hpc6id.32xlarge\",\
+        \"c6in.large\",\
+        \"c6in.xlarge\",\
+        \"c6in.2xlarge\",\
+        \"c6in.4xlarge\",\
+        \"c6in.8xlarge\",\
+        \"c6in.12xlarge\",\
+        \"c6in.16xlarge\",\
+        \"c6in.24xlarge\",\
+        \"c6in.32xlarge\",\
+        \"m6in.large\",\
+        \"m6in.xlarge\",\
+        \"m6in.2xlarge\",\
+        \"m6in.4xlarge\",\
+        \"m6in.8xlarge\",\
+        \"m6in.12xlarge\",\
+        \"m6in.16xlarge\",\
+        \"m6in.24xlarge\",\
+        \"m6in.32xlarge\",\
+        \"m6idn.large\",\
+        \"m6idn.xlarge\",\
+        \"m6idn.2xlarge\",\
+        \"m6idn.4xlarge\",\
+        \"m6idn.8xlarge\",\
+        \"m6idn.12xlarge\",\
+        \"m6idn.16xlarge\",\
+        \"m6idn.24xlarge\",\
+        \"m6idn.32xlarge\",\
+        \"r6in.large\",\
+        \"r6in.xlarge\",\
+        \"r6in.2xlarge\",\
+        \"r6in.4xlarge\",\
+        \"r6in.8xlarge\",\
+        \"r6in.12xlarge\",\
+        \"r6in.16xlarge\",\
+        \"r6in.24xlarge\",\
+        \"r6in.32xlarge\",\
+        \"r6idn.large\",\
+        \"r6idn.xlarge\",\
+        \"r6idn.2xlarge\",\
+        \"r6idn.4xlarge\",\
+        \"r6idn.8xlarge\",\
+        \"r6idn.12xlarge\",\
+        \"r6idn.16xlarge\",\
+        \"r6idn.24xlarge\",\
+        \"r6idn.32xlarge\",\
+        \"c7g.metal\",\
+        \"m7g.medium\",\
+        \"m7g.large\",\
+        \"m7g.xlarge\",\
+        \"m7g.2xlarge\",\
+        \"m7g.4xlarge\",\
+        \"m7g.8xlarge\",\
+        \"m7g.12xlarge\",\
+        \"m7g.16xlarge\",\
+        \"m7g.metal\",\
+        \"r7g.medium\",\
+        \"r7g.large\",\
+        \"r7g.xlarge\",\
+        \"r7g.2xlarge\",\
+        \"r7g.4xlarge\",\
+        \"r7g.8xlarge\",\
+        \"r7g.12xlarge\",\
+        \"r7g.16xlarge\",\
+        \"r7g.metal\"\
       ]\
     },\
     \"InstanceTypeHypervisor\":{\
@@ -34236,6 +34972,13 @@
       \"max\":1000,\
       \"min\":0\
     },\
+    \"InstanceTypesList\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"String\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
     \"InstanceUsage\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -34374,12 +35117,19 @@
         \"ipv6\"\
       ]\
     },\
+    \"IpList\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"String\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
     \"IpPermission\":{\
       \"type\":\"structure\",\
       \"members\":{\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type number. A value of <code>-1</code> indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>\",\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\",\
           \"locationName\":\"fromPort\"\
         },\
         \"IpProtocol\":{\
@@ -34404,7 +35154,7 @@
         },\
         \"ToPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>\",\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the code. A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\",\
           \"locationName\":\"toPort\"\
         },\
         \"UserIdGroupPairs\":{\
@@ -34474,7 +35224,7 @@
         },\
         \"IpamArn\":{\
           \"shape\":\"ResourceArn\",\
-          \"documentation\":\"<p>The ARN of the IPAM.</p>\",\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the IPAM.</p>\",\
           \"locationName\":\"ipamArn\"\
         },\
         \"IpamRegion\":{\
@@ -34516,6 +35266,21 @@
           \"shape\":\"TagList\",\
           \"documentation\":\"<p>The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p>\",\
           \"locationName\":\"tagSet\"\
+        },\
+        \"DefaultResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>The IPAM's default resource discovery ID.</p>\",\
+          \"locationName\":\"defaultResourceDiscoveryId\"\
+        },\
+        \"DefaultResourceDiscoveryAssociationId\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociationId\",\
+          \"documentation\":\"<p>The IPAM's default resource discovery association ID.</p>\",\
+          \"locationName\":\"defaultResourceDiscoveryAssociationId\"\
+        },\
+        \"ResourceDiscoveryAssociationCount\":{\
+          \"shape\":\"Integer\",\
+          \"documentation\":\"<p>The IPAM's resource discovery association count.</p>\",\
+          \"locationName\":\"resourceDiscoveryAssociationCount\"\
         }\
       },\
       \"documentation\":\"<p>IPAM is a VPC feature that you can use to automate your IP address management workflows including assigning, tracking, troubleshooting, and auditing IP addresses across Amazon Web Services Regions and accounts throughout your Amazon Web Services Organization. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/what-is-it-ipam.html\\\">What is IPAM?</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>\"\
@@ -34603,6 +35368,13 @@
         \"instance\"\
       ]\
     },\
+    \"IpamAssociatedResourceDiscoveryStatus\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"active\",\
+        \"not-found\"\
+      ]\
+    },\
     \"IpamCidrAuthorizationContext\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -34625,6 +35397,131 @@
         \"unmanaged\",\
         \"ignored\"\
       ]\
+    },\
+    \"IpamDiscoveredAccount\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"AccountId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The account ID.</p>\",\
+          \"locationName\":\"accountId\"\
+        },\
+        \"DiscoveryRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The Amazon Web Services Region that the account information is returned from. An account can be discovered in multiple regions and will have a separate discovered account for each Region.</p>\",\
+          \"locationName\":\"discoveryRegion\"\
+        },\
+        \"FailureReason\":{\
+          \"shape\":\"IpamDiscoveryFailureReason\",\
+          \"documentation\":\"<p>The resource discovery failure reason.</p>\",\
+          \"locationName\":\"failureReason\"\
+        },\
+        \"LastAttemptedDiscoveryTime\":{\
+          \"shape\":\"MillisecondDateTime\",\
+          \"documentation\":\"<p>The last attempted resource discovery time.</p>\",\
+          \"locationName\":\"lastAttemptedDiscoveryTime\"\
+        },\
+        \"LastSuccessfulDiscoveryTime\":{\
+          \"shape\":\"MillisecondDateTime\",\
+          \"documentation\":\"<p>The last successful resource discovery time.</p>\",\
+          \"locationName\":\"lastSuccessfulDiscoveryTime\"\
+        }\
+      },\
+      \"documentation\":\"<p>An IPAM discovered account. A discovered account is an Amazon Web Services account that is monitored under a resource discovery. If you have integrated IPAM with Amazon Web Services Organizations, all accounts in the organization are discovered accounts.</p>\"\
+    },\
+    \"IpamDiscoveredAccountSet\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"IpamDiscoveredAccount\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
+    \"IpamDiscoveredResourceCidr\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>The resource discovery ID.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryId\"\
+        },\
+        \"ResourceRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource Region.</p>\",\
+          \"locationName\":\"resourceRegion\"\
+        },\
+        \"ResourceId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource ID.</p>\",\
+          \"locationName\":\"resourceId\"\
+        },\
+        \"ResourceOwnerId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource owner ID.</p>\",\
+          \"locationName\":\"resourceOwnerId\"\
+        },\
+        \"ResourceCidr\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource CIDR.</p>\",\
+          \"locationName\":\"resourceCidr\"\
+        },\
+        \"ResourceType\":{\
+          \"shape\":\"IpamResourceType\",\
+          \"documentation\":\"<p>The resource type.</p>\",\
+          \"locationName\":\"resourceType\"\
+        },\
+        \"ResourceTags\":{\
+          \"shape\":\"IpamResourceTagList\",\
+          \"documentation\":\"<p>The resource tags.</p>\",\
+          \"locationName\":\"resourceTagSet\"\
+        },\
+        \"IpUsage\":{\
+          \"shape\":\"BoxedDouble\",\
+          \"documentation\":\"<p>The percentage of IP address space in use. To convert the decimal to a percentage, multiply the decimal by 100. Note the following:</p> <ul> <li> <p>For resources that are VPCs, this is the percentage of IP address space in the VPC that's taken up by subnet CIDRs. </p> </li> <li> <p>For resources that are subnets, if the subnet has an IPv4 CIDR provisioned to it, this is the percentage of IPv4 address space in the subnet that's in use. If the subnet has an IPv6 CIDR provisioned to it, the percentage of IPv6 address space in use is not represented. The percentage of IPv6 address space in use cannot currently be calculated. </p> </li> <li> <p>For resources that are public IPv4 pools, this is the percentage of IP address space in the pool that's been allocated to Elastic IP addresses (EIPs). </p> </li> </ul>\",\
+          \"locationName\":\"ipUsage\"\
+        },\
+        \"VpcId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The VPC ID.</p>\",\
+          \"locationName\":\"vpcId\"\
+        },\
+        \"SampleTime\":{\
+          \"shape\":\"MillisecondDateTime\",\
+          \"documentation\":\"<p>The last successful resource discovery time.</p>\",\
+          \"locationName\":\"sampleTime\"\
+        }\
+      },\
+      \"documentation\":\"<p>An IPAM discovered resource CIDR. A discovered resource is a resource CIDR monitored under a resource discovery. The following resources can be discovered: VPCs, Public IPv4 pools, VPC subnets, and Elastic IP addresses. The discovered resource CIDR is the IP address range in CIDR notation that is associated with the resource.</p>\"\
+    },\
+    \"IpamDiscoveredResourceCidrSet\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"IpamDiscoveredResourceCidr\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
+    \"IpamDiscoveryFailureCode\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"assume-role-failure\",\
+        \"throttling-failure\",\
+        \"unauthorized-failure\"\
+      ]\
+    },\
+    \"IpamDiscoveryFailureReason\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"Code\":{\
+          \"shape\":\"IpamDiscoveryFailureCode\",\
+          \"documentation\":\"<p>The discovery failure code.</p> <ul> <li> <p> <code>assume-role-failure</code> - IPAM could not assume the Amazon Web Services IAM service-linked role. This could be because of any of the following:</p> <ul> <li> <p>SLR has not been created yet and IPAM is still creating it.</p> </li> <li> <p>You have opted-out of the IPAM home Region.</p> </li> <li> <p>Account you are using as your IPAM account has been suspended.</p> </li> </ul> </li> <li> <p> <code>throttling-failure</code> - IPAM account is already using the allotted transactions per second and IPAM is receiving a throttling error when assuming the Amazon Web Services IAM SLR.</p> </li> <li> <p> <code>unauthorized-failure</code> - Amazon Web Services account making the request is not authorized. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/errors-overview.html\\\">AuthFailure</a> in the <i>Amazon Elastic Compute Cloud API Reference</i>.</p> </li> </ul>\",\
+          \"locationName\":\"code\"\
+        },\
+        \"Message\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The discovery failure message.</p>\",\
+          \"locationName\":\"message\"\
+        }\
+      },\
+      \"documentation\":\"<p>The discovery failure reason.</p>\"\
     },\
     \"IpamId\":{\"type\":\"string\"},\
     \"IpamManagementState\":{\
@@ -34691,7 +35588,7 @@
         },\
         \"IpamPoolArn\":{\
           \"shape\":\"ResourceArn\",\
-          \"documentation\":\"<p>The ARN of the IPAM pool.</p>\",\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the IPAM pool.</p>\",\
           \"locationName\":\"ipamPoolArn\"\
         },\
         \"IpamScopeArn\":{\
@@ -34783,6 +35680,11 @@
           \"shape\":\"IpamPoolAwsService\",\
           \"documentation\":\"<p>Limits which service in Amazon Web Services that the pool can be used in. \\\"ec2\\\", for example, allows users to use space for Elastic IP addresses and VPCs.</p>\",\
           \"locationName\":\"awsService\"\
+        },\
+        \"PublicIpSource\":{\
+          \"shape\":\"IpamPoolPublicIpSource\",\
+          \"documentation\":\"<p>The IP address source for pools in the public scope. Only used for provisioning IP address CIDRs to pools in the public scope. Default is <code>BYOIP</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/intro-create-ipv6-pools.html\\\">Create IPv6 pools</a> in the <i>Amazon VPC IPAM User Guide</i>. By default, you can add only one Amazon-provided IPv6 CIDR block to a top-level IPv6 pool. For information on increasing the default limit, see <a href=\\\"https://docs.aws.amazon.com/vpc/latest/ipam/quotas-ipam.html\\\"> Quotas for your IPAM</a> in the <i>Amazon VPC IPAM User Guide</i>.</p>\",\
+          \"locationName\":\"publicIpSource\"\
         }\
       },\
       \"documentation\":\"<p>In IPAM, a pool is a collection of contiguous IP addresses CIDRs. Pools enable you to organize your IP addresses according to your routing and security needs. For example, if you have separate routing and security needs for development and production applications, you can create a pool for each.</p>\"\
@@ -34826,7 +35728,7 @@
           \"locationName\":\"resourceOwner\"\
         }\
       },\
-      \"documentation\":\"<p>In IPAM, an allocation is a CIDR assignment from an IPAM pool to another resource or IPAM pool.</p>\"\
+      \"documentation\":\"<p>In IPAM, an allocation is a CIDR assignment from an IPAM pool to another IPAM pool or to a resource.</p>\"\
     },\
     \"IpamPoolAllocationDisallowedCidrs\":{\
       \"type\":\"list\",\
@@ -34873,13 +35775,26 @@
           \"shape\":\"IpamPoolCidrFailureReason\",\
           \"documentation\":\"<p>Details related to why an IPAM pool CIDR failed to be provisioned.</p>\",\
           \"locationName\":\"failureReason\"\
+        },\
+        \"IpamPoolCidrId\":{\
+          \"shape\":\"IpamPoolCidrId\",\
+          \"documentation\":\"<p>The IPAM pool CIDR ID.</p>\",\
+          \"locationName\":\"ipamPoolCidrId\"\
+        },\
+        \"NetmaskLength\":{\
+          \"shape\":\"Integer\",\
+          \"documentation\":\"<p>The netmask length of the CIDR you'd like to provision to a pool. Can be used for provisioning Amazon-provided IPv6 CIDRs to top-level pools and for provisioning CIDRs to pools with source pools. Cannot be used to provision BYOIP CIDRs to top-level pools. \\\"NetmaskLength\\\" or \\\"Cidr\\\" is required.</p>\",\
+          \"locationName\":\"netmaskLength\"\
         }\
       },\
       \"documentation\":\"<p>A CIDR provisioned to an IPAM pool.</p>\"\
     },\
     \"IpamPoolCidrFailureCode\":{\
       \"type\":\"string\",\
-      \"enum\":[\"cidr-not-available\"]\
+      \"enum\":[\
+        \"cidr-not-available\",\
+        \"limit-exceeded\"\
+      ]\
     },\
     \"IpamPoolCidrFailureReason\":{\
       \"type\":\"structure\",\
@@ -34897,6 +35812,7 @@
       },\
       \"documentation\":\"<p>Details related to why an IPAM pool CIDR failed to be provisioned.</p>\"\
     },\
+    \"IpamPoolCidrId\":{\"type\":\"string\"},\
     \"IpamPoolCidrSet\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -34918,6 +35834,13 @@
       ]\
     },\
     \"IpamPoolId\":{\"type\":\"string\"},\
+    \"IpamPoolPublicIpSource\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"amazon\",\
+        \"byoip\"\
+      ]\
+    },\
     \"IpamPoolSet\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -34997,7 +35920,7 @@
         },\
         \"IpUsage\":{\
           \"shape\":\"BoxedDouble\",\
-          \"documentation\":\"<p>The percentage of IP address space in use. To convert the decimal to a percentage, multiply the decimal by 100. Note the following:</p> <ul> <li> <p>For a resources that are VPCs, this is the percentage of IP address space in the VPC that's taken up by subnet CIDRs. </p> </li> <li> <p>For resources that are subnets, if the subnet has an IPv4 CIDR provisioned to it, this is the percentage of IPv4 address space in the subnet that's in use. If the subnet has an IPv6 CIDR provisioned to it, the percentage of IPv6 address space in use is not represented. The percentage of IPv6 address space in use cannot currently be calculated. </p> </li> <li> <p>For resources that are public IPv4 pools, this is the percentage of IP address space in the pool that's been allocated to Elastic IP addresses (EIPs). </p> </li> </ul>\",\
+          \"documentation\":\"<p>The percentage of IP address space in use. To convert the decimal to a percentage, multiply the decimal by 100. Note the following:</p> <ul> <li> <p>For resources that are VPCs, this is the percentage of IP address space in the VPC that's taken up by subnet CIDRs. </p> </li> <li> <p>For resources that are subnets, if the subnet has an IPv4 CIDR provisioned to it, this is the percentage of IPv4 address space in the subnet that's in use. If the subnet has an IPv6 CIDR provisioned to it, the percentage of IPv6 address space in use is not represented. The percentage of IPv6 address space in use cannot currently be calculated. </p> </li> <li> <p>For resources that are public IPv4 pools, this is the percentage of IP address space in the pool that's been allocated to Elastic IP addresses (EIPs). </p> </li> </ul>\",\
           \"locationName\":\"ipUsage\"\
         },\
         \"ComplianceStatus\":{\
@@ -35029,6 +35952,165 @@
         \"shape\":\"IpamResourceCidr\",\
         \"locationName\":\"item\"\
       }\
+    },\
+    \"IpamResourceDiscovery\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"OwnerId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The ID of the owner.</p>\",\
+          \"locationName\":\"ownerId\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>The resource discovery ID.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryId\"\
+        },\
+        \"IpamResourceDiscoveryArn\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource discovery Amazon Resource Name (ARN).</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryArn\"\
+        },\
+        \"IpamResourceDiscoveryRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource discovery Region.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryRegion\"\
+        },\
+        \"Description\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource discovery description.</p>\",\
+          \"locationName\":\"description\"\
+        },\
+        \"OperatingRegions\":{\
+          \"shape\":\"IpamOperatingRegionSet\",\
+          \"documentation\":\"<p>The operating Regions for the resource discovery. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.</p>\",\
+          \"locationName\":\"operatingRegionSet\"\
+        },\
+        \"IsDefault\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Defines if the resource discovery is the default. The default resource discovery is the resource discovery automatically created when you create an IPAM.</p>\",\
+          \"locationName\":\"isDefault\"\
+        },\
+        \"State\":{\
+          \"shape\":\"IpamResourceDiscoveryState\",\
+          \"documentation\":\"<p>The lifecycle state of the resource discovery.</p> <ul> <li> <p> <code>create-in-progress</code> - Resource discovery is being created.</p> </li> <li> <p> <code>create-complete</code> - Resource discovery creation is complete.</p> </li> <li> <p> <code>create-failed</code> - Resource discovery creation has failed.</p> </li> <li> <p> <code>modify-in-progress</code> - Resource discovery is being modified.</p> </li> <li> <p> <code>modify-complete</code> - Resource discovery modification is complete.</p> </li> <li> <p> <code>modify-failed</code> - Resource discovery modification has failed.</p> </li> <li> <p> <code>delete-in-progress</code> - Resource discovery is being deleted.</p> </li> <li> <p> <code>delete-complete</code> - Resource discovery deletion is complete.</p> </li> <li> <p> <code>delete-failed</code> - Resource discovery deletion has failed.</p> </li> <li> <p> <code>isolate-in-progress</code> - Amazon Web Services account that created the resource discovery has been removed and the resource discovery is being isolated.</p> </li> <li> <p> <code>isolate-complete</code> - Resource discovery isolation is complete.</p> </li> <li> <p> <code>restore-in-progress</code> - Amazon Web Services account that created the resource discovery and was isolated has been restored.</p> </li> </ul>\",\
+          \"locationName\":\"state\"\
+        },\
+        \"Tags\":{\
+          \"shape\":\"TagList\",\
+          \"documentation\":\"<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>\",\
+          \"locationName\":\"tagSet\"\
+        }\
+      },\
+      \"documentation\":\"<p>A resource discovery is an IPAM component that enables IPAM to manage and monitor resources that belong to the owning account.</p>\"\
+    },\
+    \"IpamResourceDiscoveryAssociation\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"OwnerId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The Amazon Web Services account ID of the resource discovery owner.</p>\",\
+          \"locationName\":\"ownerId\"\
+        },\
+        \"IpamResourceDiscoveryAssociationId\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociationId\",\
+          \"documentation\":\"<p>The resource discovery association ID.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryAssociationId\"\
+        },\
+        \"IpamResourceDiscoveryAssociationArn\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The resource discovery association Amazon Resource Name (ARN).</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryAssociationArn\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>The resource discovery ID.</p>\",\
+          \"locationName\":\"ipamResourceDiscoveryId\"\
+        },\
+        \"IpamId\":{\
+          \"shape\":\"IpamId\",\
+          \"documentation\":\"<p>The IPAM ID.</p>\",\
+          \"locationName\":\"ipamId\"\
+        },\
+        \"IpamArn\":{\
+          \"shape\":\"ResourceArn\",\
+          \"documentation\":\"<p>The IPAM ARN.</p>\",\
+          \"locationName\":\"ipamArn\"\
+        },\
+        \"IpamRegion\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The IPAM home Region.</p>\",\
+          \"locationName\":\"ipamRegion\"\
+        },\
+        \"IsDefault\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Defines if the resource discovery is the default. When you create an IPAM, a default resource discovery is created for your IPAM and it's associated with your IPAM.</p>\",\
+          \"locationName\":\"isDefault\"\
+        },\
+        \"ResourceDiscoveryStatus\":{\
+          \"shape\":\"IpamAssociatedResourceDiscoveryStatus\",\
+          \"documentation\":\"<p>The resource discovery status.</p> <ul> <li> <p> <code>active</code> - Connection or permissions required to read the results of the resource discovery are intact.</p> </li> <li> <p> <code>not-found</code> - Connection or permissions required to read the results of the resource discovery are broken. This may happen if the owner of the resource discovery stopped sharing it or deleted the resource discovery. Verify the resource discovery still exists and the Amazon Web Services RAM resource share is still intact.</p> </li> </ul>\",\
+          \"locationName\":\"resourceDiscoveryStatus\"\
+        },\
+        \"State\":{\
+          \"shape\":\"IpamResourceDiscoveryAssociationState\",\
+          \"documentation\":\"<p>The lifecycle state of the association when you associate or disassociate a resource discovery.</p> <ul> <li> <p> <code>associate-in-progress</code> - Resource discovery is being associated.</p> </li> <li> <p> <code>associate-complete</code> - Resource discovery association is complete.</p> </li> <li> <p> <code>associate-failed</code> - Resource discovery association has failed.</p> </li> <li> <p> <code>disassociate-in-progress</code> - Resource discovery is being disassociated.</p> </li> <li> <p> <code>disassociate-complete</code> - Resource discovery disassociation is complete.</p> </li> <li> <p> <code>disassociate-failed </code> - Resource discovery disassociation has failed.</p> </li> <li> <p> <code>isolate-in-progress</code> - Amazon Web Services account that created the resource discovery association has been removed and the resource discovery associatation is being isolated.</p> </li> <li> <p> <code>isolate-complete</code> - Resource discovery isolation is complete..</p> </li> <li> <p> <code>restore-in-progress</code> - Resource discovery is being restored.</p> </li> </ul>\",\
+          \"locationName\":\"state\"\
+        },\
+        \"Tags\":{\
+          \"shape\":\"TagList\",\
+          \"documentation\":\"<p>A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key and an optional value. You can use tags to search and filter your resources or track your Amazon Web Services costs.</p>\",\
+          \"locationName\":\"tagSet\"\
+        }\
+      },\
+      \"documentation\":\"<p>An IPAM resource discovery association. An associated resource discovery is a resource discovery that has been associated with an IPAM. IPAM aggregates the resource CIDRs discovered by the associated resource discovery.</p>\"\
+    },\
+    \"IpamResourceDiscoveryAssociationId\":{\"type\":\"string\"},\
+    \"IpamResourceDiscoveryAssociationSet\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"IpamResourceDiscoveryAssociation\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
+    \"IpamResourceDiscoveryAssociationState\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"associate-in-progress\",\
+        \"associate-complete\",\
+        \"associate-failed\",\
+        \"disassociate-in-progress\",\
+        \"disassociate-complete\",\
+        \"disassociate-failed\",\
+        \"isolate-in-progress\",\
+        \"isolate-complete\",\
+        \"restore-in-progress\"\
+      ]\
+    },\
+    \"IpamResourceDiscoveryId\":{\"type\":\"string\"},\
+    \"IpamResourceDiscoverySet\":{\
+      \"type\":\"list\",\
+      \"member\":{\
+        \"shape\":\"IpamResourceDiscovery\",\
+        \"locationName\":\"item\"\
+      }\
+    },\
+    \"IpamResourceDiscoveryState\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"create-in-progress\",\
+        \"create-complete\",\
+        \"create-failed\",\
+        \"modify-in-progress\",\
+        \"modify-complete\",\
+        \"modify-failed\",\
+        \"delete-in-progress\",\
+        \"delete-complete\",\
+        \"delete-failed\",\
+        \"isolate-in-progress\",\
+        \"isolate-complete\",\
+        \"restore-in-progress\"\
+      ]\
     },\
     \"IpamResourceTag\":{\
       \"type\":\"structure\",\
@@ -35078,7 +36160,7 @@
         },\
         \"IpamScopeArn\":{\
           \"shape\":\"ResourceArn\",\
-          \"documentation\":\"<p>The ARN of the scope.</p>\",\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the scope.</p>\",\
           \"locationName\":\"ipamScopeArn\"\
         },\
         \"IpamArn\":{\
@@ -35592,8 +36674,8 @@
       \"type\":\"structure\",\
       \"members\":{\
         \"UserData\":{\
-          \"shape\":\"String\",\
-          \"documentation\":\"<p>The Base64-encoded user data for the instance.</p>\",\
+          \"shape\":\"SensitiveUserData\",\
+          \"documentation\":\"<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>\",\
           \"locationName\":\"userData\"\
         },\
         \"SecurityGroups\":{\
@@ -36183,7 +37265,7 @@
         },\
         \"HttpTokens\":{\
           \"shape\":\"LaunchTemplateHttpTokensState\",\
-          \"documentation\":\"<p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p> <p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p> <p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>\",\
+          \"documentation\":\"<p>Indicates whether IMDSv2 is <code>optional</code> or <code>required</code>.</p> <p> <code>optional</code> - When IMDSv2 is optional, you can choose to retrieve instance metadata with or without a session token in your request. If you retrieve the IAM role credentials without a token, the IMDSv1 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the IMDSv2 role credentials are returned.</p> <p> <code>required</code> - When IMDSv2 is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> <p>Default: <code>optional</code> </p>\",\
           \"locationName\":\"httpTokens\"\
         },\
         \"HttpPutResponseHopLimit\":{\
@@ -36214,7 +37296,7 @@
       \"members\":{\
         \"HttpTokens\":{\
           \"shape\":\"LaunchTemplateHttpTokensState\",\
-          \"documentation\":\"<p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p> <p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a signed token header on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid signed token, the version 2.0 role credentials are returned.</p> <p>If the state is <code>required</code>, you must send a signed token header with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>\"\
+          \"documentation\":\"<p>IMDSv2 uses token-backed sessions. Set the use of HTTP tokens to <code>optional</code> (in other words, set the use of IMDSv2 to <code>optional</code>) or <code>required</code> (in other words, set the use of IMDSv2 to <code>required</code>).</p> <ul> <li> <p> <code>optional</code> - When IMDSv2 is optional, you can choose to retrieve instance metadata with or without a session token in your request. If you retrieve the IAM role credentials without a token, the IMDSv1 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the IMDSv2 role credentials are returned.</p> </li> <li> <p> <code>required</code> - When IMDSv2 is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: <code>optional</code> </p>\"\
         },\
         \"HttpPutResponseHopLimit\":{\
           \"shape\":\"Integer\",\
@@ -36935,11 +38017,11 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"MaxResults\":{\
           \"shape\":\"ListImagesInRecycleBinMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p> <p>If you do not specify a value for <i>MaxResults</i>, the request returns 1,000 items per page by default. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\"> Pagination</a>.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -36957,7 +38039,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -36972,11 +38054,11 @@
       \"members\":{\
         \"MaxResults\":{\
           \"shape\":\"ListSnapshotsInRecycleBinMaxResults\",\
-          \"documentation\":\"<p>The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned <code>nextToken</code> value.</p>\"\
+          \"documentation\":\"<p>The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Query-Requests.html#api-pagination\\\">Pagination</a>.</p>\"\
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token for the next page of results.</p>\"\
+          \"documentation\":\"<p>The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.</p>\"\
         },\
         \"SnapshotIds\":{\
           \"shape\":\"SnapshotIdStringList\",\
@@ -36999,7 +38081,7 @@
         },\
         \"NextToken\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>\",\
+          \"documentation\":\"<p>The token to include in another request to get the next page of items. This value is <code>null</code> when there are no more items to return.</p>\",\
           \"locationName\":\"nextToken\"\
         }\
       }\
@@ -37193,6 +38275,11 @@
           \"shape\":\"NetworkInterfaceId\",\
           \"documentation\":\"<p>The ID of the network interface.</p>\",\
           \"locationName\":\"networkInterfaceId\"\
+        },\
+        \"DestinationPrefixListId\":{\
+          \"shape\":\"PrefixListResourceId\",\
+          \"documentation\":\"<p> The ID of the prefix list. </p>\",\
+          \"locationName\":\"destinationPrefixListId\"\
         }\
       },\
       \"documentation\":\"<p>Describes a route for a local gateway route table.</p>\"\
@@ -37759,7 +38846,7 @@
           \"locationName\":\"status\"\
         }\
       },\
-      \"documentation\":\"<p>Indicates whether the network was healthy or unhealthy at a particular point. The value is aggregated from the <code>startDate</code> to the <code>endDate</code>. Currently only <code>five_minutes</code> is supported.</p>\"\
+      \"documentation\":\"<p>Indicates whether the network was healthy or degraded at a particular point. The value is aggregated from the <code>startDate</code> to the <code>endDate</code>. Currently only <code>five_minutes</code> is supported.</p>\"\
     },\
     \"MetricPoints\":{\
       \"type\":\"list\",\
@@ -38057,7 +39144,7 @@
         },\
         \"ExcessCapacityTerminationPolicy\":{\
           \"shape\":\"FleetExcessCapacityTerminationPolicy\",\
-          \"documentation\":\"<p>Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p>\"\
+          \"documentation\":\"<p>Indicates whether running instances should be terminated if the total target capacity of the EC2 Fleet is decreased below the current size of the EC2 Fleet.</p> <p>Supported only for fleets of type <code>maintain</code>.</p>\"\
         },\
         \"LaunchTemplateConfigs\":{\
           \"shape\":\"FleetLaunchTemplateConfigListRequest\",\
@@ -38172,6 +39259,10 @@
         \"InstanceFamily\":{\
           \"shape\":\"String\",\
           \"documentation\":\"<p>Specifies the instance family to be supported by the Dedicated Host. Specify this parameter to modify a Dedicated Host to support multiple instance types within its current instance family.</p> <p>If you want to modify a Dedicated Host to support a specific instance type only, omit this parameter and specify <b>InstanceType</b> instead. You cannot specify <b>InstanceFamily</b> and <b>InstanceType</b> in the same request.</p>\"\
+        },\
+        \"HostMaintenance\":{\
+          \"shape\":\"HostMaintenance\",\
+          \"documentation\":\"<p>Indicates whether to enable or disable host maintenance for the Dedicated Host. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-maintenance.html\\\"> Host maintenance</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         }\
       }\
     },\
@@ -38238,7 +39329,7 @@
       \"members\":{\
         \"Attribute\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The name of the attribute to modify.</p> <p>Valid values: <code>description</code> | <code>launchPermission</code> </p>\"\
+          \"documentation\":\"<p>The name of the attribute to modify.</p> <p>Valid values: <code>description</code> | <code>imdsSupport</code> | <code>launchPermission</code> </p>\"\
         },\
         \"Description\":{\
           \"shape\":\"AttributeValue\",\
@@ -38273,7 +39364,7 @@
         },\
         \"Value\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The value of the attribute being modified. This parameter can be used only when the <code>Attribute</code> parameter is <code>description</code>.</p>\"\
+          \"documentation\":\"<p>The value of the attribute being modified. This parameter can be used only when the <code>Attribute</code> parameter is <code>description</code> or <code>imdsSupport</code>.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -38289,6 +39380,10 @@
           \"shape\":\"OrganizationalUnitArnStringList\",\
           \"documentation\":\"<p>The Amazon Resource Name (ARN) of an organizational unit (OU). This parameter can be used only when the <code>Attribute</code> parameter is <code>launchPermission</code>.</p>\",\
           \"locationName\":\"OrganizationalUnitArn\"\
+        },\
+        \"ImdsSupport\":{\
+          \"shape\":\"AttributeValue\",\
+          \"documentation\":\"<p>Set to <code>v2.0</code> to indicate that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon EC2 User Guide</i>.</p> <important> <p>Do not use this parameter unless your AMI software supports IMDSv2. After you set the value to <code>v2.0</code>, you can't undo it. The only way to âresetâ your AMI is to create a new AMI from the underlying snapshot.</p> </important>\"\
         }\
       },\
       \"documentation\":\"<p>Contains the parameters for ModifyImageAttribute.</p>\"\
@@ -38563,7 +39658,7 @@
         },\
         \"HttpTokens\":{\
           \"shape\":\"HttpTokensState\",\
-          \"documentation\":\"<p>The state of token usage for your instance metadata requests. If the parameter is not specified in the request, the default state is <code>optional</code>.</p> <p>If the state is <code>optional</code>, you can choose to retrieve instance metadata with or without a session token on your request. If you retrieve the IAM role credentials without a token, the version 1.0 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the version 2.0 role credentials are returned.</p> <p>If the state is <code>required</code>, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns the version 2.0 credentials; the version 1.0 credentials are not available.</p>\"\
+          \"documentation\":\"<p>IMDSv2 uses token-backed sessions. Set the use of HTTP tokens to <code>optional</code> (in other words, set the use of IMDSv2 to <code>optional</code>) or <code>required</code> (in other words, set the use of IMDSv2 to <code>required</code>).</p> <ul> <li> <p> <code>optional</code> - When IMDSv2 is optional, you can choose to retrieve instance metadata with or without a session token in your request. If you retrieve the IAM role credentials without a token, the IMDSv1 role credentials are returned. If you retrieve the IAM role credentials using a valid session token, the IMDSv2 role credentials are returned.</p> </li> <li> <p> <code>required</code> - When IMDSv2 is required, you must send a session token with any instance metadata retrieval requests. In this state, retrieving the IAM role credentials always returns IMDSv2 credentials; IMDSv1 credentials are not available.</p> </li> </ul> <p>Default: <code>optional</code> </p>\"\
         },\
         \"HttpPutResponseHopLimit\":{\
           \"shape\":\"Integer\",\
@@ -38790,6 +39885,44 @@
         }\
       }\
     },\
+    \"ModifyIpamResourceDiscoveryRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\"IpamResourceDiscoveryId\"],\
+      \"members\":{\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>A check for whether you have the required permissions for the action without actually making the request and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"IpamResourceDiscoveryId\":{\
+          \"shape\":\"IpamResourceDiscoveryId\",\
+          \"documentation\":\"<p>A resource discovery ID.</p>\"\
+        },\
+        \"Description\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A resource discovery description.</p>\"\
+        },\
+        \"AddOperatingRegions\":{\
+          \"shape\":\"AddIpamOperatingRegionSet\",\
+          \"documentation\":\"<p>Add operating Regions to the resource discovery. Operating Regions are Amazon Web Services Regions where the IPAM is allowed to manage IP address CIDRs. IPAM only discovers and monitors resources in the Amazon Web Services Regions you select as operating Regions.</p>\",\
+          \"locationName\":\"AddOperatingRegion\"\
+        },\
+        \"RemoveOperatingRegions\":{\
+          \"shape\":\"RemoveIpamOperatingRegionSet\",\
+          \"documentation\":\"<p>Remove operating Regions.</p>\",\
+          \"locationName\":\"RemoveOperatingRegion\"\
+        }\
+      }\
+    },\
+    \"ModifyIpamResourceDiscoveryResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"IpamResourceDiscovery\":{\
+          \"shape\":\"IpamResourceDiscovery\",\
+          \"documentation\":\"<p>A resource discovery.</p>\",\
+          \"locationName\":\"ipamResourceDiscovery\"\
+        }\
+      }\
+    },\
     \"ModifyIpamResult\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -38866,10 +39999,7 @@
     },\
     \"ModifyLocalGatewayRouteRequest\":{\
       \"type\":\"structure\",\
-      \"required\":[\
-        \"DestinationCidrBlock\",\
-        \"LocalGatewayRouteTableId\"\
-      ],\
+      \"required\":[\"LocalGatewayRouteTableId\"],\
       \"members\":{\
         \"DestinationCidrBlock\":{\
           \"shape\":\"String\",\
@@ -38890,6 +40020,10 @@
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        },\
+        \"DestinationPrefixListId\":{\
+          \"shape\":\"PrefixListResourceId\",\
+          \"documentation\":\"<p> The ID of the prefix list. Use a prefix list in place of <code>DestinationCidrBlock</code>. You cannot use <code>DestinationPrefixListId</code> and <code>DestinationCidrBlock</code> in the same request. </p>\"\
         }\
       }\
     },\
@@ -38992,6 +40126,7 @@
     },\
     \"ModifyPrivateDnsNameOptionsRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"InstanceId\"],\
       \"members\":{\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -39169,7 +40304,7 @@
       \"members\":{\
         \"ExcessCapacityTerminationPolicy\":{\
           \"shape\":\"ExcessCapacityTerminationPolicy\",\
-          \"documentation\":\"<p>Indicates whether running Spot Instances should be terminated if the target capacity of the Spot Fleet request is decreased below the current size of the Spot Fleet.</p>\",\
+          \"documentation\":\"<p>Indicates whether running instances should be terminated if the target capacity of the Spot Fleet request is decreased below the current size of the Spot Fleet.</p> <p>Supported only for fleets of type <code>maintain</code>.</p>\",\
           \"locationName\":\"excessCapacityTerminationPolicy\"\
         },\
         \"LaunchTemplateConfigs\":{\
@@ -39299,7 +40434,7 @@
       \"required\":[\"TrafficMirrorFilterRuleId\"],\
       \"members\":{\
         \"TrafficMirrorFilterRuleId\":{\
-          \"shape\":\"TrafficMirrorFilterRuleId\",\
+          \"shape\":\"TrafficMirrorFilterRuleIdWithResolver\",\
           \"documentation\":\"<p>The ID of the Traffic Mirror rule.</p>\"\
         },\
         \"TrafficDirection\":{\
@@ -40015,7 +41150,7 @@
         },\
         \"ConnectionEvents\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>One or more events for the endpoint. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>\"\
+          \"documentation\":\"<p>The events for the endpoint. Valid values are <code>Accept</code>, <code>Connect</code>, <code>Delete</code>, and <code>Reject</code>.</p>\"\
         }\
       }\
     },\
@@ -40051,32 +41186,32 @@
         },\
         \"AddRouteTableIds\":{\
           \"shape\":\"VpcEndpointRouteTableIdList\",\
-          \"documentation\":\"<p>(Gateway endpoint) One or more route tables IDs to associate with the endpoint.</p>\",\
+          \"documentation\":\"<p>(Gateway endpoint) The IDs of the route tables to associate with the endpoint.</p>\",\
           \"locationName\":\"AddRouteTableId\"\
         },\
         \"RemoveRouteTableIds\":{\
           \"shape\":\"VpcEndpointRouteTableIdList\",\
-          \"documentation\":\"<p>(Gateway endpoint) One or more route table IDs to disassociate from the endpoint.</p>\",\
+          \"documentation\":\"<p>(Gateway endpoint) The IDs of the route tables to disassociate from the endpoint.</p>\",\
           \"locationName\":\"RemoveRouteTableId\"\
         },\
         \"AddSubnetIds\":{\
           \"shape\":\"VpcEndpointSubnetIdList\",\
-          \"documentation\":\"<p>(Interface and Gateway Load Balancer endpoints) One or more subnet IDs in which to serve the endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>\",\
+          \"documentation\":\"<p>(Interface and Gateway Load Balancer endpoints) The IDs of the subnets in which to serve the endpoint. For a Gateway Load Balancer endpoint, you can specify only one subnet.</p>\",\
           \"locationName\":\"AddSubnetId\"\
         },\
         \"RemoveSubnetIds\":{\
           \"shape\":\"VpcEndpointSubnetIdList\",\
-          \"documentation\":\"<p>(Interface endpoint) One or more subnets IDs in which to remove the endpoint.</p>\",\
+          \"documentation\":\"<p>(Interface endpoint) The IDs of the subnets from which to remove the endpoint.</p>\",\
           \"locationName\":\"RemoveSubnetId\"\
         },\
         \"AddSecurityGroupIds\":{\
           \"shape\":\"VpcEndpointSecurityGroupIdList\",\
-          \"documentation\":\"<p>(Interface endpoint) One or more security group IDs to associate with the network interface.</p>\",\
+          \"documentation\":\"<p>(Interface endpoint) The IDs of the security groups to associate with the network interface.</p>\",\
           \"locationName\":\"AddSecurityGroupId\"\
         },\
         \"RemoveSecurityGroupIds\":{\
           \"shape\":\"VpcEndpointSecurityGroupIdList\",\
-          \"documentation\":\"<p>(Interface endpoint) One or more security group IDs to disassociate from the network interface.</p>\",\
+          \"documentation\":\"<p>(Interface endpoint) The IDs of the security groups to disassociate from the network interface.</p>\",\
           \"locationName\":\"RemoveSecurityGroupId\"\
         },\
         \"IpAddressType\":{\
@@ -40091,8 +41226,7 @@
           \"shape\":\"Boolean\",\
           \"documentation\":\"<p>(Interface endpoint) Indicates whether a private hosted zone is associated with the VPC.</p>\"\
         }\
-      },\
-      \"documentation\":\"<p>Contains the parameters for ModifyVpcEndpoint.</p>\"\
+      }\
     },\
     \"ModifyVpcEndpointResult\":{\
       \"type\":\"structure\",\
@@ -40215,11 +41349,11 @@
         },\
         \"AddAllowedPrincipals\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are granted to the principals in this list. To grant permissions to all principals, specify an asterisk (*).</p>\"\
+          \"documentation\":\"<p>The Amazon Resource Names (ARN) of the principals. Permissions are granted to the principals in this list. To grant permissions to all principals, specify an asterisk (*).</p>\"\
         },\
         \"RemoveAllowedPrincipals\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>The Amazon Resource Names (ARN) of one or more principals. Permissions are revoked for principals in this list.</p>\"\
+          \"documentation\":\"<p>The Amazon Resource Names (ARN) of the principals. Permissions are revoked for principals in this list.</p>\"\
         }\
       }\
     },\
@@ -40776,6 +41910,26 @@
           \"shape\":\"String\",\
           \"documentation\":\"<p>[Public NAT gateway only] The Elastic IP address associated with the NAT gateway.</p>\",\
           \"locationName\":\"publicIp\"\
+        },\
+        \"AssociationId\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>[Public NAT gateway only] The association ID of the Elastic IP address that's associated with the NAT gateway.</p>\",\
+          \"locationName\":\"associationId\"\
+        },\
+        \"IsPrimary\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Defines if the IP address is the primary address.</p>\",\
+          \"locationName\":\"isPrimary\"\
+        },\
+        \"FailureMessage\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>The address failure message.</p>\",\
+          \"locationName\":\"failureMessage\"\
+        },\
+        \"Status\":{\
+          \"shape\":\"NatGatewayAddressStatus\",\
+          \"documentation\":\"<p>The address status.</p>\",\
+          \"locationName\":\"status\"\
         }\
       },\
       \"documentation\":\"<p>Describes the IP addresses and network interface associated with a NAT gateway.</p>\"\
@@ -40786,6 +41940,17 @@
         \"shape\":\"NatGatewayAddress\",\
         \"locationName\":\"item\"\
       }\
+    },\
+    \"NatGatewayAddressStatus\":{\
+      \"type\":\"string\",\
+      \"enum\":[\
+        \"assigning\",\
+        \"unassigning\",\
+        \"associating\",\
+        \"disassociating\",\
+        \"succeeded\",\
+        \"failed\"\
+      ]\
     },\
     \"NatGatewayId\":{\"type\":\"string\"},\
     \"NatGatewayIdStringList\":{\
@@ -41244,6 +42409,7 @@
         },\
         \"AdditionalAccounts\":{\
           \"shape\":\"ValueStringList\",\
+          \"documentation\":\"<p>The member accounts that contain resources that the path can traverse.</p>\",\
           \"locationName\":\"additionalAccountSet\"\
         },\
         \"FilterInArns\":{\
@@ -41298,6 +42464,7 @@
         },\
         \"SuggestedAccounts\":{\
           \"shape\":\"ValueStringList\",\
+          \"documentation\":\"<p>Potential intermediate accounts.</p>\",\
           \"locationName\":\"suggestedAccountSet\"\
         },\
         \"Tags\":{\
@@ -41358,10 +42525,12 @@
         },\
         \"SourceArn\":{\
           \"shape\":\"ResourceArn\",\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the source.</p>\",\
           \"locationName\":\"sourceArn\"\
         },\
         \"DestinationArn\":{\
           \"shape\":\"ResourceArn\",\
+          \"documentation\":\"<p>The Amazon Resource Name (ARN) of the destination.</p>\",\
           \"locationName\":\"destinationArn\"\
         },\
         \"SourceIp\":{\
@@ -43224,6 +44393,11 @@
         \"locationName\":\"PrivateIpAddressConfigSet\"\
       }\
     },\
+    \"PrivateIpAddressCount\":{\
+      \"type\":\"integer\",\
+      \"max\":7,\
+      \"min\":1\
+    },\
     \"PrivateIpAddressSpecification\":{\
       \"type\":\"structure\",\
       \"members\":{\
@@ -43407,11 +44581,20 @@
         },\
         \"Cidr\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The CIDR you want to assign to the IPAM pool.</p>\"\
+          \"documentation\":\"<p>The CIDR you want to assign to the IPAM pool. Either \\\"NetmaskLength\\\" or \\\"Cidr\\\" is required. This value will be null if you specify \\\"NetmaskLength\\\" and will be filled in during the provisioning process.</p>\"\
         },\
         \"CidrAuthorizationContext\":{\
           \"shape\":\"IpamCidrAuthorizationContext\",\
           \"documentation\":\"<p>A signed document that proves that you are authorized to bring a specified IP address range to Amazon using BYOIP. This option applies to public pools only.</p>\"\
+        },\
+        \"NetmaskLength\":{\
+          \"shape\":\"Integer\",\
+          \"documentation\":\"<p>The netmask length of the CIDR you'd like to provision to a pool. Can be used for provisioning Amazon-provided IPv6 CIDRs to top-level pools and for provisioning CIDRs to pools with source pools. Cannot be used to provision BYOIP CIDRs to top-level pools. Either \\\"NetmaskLength\\\" or \\\"Cidr\\\" is required.</p>\"\
+        },\
+        \"ClientToken\":{\
+          \"shape\":\"String\",\
+          \"documentation\":\"<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\\\">Ensuring Idempotency</a>.</p>\",\
+          \"idempotencyToken\":true\
         }\
       }\
     },\
@@ -43986,7 +45169,7 @@
         },\
         \"BlockDeviceMappings\":{\
           \"shape\":\"BlockDeviceMappingRequestList\",\
-          \"documentation\":\"<p>The block device mapping entries.</p> <p>If you specify an Amazon EBS volume using the ID of an Amazon EBS snapshot, you can't specify the encryption state of the volume.</p> <p>If you create an AMI on an Outpost, then all backing snapshots must be on the same Outpost or in the Region of that Outpost. AMIs on an Outpost that include local snapshots can be used to launch instances on the same Outpost only. For more information, <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\\\"> Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
+          \"documentation\":\"<p>The block device mapping entries.</p> <p>If you specify an Amazon EBS volume using the ID of an Amazon EBS snapshot, you can't specify the encryption state of the volume.</p> <p>If you create an AMI on an Outpost, then all backing snapshots must be on the same Outpost or in the Region of that Outpost. AMIs on an Outpost that include local snapshots can be used to launch instances on the same Outpost only. For more information, <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\\\">Amazon EBS local snapshots on Outposts</a> in the <i>Amazon EC2 User Guide</i>.</p>\",\
           \"locationName\":\"BlockDeviceMapping\"\
         },\
         \"Description\":{\
@@ -44016,7 +45199,7 @@
         },\
         \"BillingProducts\":{\
           \"shape\":\"BillingProductList\",\
-          \"documentation\":\"<p>The billing product codes. Your account must be authorized to specify billing product codes. Otherwise, you can use the Amazon Web Services Marketplace to bill for the use of an AMI.</p>\",\
+          \"documentation\":\"<p>The billing product codes. Your account must be authorized to specify billing product codes.</p> <p>If your account is not authorized to specify billing product codes, you can publish AMIs that include billable software and list them on the Amazon Web Services Marketplace. You must first register as a seller on the Amazon Web Services Marketplace. For more information, see <a href=\\\"https://docs.aws.amazon.com/marketplace/latest/userguide/user-guide-for-sellers.html\\\">Getting started as a seller</a> and <a href=\\\"https://docs.aws.amazon.com/marketplace/latest/userguide/ami-products.html\\\">AMI-based products</a> in the <i>Amazon Web Services Marketplace Seller Guide</i>.</p>\",\
           \"locationName\":\"BillingProduct\"\
         },\
         \"RamdiskId\":{\
@@ -44041,19 +45224,19 @@
         },\
         \"BootMode\":{\
           \"shape\":\"BootModeValues\",\
-          \"documentation\":\"<p>The boot mode of the AMI. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+          \"documentation\":\"<p>The boot mode of the AMI. A value of <code>uefi-preferred</code> indicates that the AMI supports both UEFI and Legacy BIOS.</p> <note> <p>The operating system contained in the AMI must be configured to support the specified boot mode.</p> </note> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ami-boot.html\\\">Boot modes</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         },\
         \"TpmSupport\":{\
           \"shape\":\"TpmSupportValues\",\
-          \"documentation\":\"<p>Set to <code>v2.0</code> to enable Trusted Platform Module (TPM) support. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\\\">NitroTPM</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+          \"documentation\":\"<p>Set to <code>v2.0</code> to enable Trusted Platform Module (TPM) support. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/nitrotpm.html\\\">NitroTPM</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         },\
         \"UefiData\":{\
           \"shape\":\"StringType\",\
-          \"documentation\":\"<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\\\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\\\"https://github.com/awslabs/python-uefivars\\\">python-uefivars tool</a> on GitHub. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\\\">UEFI Secure Boot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
+          \"documentation\":\"<p>Base64 representation of the non-volatile UEFI variable store. To retrieve the UEFI data, use the <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_GetInstanceUefiData\\\">GetInstanceUefiData</a> command. You can inspect and modify the UEFI data by using the <a href=\\\"https://github.com/awslabs/python-uefivars\\\">python-uefivars tool</a> on GitHub. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/uefi-secure-boot.html\\\">UEFI Secure Boot</a> in the <i>Amazon EC2 User Guide</i>.</p>\"\
         },\
         \"ImdsSupport\":{\
           \"shape\":\"ImdsSupportValues\",\
-          \"documentation\":\"<p>Set to <code>v2.0</code> to indicate that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <note> <p>If you set the value to <code>v2.0</code>, make sure that your AMI software can support IMDSv2.</p> </note>\"\
+          \"documentation\":\"<p>Set to <code>v2.0</code> to indicate that IMDSv2 is specified in the AMI. Instances launched from this AMI will have <code>HttpTokens</code> automatically set to <code>required</code> so that, by default, the instance requires that IMDSv2 is used when requesting instance metadata. In addition, <code>HttpPutResponseHopLimit</code> is set to <code>2</code>. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-IMDS-new-instances.html#configure-IMDS-new-instances-ami-configuration\\\">Configure the AMI</a> in the <i>Amazon EC2 User Guide</i>.</p> <note> <p>If you set the value to <code>v2.0</code>, make sure that your AMI software can support IMDSv2.</p> </note>\"\
         }\
       },\
       \"documentation\":\"<p>Contains the parameters for RegisterImage.</p>\"\
@@ -44109,6 +45292,10 @@
     },\
     \"RegisterTransitGatewayMulticastGroupMembersRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"TransitGatewayMulticastDomainId\",\
+        \"NetworkInterfaceIds\"\
+      ],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -44140,6 +45327,10 @@
     },\
     \"RegisterTransitGatewayMulticastGroupSourcesRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\
+        \"TransitGatewayMulticastDomainId\",\
+        \"NetworkInterfaceIds\"\
+      ],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -44265,7 +45456,7 @@
         },\
         \"VpcEndpointIds\":{\
           \"shape\":\"VpcEndpointIdList\",\
-          \"documentation\":\"<p>The IDs of one or more VPC endpoints.</p>\",\
+          \"documentation\":\"<p>The IDs of the VPC endpoints.</p>\",\
           \"locationName\":\"VpcEndpointId\"\
         }\
       }\
@@ -44927,7 +46118,7 @@
         },\
         \"ImageId\":{\
           \"shape\":\"ImageId\",\
-          \"documentation\":\"<p>The ID of the AMI.</p>\"\
+          \"documentation\":\"<p>The ID of the AMI. Alternatively, you can specify a Systems Manager parameter, which will resolve to an AMI ID on launch.</p> <p>Valid formats:</p> <ul> <li> <p> <code>ami-17characters00000</code> </p> </li> <li> <p> <code>resolve:ssm:parameter-name</code> </p> </li> <li> <p> <code>resolve:ssm:parameter-name:version-number</code> </p> </li> <li> <p> <code>resolve:ssm:parameter-name:label</code> </p> </li> </ul> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html#using-systems-manager-parameter-to-find-AMI\\\">Use a Systems Manager parameter to find an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
         },\
         \"InstanceType\":{\
           \"shape\":\"InstanceType\",\
@@ -45033,7 +46224,7 @@
         },\
         \"DisableApiStop\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Indicates whether to enable the instance for stop protection. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\\\">Stop Protection</a>.</p>\"\
+          \"documentation\":\"<p>Indicates whether to enable the instance for stop protection. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\\\">Stop protection</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\"\
         }\
       },\
       \"documentation\":\"<p>The information to include in the launch template.</p> <note> <p>You must specify at least one parameter for the launch template data.</p> </note>\",\
@@ -45226,8 +46417,8 @@
           \"locationName\":\"subnetId\"\
         },\
         \"UserData\":{\
-          \"shape\":\"String\",\
-          \"documentation\":\"<p>The Base64-encoded user data for the instance. User data is limited to 16 KB.</p>\",\
+          \"shape\":\"SensitiveUserData\",\
+          \"documentation\":\"<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>\",\
           \"locationName\":\"userData\"\
         }\
       },\
@@ -46132,7 +47323,10 @@
         \"verified-access-endpoint\",\
         \"verified-access-policy\",\
         \"verified-access-trust-provider\",\
-        \"vpn-connection-device-type\"\
+        \"vpn-connection-device-type\",\
+        \"vpc-block-public-access-exclusion\",\
+        \"ipam-resource-discovery\",\
+        \"ipam-resource-discovery-association\"\
       ]\
     },\
     \"ResponseError\":{\
@@ -46195,7 +47389,7 @@
         },\
         \"ImageId\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The ID of the AMI that was used to launch the instance.</p>\",\
+          \"documentation\":\"<p>The ID of the AMI or a Systems Manager parameter. The Systems Manager parameter will resolve to the ID of the AMI at instance launch.</p> <p>The value depends on what you specified in the request. The possible values are:</p> <ul> <li> <p>If an AMI ID was specified in the request, then this is the AMI ID.</p> </li> <li> <p>If a Systems Manager parameter was specified in the request, and <code>ResolveAlias</code> was configured as <code>true</code>, then this is the AMI ID that the parameter is mapped to in the Parameter Store.</p> </li> <li> <p>If a Systems Manager parameter was specified in the request, and <code>ResolveAlias</code> was configured as <code>false</code>, then this is the parameter value.</p> </li> </ul> <p>For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-launch-templates.html#use-an-ssm-parameter-instead-of-an-ami-id\\\">Use a Systems Manager parameter instead of an AMI ID</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
           \"locationName\":\"imageId\"\
         },\
         \"InstanceType\":{\
@@ -46234,7 +47428,7 @@
           \"locationName\":\"instanceInitiatedShutdownBehavior\"\
         },\
         \"UserData\":{\
-          \"shape\":\"String\",\
+          \"shape\":\"SensitiveUserData\",\
           \"documentation\":\"<p>The user data for the instance. </p>\",\
           \"locationName\":\"userData\"\
         },\
@@ -46320,7 +47514,7 @@
         },\
         \"DisableApiStop\":{\
           \"shape\":\"Boolean\",\
-          \"documentation\":\"<p>Indicates whether the instance is enabled for stop protection. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\\\">Stop Protection</a>.</p>\",\
+          \"documentation\":\"<p>Indicates whether the instance is enabled for stop protection. For more information, see <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Stop_Start.html#Using_StopProtection\\\">Stop protection</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>\",\
           \"locationName\":\"disableApiStop\"\
         }\
       },\
@@ -46662,7 +47856,7 @@
         },\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of port range for the TCP and UDP protocols, or an ICMP type number. For the ICMP type number, use <code>-1</code> to specify all ICMP types.</p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP, this is the type number. A value of -1 indicates all ICMP types.</p>\"\
         },\
         \"GroupId\":{\
           \"shape\":\"SecurityGroupId\",\
@@ -46690,7 +47884,7 @@
         },\
         \"ToPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The end of port range for the TCP and UDP protocols, or an ICMP code number. For the ICMP code number, use <code>-1</code> to specify all ICMP codes for the ICMP type.</p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP, this is the code. A value of -1 indicates all ICMP codes.</p>\"\
         },\
         \"DryRun\":{\
           \"shape\":\"Boolean\",\
@@ -46719,6 +47913,7 @@
         }\
       }\
     },\
+    \"RoleId\":{\"type\":\"string\"},\
     \"RootDeviceType\":{\
       \"type\":\"string\",\
       \"enum\":[\
@@ -47051,7 +48246,7 @@
         },\
         \"SecurityGroups\":{\
           \"shape\":\"SecurityGroupStringList\",\
-          \"documentation\":\"<p>[EC2-Classic, default VPC] The names of the security groups. For a nondefault VPC, you must use security group IDs instead.</p> <p>If you specify a network interface, you must specify any security groups as part of the network interface.</p> <p>Default: Amazon EC2 uses the default security group.</p>\",\
+          \"documentation\":\"<p>[EC2-Classic, default VPC] The names of the security groups.</p> <p>If you specify a network interface, you must specify any security groups as part of the network interface.</p> <p>Default: Amazon EC2 uses the default security group.</p>\",\
           \"locationName\":\"SecurityGroup\"\
         },\
         \"SubnetId\":{\
@@ -47245,7 +48440,7 @@
       \"members\":{\
         \"AWSAccessKeyId\":{\
           \"shape\":\"String\",\
-          \"documentation\":\"<p>The access key ID of the owner of the bucket. Before you specify a value for your access key ID, review and follow the guidance in <a href=\\\"https://docs.aws.amazon.com/general/latest/gr/aws-access-keys-best-practices.html\\\">Best practices for managing Amazon Web Services access keys</a>.</p>\"\
+          \"documentation\":\"<p>The access key ID of the owner of the bucket. Before you specify a value for your access key ID, review and follow the guidance in <a href=\\\"https://docs.aws.amazon.com/accounts/latest/reference/best-practices.html\\\">Best Practices for Amazon Web Services accounts</a> in the <i>Account ManagementReference Guide</i>.</p>\"\
         },\
         \"Bucket\":{\
           \"shape\":\"String\",\
@@ -47656,7 +48851,8 @@
           \"documentation\":\"<p>The base64-encoded MIME user data.</p>\"\
         }\
       },\
-      \"documentation\":\"<p>Describes the launch specification for a Scheduled Instance.</p> <p>If you are launching the Scheduled Instance in EC2-VPC, you must specify the ID of the subnet. You can specify the subnet using either <code>SubnetId</code> or <code>NetworkInterface</code>.</p>\"\
+      \"documentation\":\"<p>Describes the launch specification for a Scheduled Instance.</p> <p>If you are launching the Scheduled Instance in EC2-VPC, you must specify the ID of the subnet. You can specify the subnet using either <code>SubnetId</code> or <code>NetworkInterface</code>.</p>\",\
+      \"sensitive\":true\
     },\
     \"ScheduledInstancesMonitoring\":{\
       \"type\":\"structure\",\
@@ -47777,7 +48973,7 @@
         },\
         \"Filters\":{\
           \"shape\":\"FilterList\",\
-          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify <code>supernet-of-match</code> as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route.</p> </li> <li> <p> <code>type</code> - The route type.</p> </li> </ul>\",\
+          \"documentation\":\"<p>One or more filters.</p> <ul> <li> <p> <code>prefix-list-id</code> - The ID of the prefix list.</p> </li> <li> <p> <code>route-search.exact-match</code> - The exact match of the specified filter.</p> </li> <li> <p> <code>route-search.longest-prefix-match</code> - The longest prefix that matches the route.</p> </li> <li> <p> <code>route-search.subnet-of-match</code> - The routes with a subnet that match the specified CIDR filter.</p> </li> <li> <p> <code>route-search.supernet-of-match</code> - The routes with a CIDR that encompass the CIDR filter. For example, if you have 10.0.1.0/29 and 10.0.1.0/31 routes in your route table and you specify <code>supernet-of-match</code> as 10.0.1.0/30, then the result returns 10.0.1.0/29.</p> </li> <li> <p> <code>state</code> - The state of the route.</p> </li> <li> <p> <code>type</code> - The route type.</p> </li> </ul>\",\
           \"locationName\":\"Filter\"\
         },\
         \"MaxResults\":{\
@@ -47811,6 +49007,7 @@
     },\
     \"SearchTransitGatewayMulticastGroupsRequest\":{\
       \"type\":\"structure\",\
+      \"required\":[\"TransitGatewayMulticastDomainId\"],\
       \"members\":{\
         \"TransitGatewayMulticastDomainId\":{\
           \"shape\":\"TransitGatewayMulticastDomainId\",\
@@ -48034,12 +49231,12 @@
         },\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>\",\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\",\
           \"locationName\":\"fromPort\"\
         },\
         \"ToPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>\",\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\",\
           \"locationName\":\"toPort\"\
         },\
         \"CidrIpv4\":{\
@@ -48120,11 +49317,11 @@
         },\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 type. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the start of the port range. If the protocol is ICMP or ICMPv6, this is the type number. A value of -1 indicates all ICMP/ICMPv6 types. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\"\
         },\
         \"ToPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The end of port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code. A value of <code>-1</code> indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes. </p>\"\
+          \"documentation\":\"<p>If the protocol is TCP or UDP, this is the end of the port range. If the protocol is ICMP or ICMPv6, this is the code. A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all ICMP/ICMPv6 codes.</p>\"\
         },\
         \"CidrIpv4\":{\
           \"shape\":\"String\",\
@@ -48151,6 +49348,7 @@
     },\
     \"SecurityGroupRuleUpdate\":{\
       \"type\":\"structure\",\
+      \"required\":[\"SecurityGroupRuleId\"],\
       \"members\":{\
         \"SecurityGroupRuleId\":{\
           \"shape\":\"SecurityGroupRuleId\",\
@@ -48277,7 +49475,7 @@
         },\
         \"Tags\":{\
           \"shape\":\"TagList\",\
-          \"documentation\":\"<p>Any tags assigned to the service.</p>\",\
+          \"documentation\":\"<p>The tags assigned to the service.</p>\",\
           \"locationName\":\"tagSet\"\
         }\
       },\
@@ -48362,7 +49560,7 @@
         },\
         \"Tags\":{\
           \"shape\":\"TagList\",\
-          \"documentation\":\"<p>Any tags assigned to the service.</p>\",\
+          \"documentation\":\"<p>The tags assigned to the service.</p>\",\
           \"locationName\":\"tagSet\"\
         },\
         \"PrivateDnsNameVerificationState\":{\
@@ -49037,8 +50235,8 @@
           \"locationName\":\"subnetId\"\
         },\
         \"UserData\":{\
-          \"shape\":\"String\",\
-          \"documentation\":\"<p>The Base64-encoded user data that instances use when starting up.</p>\",\
+          \"shape\":\"SensitiveUserData\",\
+          \"documentation\":\"<p>The base64-encoded user data that instances use when starting up. User data is limited to 16 KB.</p>\",\
           \"locationName\":\"userData\"\
         },\
         \"WeightedCapacity\":{\
@@ -49135,7 +50333,7 @@
         },\
         \"ExcessCapacityTerminationPolicy\":{\
           \"shape\":\"ExcessCapacityTerminationPolicy\",\
-          \"documentation\":\"<p>Indicates whether running Spot Instances should be terminated if you decrease the target capacity of the Spot Fleet request below the current size of the Spot Fleet.</p>\",\
+          \"documentation\":\"<p>Indicates whether running instances should be terminated if you decrease the target capacity of the Spot Fleet request below the current size of the Spot Fleet.</p> <p>Supported only for fleets of type <code>maintain</code>.</p>\",\
           \"locationName\":\"excessCapacityTerminationPolicy\"\
         },\
         \"FulfilledCapacity\":{\
@@ -49235,7 +50433,7 @@
         },\
         \"TargetCapacityUnitType\":{\
           \"shape\":\"TargetCapacityUnitType\",\
-          \"documentation\":\"<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\",\
+          \"documentation\":\"<p>The unit for the target capacity. <code>TargetCapacityUnitType</code> can only be specified when <code>InstanceRequirements</code> is specified.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\",\
           \"locationName\":\"targetCapacityUnitType\"\
         },\
         \"TagSpecifications\":{\
@@ -49692,7 +50890,7 @@
       \"members\":{\
         \"FromPort\":{\
           \"shape\":\"Integer\",\
-          \"documentation\":\"<p>The start of the port range for the TCP and UDP protocols, or an ICMP type number. A value of <code>-1</code> indicates all ICMP types. </p>\",\
+          \"documentation\":\"<p>The start of the port range for the TCP and UDP protocols, or an ICMP type number. A value of -1 indicates all ICMP types. </p>\",\
           \"locationName\":\"fromPort\"\
         },\
         \"IpProtocol\":{\
@@ -49854,6 +51052,7 @@
         },\
         \"AdditionalAccounts\":{\
           \"shape\":\"ValueStringList\",\
+          \"documentation\":\"<p>The member accounts that contain resources that the path can traverse.</p>\",\
           \"locationName\":\"AdditionalAccount\"\
         },\
         \"FilterInArns\":{\
@@ -50530,7 +51729,7 @@
           \"locationName\":\"Tag\"\
         }\
       },\
-      \"documentation\":\"<p>The tags to apply to a resource when the resource is being created.</p> <note> <p>The <code>Valid Values</code> lists all the resource types that can be tagged. However, the action you're using might not support tagging all of these resource types. If you try to tag a resource type that is unsupported for the action you're using, you'll get an error.</p> </note>\"\
+      \"documentation\":\"<p>The tags to apply to a resource when the resource is being created. When you specify a tag, you must specify the resource type to tag, otherwise the request will fail.</p> <note> <p>The <code>Valid Values</code> lists all the resource types that can be tagged. However, the action you're using might not support tagging all of these resource types. If you try to tag a resource type that is unsupported for the action you're using, you'll get an error.</p> </note>\"\
     },\
     \"TagSpecificationList\":{\
       \"type\":\"list\",\
@@ -50565,7 +51764,7 @@
         },\
         \"TargetCapacityUnitType\":{\
           \"shape\":\"TargetCapacityUnitType\",\
-          \"documentation\":\"<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\",\
+          \"documentation\":\"<p>The unit for the target capacity. <code>TargetCapacityUnitType</code> can only be specified when <code>InstanceRequirements</code> is specified.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\",\
           \"locationName\":\"targetCapacityUnitType\"\
         }\
       },\
@@ -50593,7 +51792,7 @@
         },\
         \"TargetCapacityUnitType\":{\
           \"shape\":\"TargetCapacityUnitType\",\
-          \"documentation\":\"<p>The unit for the target capacity.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\"\
+          \"documentation\":\"<p>The unit for the target capacity. <code>TargetCapacityUnitType</code> can only be specified when <code>InstanceRequirements</code> is specified.</p> <p>Default: <code>units</code> (translates to number of instances)</p>\"\
         }\
       },\
       \"documentation\":\"<p>The number of units to request. You can choose to set the target capacity as the number of instances. Or you can set the target capacity to a performance characteristic that is important to your application workload, such as vCPUs, memory, or I/O. If the request type is <code>maintain</code>, you can specify a target capacity of 0 and add capacity later.</p> <p>You can use the On-Demand Instance <code>MaxTotalPrice</code> parameter, the Spot Instance <code>MaxTotalPrice</code> parameter, or both parameters to ensure that your fleet cost does not exceed your budget. If you set a maximum price per hour for the On-Demand Instances and Spot Instances in your request, EC2 Fleet will launch instances until it reaches the maximum amount that you're willing to pay. When the maximum amount you're willing to pay is reached, the fleet stops launching instances even if it hasnât met the target capacity. The <code>MaxTotalPrice</code> parameters are located in <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_OnDemandOptionsRequest\\\">OnDemandOptionsRequest</a> and <a href=\\\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_SpotOptionsRequest\\\">SpotOptionsRequest</a>.</p>\"\
@@ -51072,7 +52271,7 @@
       \"type\":\"list\",\
       \"member\":{\"shape\":\"TrafficMirrorFilterRuleField\"}\
     },\
-    \"TrafficMirrorFilterRuleId\":{\"type\":\"string\"},\
+    \"TrafficMirrorFilterRuleIdWithResolver\":{\"type\":\"string\"},\
     \"TrafficMirrorFilterRuleList\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -53246,6 +54445,47 @@
       },\
       \"documentation\":\"<p>Contains the parameters for UnassignPrivateIpAddresses.</p>\"\
     },\
+    \"UnassignPrivateNatGatewayAddressRequest\":{\
+      \"type\":\"structure\",\
+      \"required\":[\
+        \"NatGatewayId\",\
+        \"PrivateIpAddresses\"\
+      ],\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\"\
+        },\
+        \"PrivateIpAddresses\":{\
+          \"shape\":\"IpList\",\
+          \"documentation\":\"<p>The private IPv4 addresses you want to unassign.</p>\",\
+          \"locationName\":\"PrivateIpAddress\"\
+        },\
+        \"MaxDrainDurationSeconds\":{\
+          \"shape\":\"DrainSeconds\",\
+          \"documentation\":\"<p>The maximum amount of time to wait (in seconds) before forcibly releasing the IP addresses if connections are still in progress. Default value is 350 seconds.</p>\"\
+        },\
+        \"DryRun\":{\
+          \"shape\":\"Boolean\",\
+          \"documentation\":\"<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>\"\
+        }\
+      }\
+    },\
+    \"UnassignPrivateNatGatewayAddressResult\":{\
+      \"type\":\"structure\",\
+      \"members\":{\
+        \"NatGatewayId\":{\
+          \"shape\":\"NatGatewayId\",\
+          \"documentation\":\"<p>The NAT gateway ID.</p>\",\
+          \"locationName\":\"natGatewayId\"\
+        },\
+        \"NatGatewayAddresses\":{\
+          \"shape\":\"NatGatewayAddressList\",\
+          \"documentation\":\"<p>Information about the NAT gateway IP addresses.</p>\",\
+          \"locationName\":\"natGatewayAddressSet\"\
+        }\
+      }\
+    },\
     \"UnlimitedSupportedInstanceFamily\":{\
       \"type\":\"string\",\
       \"enum\":[\
@@ -54576,6 +55816,7 @@
         \"locationName\":\"VolumeId\"\
       }\
     },\
+    \"VolumeIdWithResolver\":{\"type\":\"string\"},\
     \"VolumeList\":{\
       \"type\":\"list\",\
       \"member\":{\
@@ -55122,7 +56363,7 @@
         },\
         \"RouteTableIds\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>(Gateway endpoint) One or more route tables associated with the endpoint.</p>\",\
+          \"documentation\":\"<p>(Gateway endpoint) The IDs of the route tables associated with the endpoint.</p>\",\
           \"locationName\":\"routeTableIdSet\"\
         },\
         \"SubnetIds\":{\
@@ -55157,7 +56398,7 @@
         },\
         \"NetworkInterfaceIds\":{\
           \"shape\":\"ValueStringList\",\
-          \"documentation\":\"<p>(Interface endpoint) One or more network interfaces for the endpoint.</p>\",\
+          \"documentation\":\"<p>(Interface endpoint) The network interfaces for the endpoint.</p>\",\
           \"locationName\":\"networkInterfaceIdSet\"\
         },\
         \"DnsEntries\":{\
@@ -55172,7 +56413,7 @@
         },\
         \"Tags\":{\
           \"shape\":\"TagList\",\
-          \"documentation\":\"<p>Any tags assigned to the endpoint.</p>\",\
+          \"documentation\":\"<p>The tags assigned to the endpoint.</p>\",\
           \"locationName\":\"tagSet\"\
         },\
         \"OwnerId\":{\
@@ -56043,7 +57284,7 @@
     \"totalFpgaMemory\":{\"type\":\"integer\"},\
     \"totalGpuMemory\":{\"type\":\"integer\"}\
   },\
-  \"documentation\":\"<fullname>Amazon Elastic Compute Cloud</fullname> <p>Amazon Elastic Compute Cloud (Amazon EC2) provides secure and resizable computing capacity in the Amazon Web Services Cloud. Using Amazon EC2 eliminates the need to invest in hardware up front, so you can develop and deploy applications faster. Amazon Virtual Private Cloud (Amazon VPC) enables you to provision a logically isolated section of the Amazon Web Services Cloud where you can launch Amazon Web Services resources in a virtual network that you've defined. Amazon Elastic Block Store (Amazon EBS) provides block level storage volumes for use with EC2 instances. EBS volumes are highly available and reliable storage volumes that can be attached to any running instance and used like a hard drive.</p> <p>To learn more, see the following resources:</p> <ul> <li> <p>Amazon EC2: <a href=\\\"http://aws.amazon.com/ec2\\\">AmazonEC2 product page</a>, <a href=\\\"http://aws.amazon.com/documentation/ec2\\\">Amazon EC2 documentation</a> </p> </li> <li> <p>Amazon EBS: <a href=\\\"http://aws.amazon.com/ebs\\\">Amazon EBS product page</a>, <a href=\\\"http://aws.amazon.com/documentation/ebs\\\">Amazon EBS documentation</a> </p> </li> <li> <p>Amazon VPC: <a href=\\\"http://aws.amazon.com/vpc\\\">Amazon VPC product page</a>, <a href=\\\"http://aws.amazon.com/documentation/vpc\\\">Amazon VPC documentation</a> </p> </li> <li> <p>Amazon Web Services VPN: <a href=\\\"http://aws.amazon.com/vpn\\\">Amazon Web Services VPN product page</a>, <a href=\\\"http://aws.amazon.com/documentation/vpn\\\">Amazon Web Services VPN documentation</a> </p> </li> </ul>\"\
+  \"documentation\":\"<fullname>Amazon Elastic Compute Cloud</fullname> <p>Amazon Elastic Compute Cloud (Amazon EC2) provides secure and resizable computing capacity in the Amazon Web Services Cloud. Using Amazon EC2 eliminates the need to invest in hardware up front, so you can develop and deploy applications faster. Amazon Virtual Private Cloud (Amazon VPC) enables you to provision a logically isolated section of the Amazon Web Services Cloud where you can launch Amazon Web Services resources in a virtual network that you've defined. Amazon Elastic Block Store (Amazon EBS) provides block level storage volumes for use with EC2 instances. EBS volumes are highly available and reliable storage volumes that can be attached to any running instance and used like a hard drive.</p> <p>To learn more, see the following resources:</p> <ul> <li> <p>Amazon EC2: <a href=\\\"http://aws.amazon.com/ec2\\\">Amazon EC2 product page</a>, <a href=\\\"https://docs.aws.amazon.com/ec2/index.html\\\">Amazon EC2 documentation</a> </p> </li> <li> <p>Amazon EBS: <a href=\\\"http://aws.amazon.com/ebs\\\">Amazon EBS product page</a>, <a href=\\\"https://docs.aws.amazon.com/ebs/index.html\\\">Amazon EBS documentation</a> </p> </li> <li> <p>Amazon VPC: <a href=\\\"http://aws.amazon.com/vpc\\\">Amazon VPC product page</a>, <a href=\\\"https://docs.aws.amazon.com/vpc/index.html\\\">Amazon VPC documentation</a> </p> </li> <li> <p>VPN: <a href=\\\"http://aws.amazon.com/vpn\\\">VPN product page</a>, <a href=\\\"https://docs.aws.amazon.com/vpn/index.html\\\">VPN documentation</a> </p> </li> </ul>\"\
 }\
 ";
 }

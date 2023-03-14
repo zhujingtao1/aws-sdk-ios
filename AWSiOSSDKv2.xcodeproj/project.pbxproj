@@ -560,6 +560,7 @@
 		21E97D472558DBFF004C98D6 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21E97D462558DBFF004C98D6 /* AsynchronousOperation.swift */; };
 		5C1590172755727C00F88085 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0D416D1C6A66E5006B91B5 /* AWSCore.framework */; };
 		5C1978DD2702364800F9C11E /* AWSLocationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1978DC2702364800F9C11E /* AWSLocationTests.swift */; };
+		5C71F33F295672B8001183A4 /* guten_tag.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5C71F33E295672B8001183A4 /* guten_tag.wav */; };
 		6BE9D6AA25A54EBA00AB5C9A /* AWSIotDataManagerRetainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE9D6A925A54EBA00AB5C9A /* AWSIotDataManagerRetainTests.swift */; };
 		6BE9D74025A6D52100AB5C9A /* MQTTStatusCallBackWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE9D73F25A6D52100AB5C9A /* MQTTStatusCallBackWrapper.swift */; };
 		6BE9D74225A6D62000AB5C9A /* AWSIotDataManagerQoSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE9D74125A6D62000AB5C9A /* AWSIotDataManagerQoSTests.swift */; };
@@ -614,6 +615,7 @@
 		B44FBC4823F4B27D008EA8D2 /* AWSSignatureNullabilityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B44FBC4723F4B27D008EA8D2 /* AWSSignatureNullabilityTests.m */; };
 		B47FAF4322C577CE00014548 /* AWSS3TransferUtilityUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B47FAF4222C577CE00014548 /* AWSS3TransferUtilityUnitTests.m */; };
 		B482E84722EEA9F20075A0A3 /* AWSS3TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B482E84622EEA9F20075A0A3 /* AWSS3TestHelper.m */; };
+		B499A9C529A462A100CC7F2C /* AWSCognitoCredentialsProviderConcurrencyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B499A9C429A462A100CC7F2C /* AWSCognitoCredentialsProviderConcurrencyTests.m */; };
 		B4A4E01222B420C500379396 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE0D416D1C6A66E5006B91B5 /* AWSCore.framework */; };
 		B4A4E01B22B4212A00379396 /* AWSSageMakerRuntimeService.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A4E01422B4212900379396 /* AWSSageMakerRuntimeService.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B4A4E01C22B4212B00379396 /* AWSSageMakerRuntimeResources.h in Headers */ = {isa = PBXBuildFile; fileRef = B4A4E01522B4212900379396 /* AWSSageMakerRuntimeResources.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -3089,6 +3091,7 @@
 		21E97D462558DBFF004C98D6 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		5C1978DB2702364800F9C11E /* AWSLocationTests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AWSLocationTests-Bridging-Header.h"; sourceTree = "<group>"; };
 		5C1978DC2702364800F9C11E /* AWSLocationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSLocationTests.swift; sourceTree = "<group>"; };
+		5C71F33E295672B8001183A4 /* guten_tag.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = guten_tag.wav; sourceTree = "<group>"; };
 		6BE9D6A925A54EBA00AB5C9A /* AWSIotDataManagerRetainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSIotDataManagerRetainTests.swift; sourceTree = "<group>"; };
 		6BE9D73F25A6D52100AB5C9A /* MQTTStatusCallBackWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTStatusCallBackWrapper.swift; sourceTree = "<group>"; };
 		6BE9D74125A6D62000AB5C9A /* AWSIotDataManagerQoSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AWSIotDataManagerQoSTests.swift; sourceTree = "<group>"; };
@@ -3151,6 +3154,7 @@
 		B482E84522EEA9F10075A0A3 /* AWSS3TestHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSS3TestHelper.h; sourceTree = "<group>"; };
 		B482E84622EEA9F20075A0A3 /* AWSS3TestHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSS3TestHelper.m; sourceTree = "<group>"; };
 		B4932E1D283D4AB100993CBC /* AWSIoTKeyChainTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AWSIoTKeyChainTypes.h; sourceTree = "<group>"; };
+		B499A9C429A462A100CC7F2C /* AWSCognitoCredentialsProviderConcurrencyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AWSCognitoCredentialsProviderConcurrencyTests.m; sourceTree = "<group>"; };
 		B4A4DFF522B4201300379396 /* AWSSageMakerRuntime.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AWSSageMakerRuntime.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A4DFF822B4201400379396 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B4A4E01422B4212900379396 /* AWSSageMakerRuntimeService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSSageMakerRuntimeService.h; sourceTree = "<group>"; };
@@ -5211,6 +5215,7 @@
 			children = (
 				FA53332022D4065900BD88AF /* AWSTranscribeStreamingSwiftTests.swift */,
 				FA53331F22D4065800BD88AF /* AWSTranscribeStreamingTests-Bridging-Header.h */,
+				5C71F33E295672B8001183A4 /* guten_tag.wav */,
 				FABD9ED322D6661200BD4441 /* hello_world.wav */,
 				178A805122B097B900B167D6 /* Info.plist */,
 			);
@@ -6325,14 +6330,15 @@
 			isa = PBXGroup;
 			children = (
 				CEB8EF221C6A69A00098B15B /* AWSClockSkewTests.m */,
-				FA3EFBC324634C3400CA23B9 /* AWSStaticCredentialsTests.m */,
+				B499A9C429A462A100CC7F2C /* AWSCognitoCredentialsProviderConcurrencyTests.m */,
 				CEB8EF231C6A69A00098B15B /* AWSCognitoCredentialsProviderTests.m */,
 				CEB8EF241C6A69A00098B15B /* AWSCognitoIdentityServiceTests.m */,
 				CEB8EF251C6A69A00098B15B /* AWSCredentialsProviderTests.m */,
 				CEB8EF281C6A69A00098B15B /* AWSNetworkingTests.m */,
 				CEB8EF291C6A69A00098B15B /* AWSSerializationTests.m */,
-				CEB8EF2B1C6A69A00098B15B /* AWSSignatureTests.m */,
 				B44FBC4723F4B27D008EA8D2 /* AWSSignatureNullabilityTests.m */,
+				CEB8EF2B1C6A69A00098B15B /* AWSSignatureTests.m */,
+				FA3EFBC324634C3400CA23B9 /* AWSStaticCredentialsTests.m */,
 				CEB8EF2C1C6A69A00098B15B /* AWSSTSTests.m */,
 				CEB8EF2D1C6A69A00098B15B /* AWSTestUtility.h */,
 				CEB8EF2E1C6A69A00098B15B /* AWSTestUtility.m */,
@@ -11134,6 +11140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FABD9ED422D6661300BD4441 /* hello_world.wav in Resources */,
+				5C71F33F295672B8001183A4 /* guten_tag.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -12676,6 +12683,7 @@
 				CEB8EF3C1C6A69A00098B15B /* AWSUtilityTests.m in Sources */,
 				CEB8EF321C6A69A00098B15B /* AWSCognitoIdentityServiceTests.m in Sources */,
 				B44FBC4823F4B27D008EA8D2 /* AWSSignatureNullabilityTests.m in Sources */,
+				B499A9C529A462A100CC7F2C /* AWSCognitoCredentialsProviderConcurrencyTests.m in Sources */,
 				CEB8EF361C6A69A00098B15B /* AWSNetworkingTests.m in Sources */,
 				CEB8EF391C6A69A00098B15B /* AWSSignatureTests.m in Sources */,
 				CEB8EF3B1C6A69A00098B15B /* AWSTestUtility.m in Sources */,

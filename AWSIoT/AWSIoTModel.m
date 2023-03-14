@@ -1,5 +1,5 @@
 //
-// Copyright 2010-2022 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+// Copyright 2010-2023 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License").
 // You may not use this file except in compliance with the License.
@@ -2226,6 +2226,7 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
 	return @{
+             @"batchMode" : @"batchMode",
              @"logGroupName" : @"logGroupName",
              @"roleArn" : @"roleArn",
              };
@@ -3050,6 +3051,7 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
              @"jobExecutionsRetryConfig" : @"jobExecutionsRetryConfig",
              @"jobExecutionsRolloutConfig" : @"jobExecutionsRolloutConfig",
              @"jobTemplateId" : @"jobTemplateId",
+             @"maintenanceWindows" : @"maintenanceWindows",
              @"presignedUrlConfig" : @"presignedUrlConfig",
              @"tags" : @"tags",
              @"timeoutConfig" : @"timeoutConfig",
@@ -3066,6 +3068,10 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 + (NSValueTransformer *)jobExecutionsRolloutConfigJSONTransformer {
     return [NSValueTransformer awsmtl_JSONDictionaryTransformerWithModelClass:[AWSIoTJobExecutionsRolloutConfig class]];
+}
+
++ (NSValueTransformer *)maintenanceWindowsJSONTransformer {
+    return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSIoTMaintenanceWindow class]];
 }
 
 + (NSValueTransformer *)presignedUrlConfigJSONTransformer {
@@ -5889,6 +5895,7 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
              @"jobExecutionsRolloutConfig" : @"jobExecutionsRolloutConfig",
              @"jobTemplateArn" : @"jobTemplateArn",
              @"jobTemplateId" : @"jobTemplateId",
+             @"maintenanceWindows" : @"maintenanceWindows",
              @"presignedUrlConfig" : @"presignedUrlConfig",
              @"timeoutConfig" : @"timeoutConfig",
              };
@@ -5912,6 +5919,10 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 + (NSValueTransformer *)jobExecutionsRolloutConfigJSONTransformer {
     return [NSValueTransformer awsmtl_JSONDictionaryTransformerWithModelClass:[AWSIoTJobExecutionsRolloutConfig class]];
+}
+
++ (NSValueTransformer *)maintenanceWindowsJSONTransformer {
+    return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSIoTMaintenanceWindow class]];
 }
 
 + (NSValueTransformer *)presignedUrlConfigJSONTransformer {
@@ -8213,6 +8224,7 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
              @"namespaceId" : @"namespaceId",
              @"presignedUrlConfig" : @"presignedUrlConfig",
              @"reasonCode" : @"reasonCode",
+             @"scheduledJobRollouts" : @"scheduledJobRollouts",
              @"schedulingConfig" : @"schedulingConfig",
              @"status" : @"status",
              @"targetSelection" : @"targetSelection",
@@ -8263,6 +8275,10 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 + (NSValueTransformer *)presignedUrlConfigJSONTransformer {
     return [NSValueTransformer awsmtl_JSONDictionaryTransformerWithModelClass:[AWSIoTPresignedUrlConfig class]];
+}
+
++ (NSValueTransformer *)scheduledJobRolloutsJSONTransformer {
+    return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSIoTScheduledJobRollout class]];
 }
 
 + (NSValueTransformer *)schedulingConfigJSONTransformer {
@@ -11833,6 +11849,21 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 @end
 
+@implementation AWSIoTMaintenanceWindow
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"durationInMinutes" : @"durationInMinutes",
+             @"startTime" : @"startTime",
+             };
+}
+
+@end
+
 @implementation AWSIoTManagedJobTemplateSummary
 
 + (BOOL)supportsSecureCoding {
@@ -13454,6 +13485,20 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 
 @end
 
+@implementation AWSIoTScheduledJobRollout
+
++ (BOOL)supportsSecureCoding {
+    return YES;
+}
+
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+	return @{
+             @"startTime" : @"startTime",
+             };
+}
+
+@end
+
 @implementation AWSIoTSchedulingConfig
 
 + (BOOL)supportsSecureCoding {
@@ -13464,6 +13509,7 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
 	return @{
              @"endBehavior" : @"endBehavior",
              @"endTime" : @"endTime",
+             @"maintenanceWindows" : @"maintenanceWindows",
              @"startTime" : @"startTime",
              };
 }
@@ -13492,6 +13538,10 @@ NSString *const AWSIoTErrorDomain = @"com.amazonaws.AWSIoTErrorDomain";
                 return nil;
         }
     }];
+}
+
++ (NSValueTransformer *)maintenanceWindowsJSONTransformer {
+    return [NSValueTransformer awsmtl_JSONArrayTransformerWithModelClass:[AWSIoTMaintenanceWindow class]];
 }
 
 @end
